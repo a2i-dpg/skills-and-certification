@@ -1,0 +1,15 @@
+/node_modules
+/public/hot
+/public/storage/dom-pdf-fonts/dompdf_font_family_cache.php
+/storage/dom-pdf-fonts/dompdf_font_family_cache.php
+/storage/app/public
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+composer.lock
+.idea

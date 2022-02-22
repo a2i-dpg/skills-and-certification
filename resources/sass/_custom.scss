@@ -1,0 +1,176 @@
+$admin-panel-base-color: DodgerBlue;
+$btn-color-opacity: 0.1;
+
+.error {
+    color: #ff3e57;
+}
+
+//reset admin-lte css
+.card-header::after,
+.card-body::after,
+.card-footer::after {
+    display: block;
+    clear: both;
+    content: none;
+}
+
+.normal-line-height {
+    line-height: 0.5;
+}
+
+.custom-view-box {
+    margin-bottom: 1rem;
+}
+
+.custom-view-box .label-text {
+    font-weight: 600;
+    color: #212529;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.custom-view-box .input-box {
+    width: 100%;
+    min-height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background: #fafdff;
+    background-clip: padding-box;
+    border: 2px solid #ddf1ff;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.dataTables_length {
+    color: transparent;
+}
+
+
+//-------Bootstrap Basic Buttons with outline effect ----------------//
+.btn-rounded {
+    border-radius: 40px;
+    transition: all 0.3s ease 0s;
+}
+
+//----------- Bootstrap button with custom style ------ //
+.btn-glossy {
+    font-size: 13px;
+    color: rgba(58, 133, 191);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(58, 133, 191);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-rounded-primary:hover {
+    color: #FFF;
+    background: rgba(58, 133, 191);
+    border: 2px solid rgba(58, 133, 191);
+}
+
+.btn-rounded-success {
+    font-size: 13px;
+    color: rgba(103, 192, 103);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(103, 192, 103);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-rounded-success:hover {
+    color: #FFF;
+    background: rgb(103, 192, 103);
+    border: 2px solid rgb(103, 192, 103);
+}
+
+.btn-rounded-info {
+    font-size: 13px;
+    color: rgba(91, 192, 222);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(91, 192, 222);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-rounded-info:hover {
+    color: #FFF;
+    background: rgba(91, 192, 222);
+    border: 2px solid rgba(91, 192, 222);
+}
+
+.btn-rounded-warning {
+    font-size: 13px;
+    color: rgba(240, 173, 78);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(240, 173, 78);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-rounded-warning:hover {
+    color: #FFF;
+    background: rgb(240, 173, 78);
+    border: 2px solid rgba(240, 173, 78);
+}
+
+.btn-rounded-danger {
+    font-size: 13px;
+    color: rgba(217, 83, 78);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(217, 83, 78);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+}
+
+.btn-rounded-danger:hover {
+    color: #FFF;
+    background: rgba(217, 83, 78);
+    border: 2px solid rgba(217, 83, 78);
+}
+
+
+.custom-bg-gradient-info {
+    background: #fafdff;
+    background: linear-gradient(180deg, #fafdff 0%, #ddf1ff 35%);
+}
+
+
+.select2-container--bootstrap4 .select2-selection {
+    background: #fafdff;
+    border: 2px solid #ddf1ff;
+}
+
+
+.custom-input-box {
+    background: #fafdff;
+    background-clip: padding-box;
+    border: 2px solid #ddf1ff;
+}
+
+.form-control {
+    background: #fafdff;
+    background-clip: padding-box;
+    border: 2px solid #ddf1ff;
+}
+
+input[type = "file"] {
+    font-size: 13px;
+}
+
+.required {
+    color: red;
+}
+

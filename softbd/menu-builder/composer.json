@@ -1,0 +1,39 @@
+{
+    "name": "softbd/menu-builder",
+    "description": "Flexible menu builder for laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Baker Hasan",
+            "email": "hasanbd666@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Softbd\\MenuBuilder\\": "/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Softbd\\MenuBuilder\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Softbd\\MenuBuilder\\MenuBuilderServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "laravel/framework": "^8.12"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5@dev"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
