@@ -260,7 +260,7 @@ Go to config/settings.php and set your locales
 
 ## Contributions and Support
 
-Thanks to [everyone](https://github.com/--/--/graphs/contributors)
+Thanks to [everyone](https://github.com/a2i-dpg/skills-and-certification/graphs/contributors)
 who has contributed to this project!
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) to contribute.
