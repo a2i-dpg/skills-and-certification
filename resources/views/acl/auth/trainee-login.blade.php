@@ -50,8 +50,8 @@
                             <button type="submit"
                                     class="btn btn-primary btn-block submit_btn">{{__('generic.login')}}</button>
 
-                            <a href="{{ route('frontend.trainee.keycloak-login-form')  }}" type="button"
-                                    class="btn btn-primary btn-block">{{__('generic.login_with_idp')}}</a>
+                            {{-- <a href="{{ route('frontend.trainee.keycloak-login-form')  }}" type="button"
+                                    class="btn btn-primary btn-block">{{__('generic.login_with_idp')}}</a> --}}
                         </div>
 
                         <div class="row">
