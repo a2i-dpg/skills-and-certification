@@ -265,7 +265,7 @@ who has contributed to this project!
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) to contribute.
 
-If you found any bugs, Please report it using [Github](https://github.com/--/--)
+If you found any bugs, Please report it using [Github](https://github.com/a2i-dpg/skills-and-certification/issues)
 
 ## License
 
