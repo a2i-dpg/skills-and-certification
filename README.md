@@ -1,4 +1,4 @@
-# Welcome to the Training and certification management system
+# Welcome to the Skills and certification management system
 
 - [Installation](#installation)
 - [Usage](#usage)
