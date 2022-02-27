@@ -1,84 +1,96 @@
 <?php
 
 return [
-    'dashboard' => 'ডাশবোর্ড',
-    'visitor_feedback' => 'ভিজিটর ফিডব্যাক',
-    'tools' => 'টুলস',
-    'menu_builder' => 'মেনু বিল্ডার',
+    'dashboard' => 'Dashboard',
+    'visitor_feedback' => 'Visitor Feedback',
 
     //user management
-    'user_management' => 'ইউজার ম্যানেজমেন্ট',
-    'users' => 'ব্যবহারকারী',
-    'user_type' => 'ব্যবহারকারীর ধরন',
-    'role' => 'রোল',
-    'permissions' => 'অনুমতি',
+    'user_management' => 'User Management',
+    'users' => 'Users',
+    'user_type' => 'User Type',
+    'role' => 'Role',
+    'permissions' => 'Permissions',
 
     //institute management
-    'institute_management' => 'ইনস্টিটিউট ম্যানেজমেন্ট',
-    'institute' => 'ইনস্টিটিউট',
-    'branch' => 'শাখা',
-    'training_center' => 'প্রশিক্ষণ কেন্দ্র',
-    'programmes' => 'প্রোগ্রাম',
+    'institute_management' => 'Institute Management',
+    'institute' => 'Institute',
+    'branch' => 'Branch',
+    'training_center' => 'Training Center',
+    'programmes' => 'Programmes',
 
     //course management
-    'course_management' => 'কোর্স ম্যানেজমেন্ট',
-    'courses' => 'কোর্সসমূহ',
+    'course_management' => 'Course Management',
+    'courses' => 'Courses',
+    'application_form_types' => 'Application Form Types',
+    'course_config' => 'Course Config',
 
-    //batch management
-    'batch_management' => 'ব্যাচ ম্যানেজমেন্ট',
-    'batch' => 'ব্যাচ',
+    //Batch management
+    'batch_management' => 'Batch management',
+    'batch' => 'Batch',
 
-    //application management
-    'application_management' => 'আবেদন ব্যবস্থাপনা',
-    'applied_trainee' => 'আবেদনকৃত প্রশিক্ষণার্থীর',
-    'youth_accept_list' => 'স্বীকৃত প্রশিক্ষণার্থীদের তালিকা',
-    'youths' => 'ইয়ুথ সমূহ',
+    //Application management
+    'application_management' => 'Application management',
+    'applied_trainee' => 'Applied Trainee',
+    'youth_accept_list' => 'Trainee Accepted List',
+    'youths' => 'Trainee List',
 
     //feedback_managment
-    'feedback_management'=>'ফিডব্যাক ম্যানেজমেন্ট',
-    'youth_complains'=>'ইয়ুথ ফিডব্যাক',
-    'organization_complains'=>'ইন্ডাস্ট্রি ফিডব্যাক',
+    'feedback_management'=>'Feedback Management',
+    'youth_complains'=>'Trainee Feedback',
+    'organization_complains'=>'Industry Feedback',
 
     //content management
-    'content_management' => 'কন্টেন্ট ম্যানেজমেন্ট',
-    'gallery_album' => 'গ্যালারী এলবাম',
-    'gallery' => 'গ্যালারী',
-    'static_page' => 'স্থির পৃষ্ঠা',
-    'slider' => 'স্লাইডার',
-    'video_category' => 'ভিডিও ধরন',
-    'video' => 'ভিডিও',
-    'events' => 'ইভেন্টস',
-    'intro_videos' => 'ভূমিকা ভিডিও',
-    'question_answers' => 'প্রশ্ন-উত্তর',
+    'content_management' => 'Content Management',
+    'gallery' => 'Gallery',
+    'gallery_album' => 'Gallery Album',
+    'static_page' => 'Static Page',
+    'slider' => 'Slider',
+    'video' => 'Video',
+    'video_category' => 'Video Category',
+    'events' => 'Events',
+    'intro_videos' => 'Intro Video',
+    'question_answers' => 'FAQ',
 
     //organization management
-    'organization_management'=> 'ইন্ডাস্ট্রি পরিচালনা',
-    'organizations'=> 'ইন্ডাস্ট্রি',
-    'organization_type'=> 'ইন্ডাস্ট্রি ধরণ',
-    'organization_units'=> 'ইন্ডাস্ট্রি ইউনিট',
-    'organization_unit_types'=> 'ইন্ডাস্ট্রি ইউনিট প্রকার',
-    'human_resource_templates' => 'এইচআর টেম্পলেট',
-    'ranks'=> 'র‌্যাঙ্কস',
-    'rank-type'=> 'র‍্যংকের ধরন',
-    'organization_unit_statistic'=> 'ইন্ডাস্ট্রি উনিটের স্ট্যাটিসটিক্স',
-    'organization-youths'=> 'ইন্ডাস্ট্রি ইয়ুথ',
+    'organization_management' => 'Industry Management',
+    'organizations' => 'Industry',
+    'organization_type' => 'Industry Type',
+    'organization_units' => 'Industry Units',
+    'organization_unit_types' => 'Industry Unit Types',
+    'human_resource_templates' => 'HR Templates',
+    'ranks' => 'Ranks',
+    'rank-type' => 'Rank Type',
+    'organization-youths'=> 'Industry Youths',
 
     //skill management
-    'skill_management' => 'দক্ষতা পরিচালনা',
-    'skills' => 'দক্ষতা',
-    'services' => 'সেবা',
-    'job_sectors' => 'চাকরি সেক্টর',
-    'upazila_job_statistics' => 'উপজেলা চাকরির পরিসংখ্যান',
+    'skill_management' => 'Skill Management',
+    'skills' => 'Skills',
+    'services' => 'Services',
+    'job_sectors' => 'Job Sectors',
+    'upazila_job_statistics' => 'Upazila Job Statistics',
 
     //occupation management
-    'occupation_management' => 'পেশা পরিচালনা',
-    'occupations' => 'পেশা',
-    'occupation_wise_statistics' => 'পেশাগত পরিসংখ্যান',
+    'occupation_management' => 'Occupation Management',
+    'occupations' => 'Occupations',
+    'occupation_wise_statistics' => 'Occupation Wise Statistics',
+    'organization_unit_statistic' => 'Industry Unit Statistics',
 
     //location
-    'location' => "লোকেশন",
-    'division'=> "বিভাগ",
-    'district'=> "জেলা",
-    'upazila'=> "উপজেলা",
+    'location' => "Location",
+    'division' => "Division",
+    'district' => "District",
+    'upazila' => "Upazila",
+
+    //tools
+    'tools' => 'Tools',
+    'menu_builder' => 'Menu Builder',
+
+    'examination_management' => 'Exam Management',
+    'examination_type' => 'Examination Type',
+    'examination' => 'Examination',
+    'examination_result' => 'Examination Result',
+    'routine_management' => 'Routine Management',
+    'examination_routine' => 'Examination Routine',
+    'class_routine' => 'Class Routine'
 ];
 
