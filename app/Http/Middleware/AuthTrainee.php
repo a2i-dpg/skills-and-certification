@@ -17,9 +17,9 @@ class AuthTrainee
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::guard('trainee')->check()) {
-          return redirect('trainee-login');
-        }
+//        if(!Auth::guard('trainee')->check()) {
+//          return redirect('trainee-login');
+//        }
 
         return $next($request);
     }
