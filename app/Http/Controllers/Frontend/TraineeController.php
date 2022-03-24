@@ -7,14 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Institute;
 use App\Models\Payment;
 use App\Models\QuestionAnswer;
-use App\Models\TrainerBatch;
-use App\Models\Video;
-use App\Models\VideoCategory;
 use App\Models\Trainee;
 use App\Models\TraineeAcademicQualification;
 use App\Models\TraineeBatch;
 use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
+use App\Models\User;
+use App\Models\Video;
+use App\Models\VideoCategory;
 use App\Services\CertificateGenerator;
 use App\Services\TraineeRegistrationService;
 use Carbon\Carbon;
@@ -44,7 +44,7 @@ class TraineeController extends Controller
     public function index()
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = AuthHelper::getAuthUser();
 
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
@@ -53,7 +53,7 @@ class TraineeController extends Controller
             );
         }
 
-        $trainee = Trainee::findOrFail($trainee->id);
+        $trainee = User::findOrFail($trainee->id);
 
         $trainee->load([
             'traineeRegistration',

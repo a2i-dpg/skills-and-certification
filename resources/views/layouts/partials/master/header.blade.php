@@ -1,14 +1,14 @@
 <nav class="main-header navbar navbar-fixed navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
-        @auth
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-            </li>
-        @else
+        @if(\App\Helpers\Classes\AuthHelper::checkAuthUser())
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.dashboard')}}"><i class="fa fa-circle"></i></a>
             </li>
-        @endauth
+        @else
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+        @endif
     </ul>
 
     <ul class="navbar-nav ml-auto">
