@@ -65,7 +65,7 @@
                             <h4 class="font-weight-bolder">Education</h4>
                         </div>
                         <div class="card-tools">
-                            <a href="{{route('frontend.add-edit-education', ['id' => $trainee->id])}}"
+                            <a href="{{route('frontend.add-edit-education', ['id' => $trainee->user_id])}}"
                                class="btn btn-sm btn-primary btn-rounded">
                                 <i class="fas fa-plus-circle"></i> {{__('admin.common.add')}}
                             </a>

@@ -46,7 +46,8 @@ class TraineeRegistrationService
         $userData = Arr::only($data, ['name', 'email', 'password', 'profile_pic']);
 
         $userData = array_merge($userData, ['user_type_id' => UserType::USER_TYPE_TRAINEE_USER_CODE]);
-        User::create($userData);
+        $user = User::create($userData);
+        $data = array_merge($data, ['user_id' => $user->id]);
 
         return Trainee::create($data);
     }
@@ -148,7 +149,7 @@ class TraineeRegistrationService
     public function getListDataForDatatable(): JsonResponse
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = AuthHelper::getAuthUser();
 
         /** @var Builder|TraineeCourseEnroll $traineeCourseEnrolls */
         $traineeCourseEnrolls = TraineeCourseEnroll::select([

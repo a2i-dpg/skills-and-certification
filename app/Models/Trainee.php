@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\Helper;
 use App\Traits\AuthenticatableUser;
 use App\Traits\LocDistrictBelongsToRelation;
@@ -54,6 +55,19 @@ class Trainee extends AuthBaseModel
     const DEFAULT_PROFILE_PIC = 'trainees/default.jpg';
 
 
+    public static function findOrFail(int $id) {
+        $trainee = Trainee::where('user_id', $id)->first();
+        if ($trainee) {
+            return $trainee;
+        }else {
+            abort('404');
+        }
+    }
+
+    public static function getTraineeByAuthUser() {
+        $authUser = AuthHelper::getAuthUser();
+        return Trainee::findOrFail($authUser->id);
+    }
     /**
      * @return string
      */

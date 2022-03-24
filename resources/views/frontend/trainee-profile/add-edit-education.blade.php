@@ -707,7 +707,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 text-right pb-3">
+                    <div class="col-sm-12 text-center pb-3">
                         <button type="submit"
                                 class="btn btn-success btn-lg">{{ __('generic.save') }}</button>
                     </div>

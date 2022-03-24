@@ -73,7 +73,7 @@ class TraineeController extends Controller
     public function traineeEnrolledCourses()
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = AuthHelper::getAuthUser();
 
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
@@ -83,15 +83,12 @@ class TraineeController extends Controller
         }
 
         $trainee = Trainee::findOrFail($trainee->id);
-
         $trainee->load([
             'traineeRegistration',
         ]);
 
         $academicQualifications = TraineeAcademicQualification::where(['trainee_id' => $trainee->id])->get();
-
         $traineeSelfInfo = TraineeFamilyMemberInfo::where(['trainee_id' => $trainee->id, 'relation_with_trainee' => 'self'])->first();
-
         $traineeFamilyMembers = $this->traineeRegistrationService->getTraineeFamilyMemberInfo($trainee);
 
         return \view(self::VIEW_PATH . 'trainee.trainee-courses')->with(
