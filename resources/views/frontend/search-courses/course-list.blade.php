@@ -2,7 +2,6 @@
     /** @var \App\Models\Institute $currentInstitute */
     $currentInstitute = app('currentInstitute');
     $layout = 'master::layouts.front-end';
-    $authTrainee = \App\Helpers\Classes\AuthHelper::getAuthUser('trainee');
 
 @endphp
 
@@ -244,7 +243,7 @@
                 }
 
                 function checkAuth(courseId) {
-                    const isTraineeAuthenticated = !!'{{$authTrainee}}';
+                    const isTraineeAuthenticated = !!'{{\App\Helpers\Classes\AuthHelper::isAuthTrainee()}}';
 
                     if (isTraineeAuthenticated) {
                         window.location = "{!! route('frontend.course-apply', ['course_id' => '__']) !!}".replace('__', courseId);

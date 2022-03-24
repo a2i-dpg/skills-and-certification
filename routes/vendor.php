@@ -6,7 +6,7 @@ use App\Http\Controllers\UtilityAPI\ModelResourceFetchController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'authAdmin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::post('loc-divisions/datatable', [App\Http\Controllers\GeoLocations\LocDivisionController::class, 'getDatatable'])->name('loc-divisions.datatable');
@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('user-types', App\Http\Controllers\UserTypeController::class)
         ->except(['create', 'store', 'destroy']);
 
-    Route::post('/users/datatable', [App\Http\Controllers\Admin\UserController::class, 'getDatatable'])->name('users.datatable');
+    Route::post('/users/datatable', [App\Http\Controllers\Admin\UserControuller::class, 'getDatatable'])->name('sers.datatable');
     Route::post('/users/{user}/roles', [App\Http\Controllers\Admin\UserController::class, 'userRoleSync'])->name('users.role-sync');
     Route::get('/users/{user}/permissions', [App\Http\Controllers\Admin\UserController::class, 'userPermissionIndex'])->name('users.permissions');
     Route::post('/users/{user}/permissions', [App\Http\Controllers\Admin\UserController::class, 'userPermissionSync'])->name('users.permission-sync');

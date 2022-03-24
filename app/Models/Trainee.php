@@ -168,11 +168,11 @@ class Trainee extends AuthBaseModel
         "OTHERS" => self::RELIGION_OTHERS
     ];
 
-    public const EXAMINATION_SSC = 1;
-    public const EXAMINATION_HSC = 2;
-    public const EXAMINATION_GRADUATION = 3;
-    public const EXAMINATION_MASTERS = 4;
-    public const EXAMINATION_JSC = 5;
+    public const EXAMINATION_JSC = 1;
+    public const EXAMINATION_SSC = 2;
+    public const EXAMINATION_HSC = 3;
+    public const EXAMINATION_GRADUATION = 4;
+    public const EXAMINATION_MASTERS = 5;
     public const EXAMINATION_OTHERS = 6;
 
     public const EXAMINATION_LEVELS = [

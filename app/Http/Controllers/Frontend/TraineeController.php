@@ -44,7 +44,7 @@ class TraineeController extends Controller
     public function index()
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser();
+        $trainee = Trainee::getTraineeByAuthUser();
 
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
@@ -53,12 +53,14 @@ class TraineeController extends Controller
             );
         }
 
-        $trainee = Trainee::where('user_id', $trainee->id)->first();
-
         $trainee->load([
             'traineeRegistration',
         ]);
-        $academicQualifications = TraineeAcademicQualification::where(['trainee_id' => $trainee->id])->orderBy('examination', 'desc')->get();
+        $academicQualifications = TraineeAcademicQualification::where(['trainee_id' => $trainee->id])
+            ->orderBy('examination', 'desc')
+            ->get();
+
+
         $guardians = $trainee->familyMemberInfo;
 
         return \view(self::VIEW_PATH . 'trainee.trainee-profile')->with(
@@ -73,7 +75,7 @@ class TraineeController extends Controller
     public function traineeEnrolledCourses()
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser();
+        $trainee = Trainee::getTraineeByAuthUser();
 
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
@@ -82,7 +84,6 @@ class TraineeController extends Controller
             );
         }
 
-        $trainee = Trainee::findOrFail($trainee->id);
         $trainee->load([
             'traineeRegistration',
         ]);
@@ -102,7 +103,7 @@ class TraineeController extends Controller
 
     public function traineeCertificateView(TraineeCourseEnroll $traineeCourseEnroll)
     {
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
 
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([

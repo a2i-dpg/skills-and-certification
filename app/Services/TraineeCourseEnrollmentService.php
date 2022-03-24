@@ -16,9 +16,9 @@ class TraineeCourseEnrollmentService
     public function saveCourseEnrollData(array $data)
     {
         /** @var Trainee $authTrainee */
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authTrainee = AuthHelper::getAuthUser();
 
-        $trainee = Trainee::find($authTrainee->id);
+        $trainee = Trainee::findOrFail($authTrainee->id);
         $trainee->fill(array($authTrainee));
 
         if (!empty($data['ethnic_group']) || !empty($data['address'])) {

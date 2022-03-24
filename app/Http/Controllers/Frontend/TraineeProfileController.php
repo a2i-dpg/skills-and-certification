@@ -36,7 +36,6 @@ class TraineeProfileController extends BaseController
         return \view(self::VIEW_PATH . 'edit-personal-info', with(['trainee' => $authTrainee]));
     }
 
-
     /**
      * @param Request $request
      * @param $id
@@ -75,10 +74,9 @@ class TraineeProfileController extends BaseController
     public function addEditEducation(int $id): View
     {
         $trainee = Trainee::findOrFail($id);
-        $authTrainee = AuthHelper::getAuthUser('trainee');
         $academicQualifications = $trainee->academicQualifications->keyBy('examination');
 
-        return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $authTrainee, 'academicQualifications' => $academicQualifications]));
+        return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $trainee, 'academicQualifications' => $academicQualifications]));
     }
 
     /**
