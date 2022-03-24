@@ -6,18 +6,17 @@ namespace App\Services;
 use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\FileHandler;
 use App\Models\Batch;
-use App\Models\CertificateRequest;
-use App\Models\TraineeCertificate;
 use App\Models\Trainee;
-use App\Models\TraineeAcademicQualification;
 use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
-use App\Models\TrainerBatch;
+use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +42,11 @@ class TraineeRegistrationService
             $filename = FileHandler::storePhoto($data['student_pic'], 'student', 'signature_' . $data['access_key']);
             $trainee['student_pic'] = 'student/' . $filename;
         }
+        //create a user
+        $userData = Arr::only($data, ['name', 'email', 'password', 'profile_pic']);
+
+        $userData = array_merge($userData, ['user_type_id' => UserType::USER_TYPE_TRAINEE_USER_CODE]);
+        User::create($userData);
 
         return Trainee::create($data);
     }

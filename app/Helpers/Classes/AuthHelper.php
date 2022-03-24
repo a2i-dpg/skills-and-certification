@@ -37,14 +37,18 @@ class AuthHelper
 
     public static function checkAuthUser(string $guard = 'web'): bool
     {
-        if (empty($guard)) return false;
+        if (empty($guard)) {
+            return false;
+        }
 
         return Auth::guard($guard)->check() && !self::isAuthTrainee();
     }
 
     public static function isAuthTrainee(string $guard = 'web'): bool
     {
-        if (empty($guard)) return false;
+        if (empty($guard)) {
+            return false;
+        }
 
         return Auth::guard($guard)->check() && Auth::user()->user_type_id == UserType::USER_TYPE_TRAINEE_USER_CODE;
     }

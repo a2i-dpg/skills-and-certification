@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @package App\Models
  * @property string name
  * @property string $mobile
+ * @property int user_id
  * @property int loc_division_id
  * @property int loc_district_id
  * @property int loc_upazila_id

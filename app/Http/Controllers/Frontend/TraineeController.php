@@ -7,14 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Institute;
 use App\Models\Payment;
 use App\Models\QuestionAnswer;
+use App\Models\TrainerBatch;
+use App\Models\Video;
+use App\Models\VideoCategory;
 use App\Models\Trainee;
 use App\Models\TraineeAcademicQualification;
 use App\Models\TraineeBatch;
 use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
-use App\Models\User;
-use App\Models\Video;
-use App\Models\VideoCategory;
 use App\Services\CertificateGenerator;
 use App\Services\TraineeRegistrationService;
 use Carbon\Carbon;
@@ -53,7 +53,7 @@ class TraineeController extends Controller
             );
         }
 
-        $trainee = User::findOrFail($trainee->id);
+        $trainee = Trainee::where('user_id', $trainee->id)->first();
 
         $trainee->load([
             'traineeRegistration',
