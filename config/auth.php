@@ -40,10 +40,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'trainee' => [
-            'driver' => 'session',
-            'provider' => 'trainees',
-        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,10 +73,6 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-        'trainees' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Trainee::class,
-        ],
     ],
 
     /*

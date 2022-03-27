@@ -31,7 +31,7 @@ class TraineeLoginController
      */
     public function loginWithKeycloak()
     {
-        if (AuthHelper::checkAuthUser('trainee')) {
+        if (AuthHelper::isAuthTrainee()) {
             return redirect()->route('frontend.main');
         }
 
