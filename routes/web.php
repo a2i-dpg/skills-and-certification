@@ -10,6 +10,8 @@ Route::get('/email/verify', [\App\Http\Controllers\Admin\Auth\VerificationContro
 Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\Admin\Auth\VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
 Route::post('/email/resend',[\App\Http\Controllers\Admin\Auth\VerificationController::class, 'resend'] )->name('verification.resend');
 
+Route::get('/registration/verify', [\App\Http\Controllers\Frontend\TraineeRegistrationController::class, 'showVerificationNotice'])->name('registration-verification.notice');
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/check-unique-user-email', [App\Http\Controllers\Admin\UserController::class, 'checkUserEmailUniqueness'])->name('users.check-unique-user-email');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\BaseController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VerificationController extends BaseController
@@ -47,4 +48,5 @@ class VerificationController extends BaseController
             ? redirect($this->redirectPath())
             : view('acl.auth.verify-email');
     }
+
 }

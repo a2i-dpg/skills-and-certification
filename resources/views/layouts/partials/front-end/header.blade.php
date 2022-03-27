@@ -89,7 +89,7 @@
                             SignIn/SignUp
                         </button>
                         <div class="dropdown-menu menu-bg-color" aria-labelledby="dropdownMenuButton">
-                            @if(!auth()->guard('web')->check() && !auth()->guard('trainee')->check())
+                            @if(!auth()->guard('web')->check())
                                 <a class="btn dropdown-item {{ request()->is('trainee-registrations') ? 'active' : '' }}"
                                    href="{{ route('frontend.trainee-registrations.index') }}"
                                    id="bd-versions" aria-haspopup="true">

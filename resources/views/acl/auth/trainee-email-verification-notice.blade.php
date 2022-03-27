@@ -16,15 +16,15 @@
                                          style="display: block; border: 0;">
                                 </div>
                                 <h2 class="text-center">A verification email has sent to your email.Please verify your
-                                    email by clicking the given link or
-                                    click resend if you not get one.</h2>
+                                    email to complete registration.</h2>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="row justify-content-center">
                                     <form action="{{ route('verification.resend') }}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn-lg btn-primary">Resend</button>
+                                        <span>Not get an email?</span>
+                                        <button type="submit" class="btn-lg btn-primary">Resend Verification Email</button>
                                     </form>
                                 </div>
                             </div>

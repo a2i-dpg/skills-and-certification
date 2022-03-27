@@ -70,7 +70,20 @@ class TraineeRegistrationController extends Controller
             ])->withInput();
         }
 
-        return back()->with([
+        return redirect()->route('registration-verification.notice')->with([
+            'message' => __('generic.successfully_registered'),
+            'alertType' => 'success',
+        ]);
+    }
+
+    /**
+     * show email verification notice page after trainee registration submit
+     *
+     * @return View
+     */
+    public function showVerificationNotice(): View
+    {
+        return \view('acl.auth.trainee-email-verification-notice')->with([
             'message' => __('generic.successfully_registered'),
             'alertType' => 'success',
         ]);
@@ -217,7 +230,5 @@ class TraineeRegistrationController extends Controller
             'message' => __('Trainee course enroll rejected & notifying to trainee'),
             'alertType' => 'success',
         ]);
-
-
     }
 }
