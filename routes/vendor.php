@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('user-types', App\Http\Controllers\UserTypeController::class)
         ->except(['create', 'store', 'destroy']);
 
-    Route::post('/users/datatable', [App\Http\Controllers\Admin\UserControuller::class, 'getDatatable'])->name('sers.datatable');
+    Route::post('/users/datatable', [App\Http\Controllers\Admin\UserController::class, 'getDatatable'])->name('sers.datatable');
     Route::post('/users/{user}/roles', [App\Http\Controllers\Admin\UserController::class, 'userRoleSync'])->name('users.role-sync');
     Route::get('/users/{user}/permissions', [App\Http\Controllers\Admin\UserController::class, 'userPermissionIndex'])->name('users.permissions');
     Route::post('/users/{user}/permissions', [App\Http\Controllers\Admin\UserController::class, 'userPermissionSync'])->name('users.permission-sync');
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/admin/login/{redirect?}', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('login');
-    Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login-form');
+    Route::get('/user/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login-form');
     Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login');
     Route::post('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegistrationForm'])->name('admin.register-form');
