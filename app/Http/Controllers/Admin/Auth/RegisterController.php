@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\BaseController;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use Illuminate\View\View;
 
 class RegisterController extends BaseController
 {
@@ -16,7 +17,7 @@ class RegisterController extends BaseController
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
+    | validation and creation. By default, this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
     */
@@ -28,7 +29,7 @@ class RegisterController extends BaseController
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected string $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -43,9 +44,9 @@ class RegisterController extends BaseController
     /**
      * Show the application registration form.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm(): View
     {
         return view('master::acl.auth.register');
     }
@@ -56,7 +57,7 @@ class RegisterController extends BaseController
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -71,7 +72,7 @@ class RegisterController extends BaseController
      * @param array $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         return User::create([
             'name' => $data['name'],
