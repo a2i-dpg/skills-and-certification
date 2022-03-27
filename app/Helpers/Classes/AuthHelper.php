@@ -35,6 +35,12 @@ class AuthHelper
         return null;
     }
 
+    /**
+     * check if authenticated user is a user except trainee.
+     *
+     * @param string $guard
+     * @return bool
+     */
     public static function checkAuthUser(string $guard = 'web'): bool
     {
         if (empty($guard)) {
@@ -44,12 +50,21 @@ class AuthHelper
         return Auth::guard($guard)->check() && !self::isAuthTrainee();
     }
 
+    /**
+     * check authenticated trainee
+     *
+     * @param string $guard
+     * @return bool
+     */
     public static function isAuthTrainee(string $guard = 'web'): bool
     {
+        /** @var User $authUser */
+        $authUser = Auth::user();
+
         if (empty($guard)) {
             return false;
         }
 
-        return Auth::guard($guard)->check() && Auth::user()->user_type_id == UserType::USER_TYPE_TRAINEE_USER_CODE;
+        return Auth::guard($guard)->check() && $authUser->user_type_id == UserType::USER_TYPE_TRAINEE_USER_CODE;
     }
 }

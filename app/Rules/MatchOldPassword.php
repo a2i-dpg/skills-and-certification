@@ -27,7 +27,7 @@ class MatchOldPassword implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return Hash::check($value, AuthHelper::getAuthUser('youth'));
+        return Hash::check($value, AuthHelper::getAuthUser());
     }
 
     /**

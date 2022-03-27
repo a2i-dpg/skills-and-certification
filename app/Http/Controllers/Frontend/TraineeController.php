@@ -254,7 +254,8 @@ class TraineeController extends Controller
 
     public function sendMailToRecoverAccessKey(Request $request): RedirectResponse
     {
-        $trainee = Trainee::where('email', $request->input('email'))->first();
+        $trainee = Trainee::where('email', $request->input('email'))
+            ->first();
 
         if (empty($trainee)) {
             return back()->with([
@@ -271,7 +272,7 @@ class TraineeController extends Controller
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
             return back()->with([
-                'message' => __('Sorry for the technical error, try again please' ),
+                'message' => __('Sorry for the technical error, try again please'),
                 'alert-type' => 'error'
             ])->withInput();
         }
@@ -289,7 +290,7 @@ class TraineeController extends Controller
         if ($trainee == null) {
             return response()->json(true);
         }
-        return response()->json("This email is used already");
+        return response()->json("This email id already is being used");
     }
 
     public function checkTraineeUniqueNID(Request $request): JsonResponse

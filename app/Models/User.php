@@ -8,6 +8,7 @@ use App\Traits\LocDistrictBelongsToRelation;
 use App\Traits\LocDivisionBelongsToRelation;
 use App\Traits\ScopeAclTrait;
 use App\Traits\ScopeRowStatusTrait;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -46,7 +47,7 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @property-read int|null roles_count
  * @property-read Batch|null trainerBatches
  */
-class User extends AuthBaseModel
+class User extends AuthBaseModel implements MustVerifyEmail
 {
     use AuthenticatableUser, LocDistrictBelongsToRelation, LocDivisionBelongsToRelation, ScopeAclTrait, ScopeRowStatusTrait;
 

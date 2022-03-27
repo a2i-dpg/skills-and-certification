@@ -105,11 +105,6 @@
                             @endif
 
                             @if(!\Illuminate\Support\Facades\Auth::guard('web')->check())
-                                <a class="btn dropdown-item"
-                                   href="{{ route('frontend.trainee.login-form') }}"
-                                   id="bd-versions">
-                                    <i class="far fa-user"></i>&nbsp; {{__('generic.trainee_login')}}
-                                </a>
                                 <a class="dropdown-item" href="{{ route('admin.login-form') }}"
                                    id="bd-versions">
                                     <i class="far fa-user"></i>&nbsp; {{__('generic.login')}}

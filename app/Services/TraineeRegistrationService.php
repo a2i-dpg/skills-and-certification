@@ -11,6 +11,7 @@ use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
 use App\Models\User;
 use App\Models\UserType;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -47,6 +48,8 @@ class TraineeRegistrationService
 
         $userData = array_merge($userData, ['user_type_id' => UserType::USER_TYPE_TRAINEE_USER_CODE]);
         $user = User::create($userData);
+        event(new Registered($user));
+
         $data = array_merge($data, ['user_id' => $user->id]);
 
         return Trainee::create($data);
