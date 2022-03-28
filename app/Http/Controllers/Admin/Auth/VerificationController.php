@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\BaseController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VerificationController extends BaseController
@@ -41,6 +40,7 @@ class VerificationController extends BaseController
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
 
     public function show(Request $request)
     {
