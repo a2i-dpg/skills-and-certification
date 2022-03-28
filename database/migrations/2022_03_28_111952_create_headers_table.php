@@ -19,8 +19,9 @@ class CreateHeadersTable extends Migration
             $table->string('title', 191);
             $table->string('url', 191)->nullable();
             $table->string('target', 10)->nullable()->default('_self');
-            $table->unsignedTinyInteger('order');
+            $table->unsignedTinyInteger('order')->nullable();
             $table->string('route', 191)->nullable();
+            $table->tinyInteger('row_status')->default(0);
             $table->timestamps();
         });
     }

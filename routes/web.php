@@ -178,6 +178,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::post('trainee-feedbacks-datatable', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'traineeFeedbackDatatable'])->name('trainee-feedbacks.datatable');
     Route::get('trainer-feedbacks', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'showTrainerFeedbacks'])->name('show.trainer-feedbacks');
     Route::post('trainer-feedbacks-datatable', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'trainerFeedbackDatatable'])->name('trainer-feedbacks.datatable');
+
+    Route::post('headers-datatable', [\App\Http\Controllers\HeaderController::class, 'getDatatable'])->name('headers.datatable');
 });
 
 Route::group(['as' => 'frontend.'], function () {

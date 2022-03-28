@@ -505,5 +505,10 @@ return [
         'trainer' => 'Trainer',
         'select' => 'Select'
     ],
+    'header' => [
+      'add' => 'Create Header',
+      'edit' => 'Edit Header',
+      'read' => 'Read Header'
+    ],
 ];
 
