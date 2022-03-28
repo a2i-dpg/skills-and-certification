@@ -1,6 +1,7 @@
 @php
     /** @var \App\Models\Institute $currentInstitute */
     $currentInstitute =  app('currentInstitute');
+    $headerItems = app('navHeaders');
 @endphp
 
 <div class="container-fluid">
