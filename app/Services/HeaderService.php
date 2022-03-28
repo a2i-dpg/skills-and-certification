@@ -7,6 +7,7 @@ use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\FileHandler;
 use App\Models\Header;
 use App\Models\Slider;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -14,9 +15,9 @@ use Yajra\DataTables\Facades\DataTables;
 
 class HeaderService
 {
-    public function createHeader(array $data): Slider
+    public function createHeader(array $data): Header
     {
-        return Slider::create($data);
+        return Header::create($data);
     }
 
     public function validator($request): Validator
@@ -61,31 +62,24 @@ class HeaderService
     }
 
     /**
-     * @throws \Exception
+     * @param Header $header
+     * @param array $data
+     * @return Header
      */
-    public function updateHeader(Slider $slider, array $data): Slider
+    public function updateHeader(Header $header, array $data): Header
     {
-
-        if (!empty($data['slider'])) {
-            if (!empty($slider->slider)) {
-                FileHandler::deleteFile($slider->slider);
-            }
-
-            $filename = FileHandler::storePhoto($data['slider'], Slider::SLIDER_PIC_FOLDER_NAME);
-            $data['slider'] = Slider::SLIDER_PIC_FOLDER_NAME . '/' . $filename;
-        }
-
-        $slider->fill($data);
-        $slider->save();
-        return $slider;
+        $header->fill($data);
+        $header->save();
+        return $header;
     }
 
     public function getListDataForDatatable(\Illuminate\Http\Request $request): JsonResponse
     {
+        /** @var User $authUser */
         $authUser = AuthHelper::getAuthUser();
-        /** @var Builder|Slider $slider */
 
-        $headers = Header::acl()->select([
+        /** @var Header $headers */
+        $headers = Header::select([
             'headers.id as id',
             'headers.title',
             'headers.url',
@@ -95,10 +89,15 @@ class HeaderService
             'headers.created_at',
             'headers.updated_at',
             'headers.institute_id',
-            'institutes.title as institute_title'
+            'institutes.title as institute_title',
+            'headers.row_status'
         ]);
 
-        $headers->join('institutes', 'headers.institute_id', '=', 'institutes.id');
+        if ($authUser->isInstituteLevelUser()) {
+            $headers->acl();
+        }
+
+        $headers->leftJoin('institutes', 'headers.institute_id', '=', 'institutes.id');
 
         return DataTables::eloquent($headers)
             ->addColumn('action', static function (Header $header) use ($authUser) {

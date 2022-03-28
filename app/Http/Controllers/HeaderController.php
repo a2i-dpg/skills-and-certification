@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\header;
-use App\Http\Controllers\Controller;
 use App\Services\HeaderService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class HeaderController extends Controller
 {
@@ -53,6 +52,7 @@ class HeaderController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -75,48 +75,81 @@ class HeaderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\header  $header
-     * @return Response
+     * @param header $header
+     * @return View
      */
-    public function show(header $header)
+    public function show(header $header): View
     {
-        //
+        return \view(self::VIEW_PATH. 'read', compact('header'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\header  $header
-     * @return Response
+     * @param header $header
+     * @return View
      */
-    public function edit(header $header)
+    public function edit(header $header): View
     {
-        //
+        return \view(self::VIEW_PATH. 'edit-add', compact('header'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \App\Models\header  $header
-     * @return Response
+     * @param header $header
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request, header $header)
+    public function update(Request $request, header $header): RedirectResponse
     {
-        //
+        $headerValidatedData = $this->headerService->validator($request)->validate();
+
+        try {
+            $this->headerService->updateHeader($header, $headerValidatedData);
+        } catch (\Throwable $exception) {
+            Log::debug($exception->getMessage());
+            return back()->with([
+                'message' => __('generic.something_wrong_try_again'),
+                'alert-type' => 'error'
+            ]);
+        }
+
+        return redirect()->route('admin.headers.index')->with([
+            'message' => __('generic.object_updated_successfully', ['object' => 'Header']),
+            'alert-type' => 'success'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\header  $header
-     * @return Response
+     * @param header $header
+     * @return RedirectResponse
      */
-    public function destroy(header $header)
+    public function destroy(header $header): RedirectResponse
     {
-        //
+        try {
+           $header->delete();
+        } catch (\Throwable $exception) {
+            Log::debug($exception->getMessage());
+            return back()->with([
+                'message' => __('generic.something_wrong_try_again'),
+                'alert-type' => 'error'
+            ]);
+        }
+
+        return back()->with([
+            'message' => __('generic.object_deleted_successfully', ['object' => 'Header']),
+            'alert-type' => 'success'
+        ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getDatatable(Request $request): JsonResponse
     {
         return $this->headerService->getListDataForDatatable($request);

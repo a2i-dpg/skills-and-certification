@@ -1,7 +1,11 @@
+@php
+    $authUser = \App\Helpers\Classes\AuthHelper::getAuthUser();
+@endphp
+
 @extends('master::layouts.master')
 
 @section('title')
-    {{ __('admin.institute.list') }}
+    {{ __('admin.header.list') }}
 @endsection
 
 @section('content')
@@ -63,7 +67,8 @@
                     {
                         title: "{{ __('generic.institute') }}",
                         data: "institute_title",
-                        name: "institute_title"
+                        name: "institute_title",
+                        visible: {{!$authUser->isInstituteLevelUser()}}
                     },
                     {
                         title: "{{ __('generic.target') }}",

@@ -13,13 +13,13 @@
                 <div class="card-tools">
                     <div class="btn-group">
                         @can('update', $header)
-                            <a href="{{route('admin.institutes.edit', [$header->id])}}"
+                            <a href="{{route('admin.headers.edit', [$header->id])}}"
                                class="btn btn-sm btn-outline-primary btn-rounded">
                                 <i class="fas fa-plus-circle"></i>{{ __('admin.header.edit') }}
                             </a>
                         @endcan
                         @can('viewAny', $header)
-                            <a href="{{route('admin.header.index')}}"
+                            <a href="{{route('admin.headers.index')}}"
                                class="btn btn-sm btn-outline-primary btn-rounded">
                                 <i class="fas fa-backward"></i> {{__('admin.common.back')}}
                             </a>
@@ -32,7 +32,7 @@
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('generic.institute') }}</p>
                     <div class="input-box">
-                        {{ $header->institute->title }}
+                        {{ $header->institute_id ? $header->institute->title : '' }}
                     </div>
                 </div>
 
@@ -46,35 +46,35 @@
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('generic.url') }}</p>
                     <div class="input-box">
-                        {{ $institute->url }}
+                        {{ $header->url }}
                     </div>
                 </div>
 
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('generic.route') }}</p>
                     <div class="input-box">
-                        {{ $institute->route }}
+                        {{ $header->route }}
                     </div>
                 </div>
 
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('generic.header_order') }}</p>
                     <div class="input-box">
-                        {{ $institute->order }}
+                        {{ $header->order }}
                     </div>
                 </div>
 
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('generic.target') }}</p>
                     <div class="input-box">
-                        {{ $institute->target }}
+                        {{ $header->target }}
                     </div>
                 </div>
 
                 <div class="col-md-6 mt-2 custom-view-box">
                     <p class="label-text">Active status</p>
                     <div class="input-box">
-                        {!! $institute->getCurrentRowStatus(true) !!}
+                        {!! $header->getCurrentRowStatus(true) !!}
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 @php
-    $edit = !empty($institute->id);
+    $edit = !empty($header->id);
     $authUser = \App\Helpers\Classes\AuthHelper::getAuthUser();
 @endphp
 
@@ -47,7 +47,7 @@
                                                 data-model="{{base64_encode(App\Models\Institute::class)}}"
                                                 data-label-fields="{title}"
                                                 data-dependent-fields="#video_category_id"
-                                                @if($edit && !empty($header->institute))
+                                                @if($edit && !empty($header->institute_id))
                                                 data-preselected-option="{{json_encode(['text' =>  $header->institute->title, 'id' =>  $header->institute->id])}}"
                                                 @endif
                                                 data-placeholder="{{ __('generic.select_placeholder') }}"
