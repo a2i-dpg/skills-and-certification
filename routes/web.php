@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'examination-results' => App\Http\Controllers\ExaminationResultController::class,
         'routines' => App\Http\Controllers\RoutineController::class,
         'examination-routines' => App\Http\Controllers\ExaminationRoutineController::class,
+        'headers' => App\Http\Controllers\HeaderController::class,
     ]);
 
     Route::get('trainee-feedback/{id}/index', [App\Http\Controllers\TraineeFeedbackController::class, 'index'])->name('trainer-feedbacks.index');

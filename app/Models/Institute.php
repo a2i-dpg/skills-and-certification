@@ -137,4 +137,14 @@ class Institute extends BaseModel
     {
         return $this->hasMany(Slider::class);
     }
+
+    /**
+     * relation with headers of this institute
+     *
+     * @return HasMany
+     */
+    public function headers(): HasMany
+    {
+        return $this->hasMany(Header::class);
+    }
 }
