@@ -37,7 +37,7 @@ class TrainerFeedbackController extends Controller
     public function index(int $id): View
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
                     'message' => 'You are not Auth user, Please login',
@@ -64,7 +64,7 @@ class TrainerFeedbackController extends Controller
     public function feedback(int $id): View
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
                     'message' => 'You are not Auth user, Please login',

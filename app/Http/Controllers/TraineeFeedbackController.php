@@ -34,7 +34,6 @@ class TraineeFeedbackController extends Controller
      */
     public function index(int $id): View
     {
-
         $trainee = TraineeCourseEnroll::find($id);
         $traineeFeedback = TraineeFeedback::where('trainee_id', '=', $trainee->trainee_id)->first();
         return view(self::VIEW_PATH . 'index', compact('trainee', 'traineeFeedback'));

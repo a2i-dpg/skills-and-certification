@@ -33,7 +33,7 @@ class RoutineController extends Controller
 
     public function index($course_enroll_id): View
     {
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
 
         abort_if(!$trainee, 401, 'You are not Auth user, Please login');
 

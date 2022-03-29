@@ -33,7 +33,7 @@ class TraineeCourseEnrollmentController extends BaseController
     {
         $validatedData = $this->traineeCourseEnrollmentService->validator($request)->validate();
 
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authTrainee = Trainee::getTraineeByAuthUser();
         $isAlreadyEnrolled = TraineeCourseEnroll::where('trainee_id', $authTrainee->id)
             ->where('course_id', $validatedData['course_id'])
             ->first();
@@ -75,7 +75,7 @@ class TraineeCourseEnrollmentController extends BaseController
     {
         /** @var Trainee $authTrainee */
 
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authTrainee = Trainee::getTraineeByAuthUser();
         $enrolledCourse = TraineeCourseEnroll::where('course_id', $courseId)
             ->where('trainee_id', $authTrainee->id)
             ->first();

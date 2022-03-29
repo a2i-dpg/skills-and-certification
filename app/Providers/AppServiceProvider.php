@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Header;
 use App\Models\Institute;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\App;
@@ -31,6 +32,26 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return $currentInstitute;
+        });
+
+        /** dynamic headers fetching and binding with app instance */
+
+        $this->app->singleton('navHeaders', static function ($app) {
+            $currentInstituteSlug = $app->request->input('current_institute_slug');
+            $currentInstitute = null;
+            $headers = [];
+
+            if ($currentInstituteSlug) {
+                $currentInstitute = Institute::where('slug', $currentInstituteSlug)->first();
+
+                if (!$currentInstitute) {
+                    $headers =  Header::whereNull('institute_id')->get();
+                }else {
+                    $headers = Header::where('institute_id', $currentInstitute->id)->get();
+                }
+            }
+
+            return $headers;
         });
     }
 

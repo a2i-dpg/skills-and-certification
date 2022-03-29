@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\Helper;
 use App\Traits\AuthenticatableUser;
 use App\Traits\LocDistrictBelongsToRelation;
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @package App\Models
  * @property string name
  * @property string $mobile
+ * @property int user_id
  * @property int loc_division_id
  * @property int loc_district_id
  * @property int loc_upazila_id
@@ -53,6 +55,19 @@ class Trainee extends AuthBaseModel
     const DEFAULT_PROFILE_PIC = 'trainees/default.jpg';
 
 
+    public static function findOrFail(int $id) {
+        $trainee = Trainee::where('user_id', $id)->first();
+        if ($trainee) {
+            return $trainee;
+        }else {
+            abort('404');
+        }
+    }
+
+    public static function getTraineeByAuthUser() {
+        $authUser = AuthHelper::getAuthUser();
+        return Trainee::findOrFail($authUser->id);
+    }
     /**
      * @return string
      */
@@ -153,11 +168,11 @@ class Trainee extends AuthBaseModel
         "OTHERS" => self::RELIGION_OTHERS
     ];
 
-    public const EXAMINATION_SSC = 1;
-    public const EXAMINATION_HSC = 2;
-    public const EXAMINATION_GRADUATION = 3;
-    public const EXAMINATION_MASTERS = 4;
-    public const EXAMINATION_JSC = 5;
+    public const EXAMINATION_JSC = 1;
+    public const EXAMINATION_SSC = 2;
+    public const EXAMINATION_HSC = 3;
+    public const EXAMINATION_GRADUATION = 4;
+    public const EXAMINATION_MASTERS = 5;
     public const EXAMINATION_OTHERS = 6;
 
     public const EXAMINATION_LEVELS = [

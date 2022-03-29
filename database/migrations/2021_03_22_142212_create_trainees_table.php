@@ -15,6 +15,7 @@ class CreateTraineesTable extends Migration
     {
         Schema::create('trainees', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('name', 191);
             $table->string('mobile', 20)->nullable()->index('trainee_mobile');
             $table->string('email', 191)->index('trainee_email')->unique();

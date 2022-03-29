@@ -36,7 +36,7 @@ class CertificateController extends Controller
     {
 
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
 
         $trainee_course_enrolls = TraineeCourseEnroll::find($enroll_id);
         $batch = Batch::find($trainee_course_enrolls->batch_id)->first();

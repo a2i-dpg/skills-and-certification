@@ -6,6 +6,13 @@ Route::get('/success', [\App\Http\Controllers\HomeController::class, 'success'])
 Route::get('/fail', [\App\Http\Controllers\HomeController::class, 'fail'])->name('fail');
 Route::get('/cancel', [\App\Http\Controllers\HomeController::class, 'cancel'])->name('cancel');
 
+Route::get('/email/verify', [\App\Http\Controllers\Admin\Auth\VerificationController::class, 'show'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\Admin\Auth\VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+Route::post('/email/resend',[\App\Http\Controllers\Admin\Auth\VerificationController::class, 'resend'] )->name('verification.resend');
+
+Route::get('/registration/verify', [\App\Http\Controllers\Frontend\TraineeRegistrationController::class, 'showVerificationNotice'])->name('registration-verification.notice');
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/check-unique-user-email', [App\Http\Controllers\Admin\UserController::class, 'checkUserEmailUniqueness'])->name('users.check-unique-user-email');
 });
@@ -35,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'examination-results' => App\Http\Controllers\ExaminationResultController::class,
         'routines' => App\Http\Controllers\RoutineController::class,
         'examination-routines' => App\Http\Controllers\ExaminationRoutineController::class,
+        'headers' => App\Http\Controllers\HeaderController::class,
     ]);
 
     Route::get('trainee-feedback/{id}/index', [App\Http\Controllers\TraineeFeedbackController::class, 'index'])->name('trainer-feedbacks.index');
@@ -170,10 +178,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::post('trainee-feedbacks-datatable', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'traineeFeedbackDatatable'])->name('trainee-feedbacks.datatable');
     Route::get('trainer-feedbacks', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'showTrainerFeedbacks'])->name('show.trainer-feedbacks');
     Route::post('trainer-feedbacks-datatable', [\App\Http\Controllers\Frontend\VisitorFeedbackController::class, 'trainerFeedbackDatatable'])->name('trainer-feedbacks.datatable');
+
+    Route::post('headers-datatable', [\App\Http\Controllers\HeaderController::class, 'getDatatable'])->name('headers.datatable');
 });
 
 Route::group(['as' => 'frontend.'], function () {
-    Route::group(['middleware' => ['authTrainee']], function () {
+    Route::group(['middleware' => ['authTrainee', 'verified']], function () {
         Route::get('trainee-profile', [App\Http\Controllers\Frontend\TraineeController::class, 'index'])->name('trainee');
         Route::get('edit-personal-info', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'editPersonalInfo'])->name('edit-personal-info');
         Route::get('add-guardian-info/{id?}', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'editGuardianInfo'])->name('add-guardian-info');
@@ -203,10 +213,8 @@ Route::group(['as' => 'frontend.'], function () {
     Route::post('ssp-registration', [\App\Http\Controllers\InstituteController::class, 'SSPRegistration'])->name('ssp-registration');
 
     Route::get('trainee-registration/success/{accessKey}', [App\Http\Controllers\Frontend\TraineeRegistrationController::class, 'registrationSuccess'])->name('trainee-registration.success');
-    Route::get('trainee-login', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'loginForm'])->name('trainee.login-form');
-    Route::post('trainee-login', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'login'])->name('trainee.login-submit');
     Route::get('trainee-login-callback', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'ssoLoginCallback'])->name('trainee.sso-login-callback');
-    Route::get('trainee-password-reset', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'passwordResetForm'])->name('trainee.password-reset');
+//    Route::get('trainee-password-reset', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'passwordResetForm'])->name('trainee.password-reset');
     Route::post('trainee-logout', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'logout'])->name('trainee.logout-submit');
     Route::get('keycloak-trainee-login', [App\Http\Controllers\Frontend\TraineeLoginController::class, 'loginWithKeycloak'])->name('trainee.keycloak-login-form');
 

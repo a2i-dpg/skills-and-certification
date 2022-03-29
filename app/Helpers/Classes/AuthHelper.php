@@ -2,6 +2,7 @@
 
 namespace App\Helpers\Classes;
 
+use App\Models\UserType;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -34,10 +35,36 @@ class AuthHelper
         return null;
     }
 
+    /**
+     * check if authenticated user is a user except trainee.
+     *
+     * @param string $guard
+     * @return bool
+     */
     public static function checkAuthUser(string $guard = 'web'): bool
     {
-        if (empty($guard)) return false;
+        if (empty($guard)) {
+            return false;
+        }
 
-        return Auth::guard($guard)->check();
+        return Auth::guard($guard)->check() && !self::isAuthTrainee();
+    }
+
+    /**
+     * check authenticated trainee
+     *
+     * @param string $guard
+     * @return bool
+     */
+    public static function isAuthTrainee(string $guard = 'web'): bool
+    {
+        /** @var User $authUser */
+        $authUser = Auth::user();
+
+        if (empty($guard)) {
+            return false;
+        }
+
+        return Auth::guard($guard)->check() && $authUser->user_type_id == UserType::USER_TYPE_TRAINEE_USER_CODE;
     }
 }

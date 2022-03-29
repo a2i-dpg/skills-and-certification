@@ -9,6 +9,7 @@ use App\Services\TraineeRegistrationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
@@ -55,9 +56,12 @@ class TraineeRegistrationController extends Controller
     {
         $validated = $this->traineeRegistrationService->validator($request)->validate();
 
+        DB::beginTransaction();
         try {
             $this->traineeRegistrationService->createRegistration($validated);
+            DB::commit();
         } catch (\Throwable $exception) {
+            DB::rollBack();
             Log::debug($exception->getMessage());
 
             return back()->with([
@@ -66,7 +70,20 @@ class TraineeRegistrationController extends Controller
             ])->withInput();
         }
 
-        return back()->with([
+        return redirect()->route('registration-verification.notice')->with([
+            'message' => __('generic.successfully_registered'),
+            'alertType' => 'success',
+        ]);
+    }
+
+    /**
+     * show email verification notice page after trainee registration submit
+     *
+     * @return View
+     */
+    public function showVerificationNotice(): View
+    {
+        return \view('acl.auth.trainee-email-verification-notice')->with([
             'message' => __('generic.successfully_registered'),
             'alertType' => 'success',
         ]);
@@ -213,7 +230,5 @@ class TraineeRegistrationController extends Controller
             'message' => __('Trainee course enroll rejected & notifying to trainee'),
             'alertType' => 'success',
         ]);
-
-
     }
 }

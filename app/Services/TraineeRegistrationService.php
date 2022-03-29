@@ -6,18 +6,18 @@ namespace App\Services;
 use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\FileHandler;
 use App\Models\Batch;
-use App\Models\CertificateRequest;
-use App\Models\TraineeCertificate;
 use App\Models\Trainee;
-use App\Models\TraineeAcademicQualification;
 use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
-use App\Models\TrainerBatch;
+use App\Models\User;
+use App\Models\UserType;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +43,14 @@ class TraineeRegistrationService
             $filename = FileHandler::storePhoto($data['student_pic'], 'student', 'signature_' . $data['access_key']);
             $trainee['student_pic'] = 'student/' . $filename;
         }
+        //create a user
+        $userData = Arr::only($data, ['name', 'email', 'password', 'profile_pic']);
+
+        $userData = array_merge($userData, ['user_type_id' => UserType::USER_TYPE_TRAINEE_USER_CODE]);
+        $user = User::create($userData);
+        event(new Registered($user));
+
+        $data = array_merge($data, ['user_id' => $user->id]);
 
         return Trainee::create($data);
     }
@@ -144,7 +152,7 @@ class TraineeRegistrationService
     public function getListDataForDatatable(): JsonResponse
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = AuthHelper::getAuthUser();
 
         /** @var Builder|TraineeCourseEnroll $traineeCourseEnrolls */
         $traineeCourseEnrolls = TraineeCourseEnroll::select([

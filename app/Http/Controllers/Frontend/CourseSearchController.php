@@ -58,7 +58,7 @@ class CourseSearchController extends Controller
     public function courseApply(int $courseId): View
     {
         /** @var Trainee $authTrainee */
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authTrainee = Trainee::getTraineeByAuthUser();
 
         $course = Course::findOrFail($courseId);
         $runningBatches = $course->runningBatches;
