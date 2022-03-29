@@ -34,6 +34,7 @@ class UserType extends BaseModel
     const USER_TYPE_TRAINER_USER_CODE = '4';
     const USER_TYPE_BRANCH_USER_CODE = '5';
     const USER_TYPE_TRAINING_CENTER_USER_CODE = '6';
+    const USER_TYPE_TRAINEE_USER_CODE = '7';
 
     public function role(): BelongsTo
     {

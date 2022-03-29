@@ -435,6 +435,10 @@ return [
     'old_password' => 'Old Password',
     'back_to_profile' => 'Back to Profile',
     'exam_routine' => 'Exam Routine',
-    'login_with_idp' => 'Login with IDP'
+    'login_with_idp' => 'Login with IDP',
+    'target' => 'Target',
+    'header' => 'Header',
+    'header_order' => 'Order',
+    'link_type' => 'Link Type',
 ];
 

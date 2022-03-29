@@ -76,6 +76,15 @@ class UserTypeSeeder extends Seeder
                     'row_status' => 1,
                     'default_role_id' => '4'
                 ),
+            6 =>
+                array(
+                    'id' => 7,
+                    'title' => 'Trainee',
+                    'code' => '7',
+                    'row_status' => 1,
+                    'parent_id' => null,
+                    'default_role_id' => null
+                ),
         ));
 
         DB::table('users')->truncate();

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\FileHandler;
 use App\Models\CertificateRequest;
+use App\Models\Trainee;
 use App\Models\TraineeBatch;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
@@ -61,7 +62,7 @@ class CertificateRequestService
      */
     public function requestTraineeCertificate(array $data)
     {
-        $trainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::getTraineeByAuthUser();
         $traineeBatch = TraineeBatch::where('trainee_course_enroll_id','=',$data['trainee_course_enrolls_id'])->first();
         $data['trainee_batch_id'] = $traineeBatch->id;
         $data['trainee_id'] = $trainee->id;
@@ -76,7 +77,6 @@ class CertificateRequestService
         }
 
         return CertificateRequest::create($data);
-
     }
 
 }

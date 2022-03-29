@@ -37,11 +37,11 @@ class TraineeProfileService
             ]
         ];
 
-        if (AuthHelper::getAuthUser('trainee')->id == $id && !empty($request->input('password'))) {
+        if (Trainee::getTraineeByAuthUser()->id == $id && !empty($request->input('password'))) {
             $rules['old_password'] = [
                 'bail',
                 static function ($attribute, $value, $fail) {
-                    if (!Hash::check($value, AuthHelper::getAuthUser('trainee')->password)) {
+                    if (!Hash::check($value, AuthHelper::getAuthUser()->password)) {
                         $fail(__('Credentials does not match.'));
                     }
                 }
@@ -79,6 +79,7 @@ class TraineeProfileService
     public function updatePersonalInfo(array $data, $id): bool
     {
         $trainee = Trainee::find($id);
+        $authUser = AuthHelper::getAuthUser();
 
         if (!empty($data['profile_pic'])) {
             $filename = FileHandler::storePhoto($data['profile_pic'], Trainee::PROFILE_PIC_FOLDER_NAME);
@@ -91,11 +92,16 @@ class TraineeProfileService
             unset($data['password']);
         }
 
+        $authUser->fill($data);
         $trainee->fill($data);
-        return $trainee->update();
+
+        return $authUser->update() && $trainee->update();
     }
 
-
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function educationInfoValidator(Request $request): array
     {
         return $request->validate([
@@ -103,12 +109,18 @@ class TraineeProfileService
         ]);
     }
 
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function storeAcademicInfo(array $data): bool
     {
-        $trainee = Trainee::find(AuthHelper::getAuthUser('trainee')->id);
+        $trainee = Trainee::getTraineeByAuthUser();
 
         foreach ($data['academicQualification'] as  $academicQualification) {
-            if (empty($academicQualification['examination_name'])) continue;
+            if (empty($academicQualification['examination_name'])) {
+                continue;
+            }
 
             $existAcademicQualification = TraineeAcademicQualification::where('trainee_id', $trainee->id)
                 ->where('examination', $academicQualification['examination'])
@@ -126,7 +138,8 @@ class TraineeProfileService
 
     public function storeGuardian(array $data): TraineeFamilyMemberInfo
     {
-        $data['trainee_id'] = AuthHelper::getAuthUser('trainee')->id;
+        $authTrainee = Trainee::getTraineeByAuthUser();
+        $data['trainee_id'] = $authTrainee->id;
 
         return TraineeFamilyMemberInfo::create($data);
     }

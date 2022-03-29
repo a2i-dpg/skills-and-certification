@@ -1,6 +1,7 @@
 @php
     /** @var \App\Models\Institute $currentInstitute */
     $currentInstitute =  app('currentInstitute');
+    $navItems = app('navHeaders');
 @endphp
 
 <div class="container-fluid">
@@ -82,14 +83,14 @@
 
             <!-- Right menu items -->
             <ul class="nav navbar-nav navbar-right">
-                @if(!\Illuminate\Support\Facades\Auth::guard('web')->check() && !\Illuminate\Support\Facades\Auth::guard('trainee')->check())
+                @if(!\Illuminate\Support\Facades\Auth::guard('web')->check())
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             SignIn/SignUp
                         </button>
                         <div class="dropdown-menu menu-bg-color" aria-labelledby="dropdownMenuButton">
-                            @if(!auth()->guard('web')->check() && !auth()->guard('trainee')->check())
+                            @if(!auth()->guard('web')->check())
                                 <a class="btn dropdown-item {{ request()->is('trainee-registrations') ? 'active' : '' }}"
                                    href="{{ route('frontend.trainee-registrations.index') }}"
                                    id="bd-versions" aria-haspopup="true">
@@ -97,37 +98,32 @@
                                 </a>
 
 
-                                    <a class="btn dropdown-item {{ request()->is('ssp-registration') ? 'active' : '' }}"
-                                       href="{{ route('frontend.ssp-registration') }}"
-                                       id="bd-versions" aria-haspopup="true">
-                                        <i class="fa fa-file"> </i>&nbsp; {{__('generic.ssp_registration')}}
-                                    </a>
+                                <a class="btn dropdown-item {{ request()->is('ssp-registration') ? 'active' : '' }}"
+                                   href="{{ route('frontend.ssp-registration') }}"
+                                   id="bd-versions" aria-haspopup="true">
+                                    <i class="fa fa-file"> </i>&nbsp; {{__('generic.ssp_registration')}}
+                                </a>
                             @endif
 
-                            @if(!\Illuminate\Support\Facades\Auth::guard('web')->check() && !\Illuminate\Support\Facades\Auth::guard('trainee')->check())
-                                    <a class="btn dropdown-item"
-                                       href="{{ route('frontend.trainee.login-form') }}"
-                                       id="bd-versions">
-                                        <i class="far fa-user"></i>&nbsp; {{__('generic.trainee_login')}}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.login-form') }}"
-                                       id="bd-versions">
-                                        <i class="far fa-user"></i>&nbsp; {{__('generic.login')}}
-                                    </a>
+                            @if(!\Illuminate\Support\Facades\Auth::guard('web')->check())
+                                <a class="dropdown-item" href="{{ route('admin.login-form') }}"
+                                   id="bd-versions">
+                                    <i class="far fa-user"></i>&nbsp; {{__('generic.login')}}
+                                </a>
                             @endif
                         </div>
                     </div>
                 @endif
 
 
-                @auth('web')
+                @if(\App\Helpers\Classes\AuthHelper::checkAuthUser())
                     <li class="nav-item dropdown">
                         <a class="nav-item nav-link mr-md-2 text-white" href="{{ route('admin.dashboard') }}"
                            id="bd-versions">
                             <i class="fas fa-clipboard-list"></i>&nbsp; {{__('generic.dashboard')}}
                         </a>
                     </li>
-                @elseauth('trainee')
+                @elseif(\App\Helpers\Classes\AuthHelper::isAuthTrainee())
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle btn" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -152,11 +148,11 @@
                             <i class="fas fa-lock-open"></i>&nbsp; {{__('generic.logout')}}
                         </a>
                         <form id="trainee-logout" style="display: none" method="post"
-                              action="{{route('frontend.trainee.logout-submit')}}">
+                              action="{{route('admin.logout')}}">
                             @csrf
                         </form>
                     </li>
-                @endauth
+                @endif
             </ul>
         </div>
     </div>

@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    ssp-registration
+    Trainee-registration
 @endsection
 
 @section('content')

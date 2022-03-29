@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
@@ -30,11 +31,10 @@ class TraineeProfileController extends BaseController
      */
     public function editPersonalInfo(): View
     {
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authTrainee = Trainee::getTraineeByAuthUser();
 
         return \view(self::VIEW_PATH . 'edit-personal-info', with(['trainee' => $authTrainee]));
     }
-
 
     /**
      * @param Request $request
@@ -46,9 +46,12 @@ class TraineeProfileController extends BaseController
     {
         $validated = $this->traineeProfileService->validator($request, $id)->validate();
 
+        DB::beginTransaction();
         try {
             $this->traineeProfileService->updatePersonalInfo($validated, $id);
+            DB::commit();
         } catch (\Throwable $exception) {
+            DB::rollBack();
             Log::debug($exception->getMessage());
 
             return back()->with([
@@ -70,11 +73,10 @@ class TraineeProfileController extends BaseController
      */
     public function addEditEducation(int $id): View
     {
-        $trainee = Trainee::findOrFAil($id);
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $trainee = Trainee::findOrFail($id);
         $academicQualifications = $trainee->academicQualifications->keyBy('examination');
 
-        return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $authTrainee, 'academicQualifications' => $academicQualifications]));
+        return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $trainee, 'academicQualifications' => $academicQualifications]));
     }
 
     /**
@@ -124,7 +126,9 @@ class TraineeProfileController extends BaseController
     private function relationAlreadyAdded($relationWithTrainee): bool
     {
         /** @var Trainee $authTrainee */
-        $authTrainee = AuthHelper::getAuthUser('trainee');
+        $authUser = AuthHelper::getAuthUser();
+        $authTrainee = Trainee::findOrFail($authUser->id);
+
         $guardian = TraineeFamilyMemberInfo::where('trainee_id', $authTrainee->id)
             ->where('relation_with_trainee', $relationWithTrainee)
             ->first();

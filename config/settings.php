@@ -8,5 +8,4 @@ return [
 //    'local_currency' =>'BDT',
 //    'locale' => 'bn-BD',
 //    'locale_code' => 'bn',
-
 ];

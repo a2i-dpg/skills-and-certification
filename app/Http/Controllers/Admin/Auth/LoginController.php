@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserType;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -31,6 +32,19 @@ class LoginController extends Controller
      */
     protected string $redirectTo = '/admin';
     protected string $currentGuardName = 'web';
+
+    public function redirectPath(): string
+    {
+        if (Auth::check() && Auth::user()->user_type_id == UserType::USER_TYPE_TRAINEE_USER_CODE) {
+            $this->redirectTo = route('frontend.main');
+        }
+
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+    }
 
     /**
      * Create a new controller instance.

@@ -8,11 +8,11 @@
                 </button>
             </div>
             <div class="modal-body font-weight-bold" id="delete_model_body">
-                You have to login first to apply a course.
+                Login to apply a course.
             </div>
 
             <div class="col-md-12">
-                <a href="{{ route('frontend.trainee.login-form') }}" class="text-primary">Login</a>
+                <a href="{{ route('admin.login-form') }}" class="text-primary">Login</a>
                 <p>Not yet registered? <a href="{{ route('frontend.trainee-registrations.index') }}">Register</a></p>
             </div>
         </div>
