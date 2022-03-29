@@ -173,6 +173,7 @@
                     html += '<div class="col-md-3">';
                     html += '<div class="card card-main mb-3">';
                     html += '<div class="card-bar-institute-list">';
+                    html += '<a href="{{ url('__')}}"'.replace('__', item.slug);
                     html += '<div class="">';
                     html += '<img class="slider-img border-top-radius"';
                     html += item.logo ? 'src="{{asset('/storage/'. '__')}}"'.replace('__', item.logo) + '" width="100%" height="150px">' : 'src = "http://via.placeholder.com/640x360" width="100%" height="150px"' + '>';
@@ -188,12 +189,9 @@
                     html += '<p class=" course-heading-wrap">Name: ' + item?.contact_person_name + '</p>';
                     html += '<p class=" course-heading-wrap">Mobile: ' + item?.contact_person_mobile + '</p>';
                     html += '<p class="course-heading-wrap">Address: ' + item?.address ?? " " + '</p>';
-                    html += '<hr/>';
-                    html += '<p class="float-right">';
-                    html += '<a href="{{ route('frontend.institute-details', '__')}}"'.replace('__', item.id);
-                    html += 'class="btn btn-primary btn-sm">{{__('generic.details')}}</a>';
-                    html += '</p>';
                     html += '</div>';
+                    html += '</a>';
+
                     html += '</div>';
                     html += '</div> ';
                     html += '</div>';
@@ -249,7 +247,7 @@
                 let baseUrl = '{{route('web-api.model-resources')}}';
                 const instituteFetch = searchAPI({
                     model: "{{base64_encode(\App\Models\Institute::class)}}",
-                    columns: 'id|title|contact_person_name|contact_person_email|contact_person_mobile|address|office_head_name|office_head_post|logo'
+                    columns: 'id|title|contact_person_name|contact_person_email|contact_person_mobile|address|office_head_name|office_head_post|logo|slug'
                 });
 
                 function instituteSearch(url = baseUrl) {

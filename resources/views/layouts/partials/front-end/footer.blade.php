@@ -66,18 +66,28 @@
                 <div class=" footer-widget-quick-links">
                     <h3 class="mb-3">{{__('generic.important_link')}}</h3>
                     <ul>
-                        <li>
-                            <i class="fa  fa-angle-right"></i>
-                            <a href="#">{{__('generic.online_course')}}</a>
-                        </li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.news')}} </a></li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.events')}}</a></li>
+                        
+                        {{-- <li><i class="fa fa-angle-right"></i><a href="{{url('/')}}#running_courses">{{__('generic.online_course')}}</a></li> --}}
+                        <li><i class="fa fa-angle-right"></i>
+                            <a href="{{ route('frontend.course_search', ['instituteSlug' => $currentInstitute->slug ?? '']) }}">
+                                {{__('generic.online_course')}}</a></li>
+                        
+                        
                         <li><i class="fa  fa-angle-right"></i> <a
-                                href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.about_us')}}</a>
+                            href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.about_us')}}</a>
                         </li>
+                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'termsandconditions', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.terms_and_conditions')}}</a></li>
+                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'privacypolicy', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.privacy_policy')}}</a></li>
+                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'news', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.news')}} </a></li>
+                        
+
 
                         @if($currentInstitute)
-                            <li><i class="fa  fa-angle-right"></i> <a
+                       
+                        {{-- <li><i class="fa  fa-angle-right"></i> <a href="{{url($currentInstitute->slug)}}#event_area">{{__('generic.events')}}</a></li> --}}
+                        
+                        
+                        <li><i class="fa  fa-angle-right"></i> <a
                                     href="{{ route('frontend.advice-page', ['instituteSlug' => $currentInstitute->slug ?? '']) }}">{{__('generic.feedback')}}</a>
                             </li>
                             <li><i class="fa  fa-angle-right"></i> <a
@@ -85,7 +95,11 @@
                             </li>
                         @endif
 
-                        <li><i class="fa  fa-angle-right"></i> <a
+                        
+                        
+                        
+                        <li>
+                            <i class="fa  fa-angle-right"></i> <a
                                 href="{{route('frontend.general-ask-page', ['instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.faq')}}</a>
                         </li>
                         @guest
@@ -93,9 +107,7 @@
                                     href="{{route('admin.login-form')}}">{{__('generic.login')}}</a></li>
                             <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.sign_up')}}</a></li>
                         @endguest
-                        <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.terms_and_conditions')}}</a>
-                        </li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.privacy_policy')}}</a></li>
+                        
                     </ul>
                     </p>
 

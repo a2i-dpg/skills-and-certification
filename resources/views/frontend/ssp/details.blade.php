@@ -15,7 +15,11 @@
                 <div class="card mb-2">
                     <h3 class="card-header text-center p-5">{{ $institute->title }}</h3>
                     <div class="card-body">
+                    <a href="{{ url($institute->slug)}}">
                         <div class="row">
+                        
+
+                            
                             @if($institute->logo)
                             <div class="col-md-6 pr-5">
                                 <img class="card-img"
@@ -59,8 +63,8 @@
                                 </div>
                             @endif
 
-
                         </div>
+                    </a>
                     </div>
 
                     <div class="card-footer text-center">

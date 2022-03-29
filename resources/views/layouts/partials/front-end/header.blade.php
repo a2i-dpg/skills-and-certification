@@ -40,10 +40,17 @@
                        class="btn ">{{__('generic.home')}}</a>
                 </li>
 
-                @if($currentInstitute)
+                {{-- @if($currentInstitute)
                     <li class="nav-item {{ request()->path() == $currentInstitute->slug ? 'active-menu' : '' }}">
                         <a href="{{ route('frontend.main', ['instituteSlug' => $currentInstitute->slug ?? '']) }}"
                            class="btn ">{{__('generic.ssp_home')}}</a>
+                    </li>
+                @endif --}}
+
+                @if($currentInstitute)
+                    <li class="nav-item {{ strstr(request()->path(), 'aboutus')  == 'aboutus' ? 'active-menu' : '' }}">
+                        <a href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}"
+                           class="btn ">{{__('generic.about_us')}}  </a>
                     </li>
                 @endif
 

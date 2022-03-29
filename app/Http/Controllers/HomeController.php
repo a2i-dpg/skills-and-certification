@@ -26,10 +26,15 @@ class HomeController extends BaseController
      * Show the application dashboard.
      * @return View
      */
-    public function index(): View
+    public function index()
     {
         /** @var Institute|null $currentInstitute */
         $currentInstitute = app('currentInstitute');
+        //dd($currentInstitute);
+        if($currentInstitute){
+           return redirect()->route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? '']);
+        }
+
 
         $courses = Course::query();
         $courses->active();

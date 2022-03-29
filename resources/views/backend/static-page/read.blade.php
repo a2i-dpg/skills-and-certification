@@ -41,7 +41,7 @@
                 <div class="col-md-6 custom-view-box">
                     <p class="label-text">{{ __('admin.static_page.index') }}</p>
                     <div class="input-box">
-                        {{ $staticPage->institute->title  }}
+                        {{ (!empty($staticPage->institute->title)) ? $staticPage->institute->title : 'For System Admin'   }}
                     </div>
                 </div>
 

@@ -185,7 +185,9 @@
                     </div>
                 </div>
                 <div class="tab-content">
+                    
                     @if($runningCourses->count() > 4)
+                    <a id="running_courses"> 
                         <div id="all-course" class="tab-pane active">
                             <div id="courseCarousel" class="carousel custom-carousel slide w-100" data-ride="carousel">
                                 <div class="custom-carousel-inner w-100" role="listbox">
@@ -266,6 +268,7 @@
                                 <!--/.Controls-->
                             </div>
                         </div>
+                    </a>
                     @elseif($runningCourses->isEmpty())
                         <div id="all-course" class="tab-pane active">
                             <div class="col-md-12">
@@ -275,6 +278,7 @@
                             </div>
                         </div>
                     @else
+                    <a id="running_courses"> 
                         <div id="all-course" class="tab-pane active">
                             <div class="col-md-12 p-0">
                                 <div class="row">
@@ -333,6 +337,7 @@
                             </div>
 
                         </div>
+                    </a>
                     @endif
 
                 </div>
@@ -368,7 +373,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" a id="event_area">
                                 <h3 class="accordion-heading"
                                     id="eventDateTime">{{ \App\Helpers\Classes\EnglishToBanglaDate::dateFormatEnglishToBangla(date("l, j F Y")) }}</h3>
                                 <!-- Accordion -->
