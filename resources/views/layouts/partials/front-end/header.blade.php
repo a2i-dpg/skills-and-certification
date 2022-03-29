@@ -1,7 +1,7 @@
 @php
     /** @var \App\Models\Institute $currentInstitute */
     $currentInstitute =  app('currentInstitute');
-    $headerItems = app('navHeaders');
+    $navItems = app('navHeaders');
 @endphp
 
 <div class="container-fluid">
