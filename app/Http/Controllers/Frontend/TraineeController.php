@@ -45,7 +45,7 @@ class TraineeController extends Controller
     {
         /** @var Trainee $trainee */
         $trainee = Trainee::getTraineeByAuthUser();
-
+        
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
                     'message' => 'You are not Auth user, Please login',

@@ -1,7 +1,7 @@
 @php
     $currentInstitute = app('currentInstitute');
     $layout = 'master::layouts.front-end';
-    $authTrainee = \App\Helpers\Classes\AuthHelper::getAuthUser('trainee');
+    $authTrainee = \App\Helpers\Classes\AuthHelper::isAuthTrainee();
 
 @endphp
 
