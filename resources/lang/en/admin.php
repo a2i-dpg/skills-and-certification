@@ -257,6 +257,7 @@ return [
         'update' => 'Update FAQ',
         'question' => 'Question',
         'institute_title' => 'Institute Title',
+        'institute_title1' => 'if you don\'t select institute you will go for system admin',
         'answer' => 'Answer'
 
     ],

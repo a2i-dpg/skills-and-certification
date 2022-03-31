@@ -40,7 +40,7 @@
                             @else
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="institute_id">{{ __('admin.question_answer.institute_title') }}</label>
+                                        <label for="institute_id">{{ __('admin.question_answer.institute_title1') }}</label>
                                         <select class="form-control select2-ajax-wizard"
                                                 name="institute_id"
                                                 id="institute_id"

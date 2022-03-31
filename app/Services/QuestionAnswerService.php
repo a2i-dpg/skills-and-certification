@@ -96,11 +96,20 @@ class QuestionAnswerService
 
                 return $str;
             })
+            ->addColumn('institute_title', static function (QuestionAnswer $questionAnswer) {
+                $str = '';
+                if(empty($questionAnswer->institute_title)){
+                    $str .= '<p> System Admin </p>';
+                }else{
+                    $str .= '<p>'. $questionAnswer->institute_title .'</p>';
+                }
+                return $str;
+            })
             ->editColumn('row_status', function (QuestionAnswer $questionAnswer) {
                 return $questionAnswer->getCurrentRowStatus(true);
             })
 
-            ->rawColumns(['action', 'row_status'])
+            ->rawColumns(['action','institute_title','row_status'])
             ->toJson();
     }
 
