@@ -439,6 +439,6 @@ return [
     'target' => 'Target',
     'header' => 'Header',
     'header_order' => 'Order',
-    'link_type' => 'Link Type',
+    'headers.list' => 'Headers List'
 ];
 

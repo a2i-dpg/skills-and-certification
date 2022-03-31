@@ -257,6 +257,7 @@ return [
         'update' => 'Update FAQ',
         'question' => 'Question',
         'institute_title' => 'Institute Title',
+        'institute_title1' => 'if you don\'t select institute you will go for system admin',
         'answer' => 'Answer'
 
     ],
@@ -504,6 +505,13 @@ return [
         'end_time' => 'End Time',
         'trainer' => 'Trainer',
         'select' => 'Select'
+    ],
+    'header' => [
+      'add' => 'Create Header',
+      'edit' => 'Edit Header',
+      'read' => 'Read Header',
+      'update' => 'Update Header',
+      'list' => 'Header List',
     ],
 ];
 
