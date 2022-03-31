@@ -85,7 +85,16 @@ class StaticPageService
 
                 return $str;
             }))
-            ->rawColumns(['action'])
+            ->addColumn('institute_title', static function (StaticPage $staticPage) {
+                $str = '';
+                if(empty($staticPage->institute_title)){
+                    $str .= '<p> System Admin </p>';
+                }else{
+                    $str .= '<p>'. $staticPage->institute_title .'</p>';
+                }
+                return $str;
+            })
+            ->rawColumns(['action','institute_title'])
             ->toJson();
     }
 
