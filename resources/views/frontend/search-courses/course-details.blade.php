@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="container-fluid" id="fixed-scrollbar">
-        <div class="row  justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-10 col-sm-10">
                 <div class="card mt-3">
                     <div class="card-header d-flex justify-content-between custom-bg-gradient-info"
@@ -23,109 +23,121 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.title')}} </p>
-                                <div class="input-box" id="course_title">
-                                    {{optional($course)->title}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.course_fee')}}</p>
-                                <div class="input-box" id="course_fee">
-                                    {{\App\Helpers\Classes\Helper::getLocaleCurrency(optional($course)->course_fee)}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.duration')}}</p>
-                                <div class="input-box" id="course_duration">
-                                    {{optional($course)->duration}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.target_group')}}</p>
-                                <div class="input-box" id="target_group">
-                                    {{optional($course)->target_group}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.object')}}</p>
-                                <div class="input-box" id="objects">
-                                    {{optional($course)->objects}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.content')}}</p>
-                                <div class="input-box" id="contents">
-                                    {{optional($course)->contents}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.training_methodology')}}</p>
-                                <div class="input-box" id="training_methodology">
-                                    {{optional($course)->training_methodology}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.evaluation_system')}}</p>
-                                <div class="input-box" id="evaluation_system">
-                                    {{optional($course)->evaluation_system}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 custom-view-box">
-                                <p class="label-text">{{__('admin.course.description')}}</p>
-                                <div class="input-box" id="description">
-                                    <p>{{optional($course)->description}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.course_prerequisite')}} </p>
-                                <div class="input-box" id="prerequisite">
-                                    {{optional($course)->prerequisite}}
-                                </div>
-                            </div>
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.eligibility')}}</p>
-                                <div class="input-box" id="eligibility">
-                                    {{optional($course)->eligibility}}
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.institute')}} </p>
-                                <div class="input-box" id="institute_name_field">
-                                    {{optional($course->institute)->title}}
-                                </div>
-                            </div>
-                            <div class="col-md-6 custom-view-box">
-                                <p class="label-text">{{__('admin.course.institute_address')}}</p>
-                                <div class="input-box" id="institute_address">
-                                    {{optional($course->institute)->address}}
-                                </div>
-                            </div>
-
-                            @if($course->runningBatches->isNotEmpty())
-                                <div class="col-md-12 custom-view-box">
-                                    <div class="col-md-12">
-                                        <a href="#"
-                                           onclick="checkAuthTrainee({{ $course->id }})"
-                                           class="btn btn-success btn-lg float-right mb-2">{{ __('generic.apply') }}</a>
+                            <div class="col-md-8">
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.title')}} </p>
+                                    <div class="input-box-custom" id="course_title">
+                                        {{optional($course)->title}}
                                     </div>
                                 </div>
-                            @else
-                                <div class="col-md-12">
-                                    <p class="text-info text-center">{{ __('generic.course.no_running_batch') }}</p>
-                                    <p class="text-center lead"><a href="{{ route('frontend.course_search') }}">{{ __('generic.try_another') }}</a></p>
-                                    <a href="#" class="btn btn-primary btn-lg disabled float-right" role="button" aria-disabled="true">{{ __('generic.apply') }}</a>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.course_fee')}}</p>
+                                    <div class="input-box-custom" id="course_fee">
+                                        {{\App\Helpers\Classes\Helper::getLocaleCurrency(optional($course)->course_fee)}}
+                                    </div>
                                 </div>
-                            @endif
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.duration')}}</p>
+                                    <div class="input-box-custom" id="course_duration">
+                                        {{($course->duration) ? $course->duration : 'N/A' }} 
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.target_group')}}</p>
+                                    <div class="input-box-custom" id="target_group">
+                                        {{optional($course)->target_group}}
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.object')}}</p>
+                                    <div class="input-box-custom" id="objects">
+                                        {{optional($course)->objects}}
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.content')}}</p>
+                                    <div class="input-box-custom" id="contents">
+                                        {{optional($course)->contents}}
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.training_methodology')}}</p>
+                                    <div class="input-box-custom" id="training_methodology">
+                                        {{optional($course)->training_methodology}}
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.evaluation_system')}}</p>
+                                    <div class="input-box-custom" id="evaluation_system">
+                                        {{optional($course)->evaluation_system}}
+                                    </div>
+                                </div>
+    
+                                <div class="col-md-12 custom-view-box">
+                                    <p class="label-text">{{__('admin.course.description')}}</p>
+                                    <div class="input-box-custom" id="description">
+                                        <p>{{optional($course)->description}}</p>
+                                    </div>
+                                </div>
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.course_prerequisite')}} </p>
+                                    <div class="input-box-custom" id="prerequisite">
+                                        {{optional($course)->prerequisite}}
+                                    </div>
+                                </div>
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.eligibility')}}</p>
+                                    <div class="input-box-custom" id="eligibility">
+                                        {{optional($course)->eligibility}}
+                                    </div>
+                                </div>
+    
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.institute')}} </p>
+                                    <div class="input-box-custom" id="institute_name_field">
+                                        {{optional($course->institute)->title}}
+                                    </div>
+                                </div>
+                                <div class="custom-view-box">
+                                    <p class="label-text">{{__('admin.course.institute_address')}}</p>
+                                    <div class="input-box-custom" id="institute_address">
+                                        {{optional($course->institute)->address}}
+                                    </div>
+                                </div>
+
+
+                                @if($course->runningBatches->isNotEmpty())
+                                    <div class="custom-view-box">
+                                        <div class="input-box-custom">
+                                            <a href="#"
+                                            onclick="checkAuthTrainee({{ $course->id }})"
+                                            class="btn btn-success btn-lg float-left">{{ __('generic.apply') }}</a>
+                                        </div>
+                                    </div>
+                                @else
+                                <div class="custom-view-box">
+                                    <div class="input-box-custom">
+                                        <p class="text-info">{{ __('generic.course.no_running_batch') }}</p>
+                                        <p class="text-warning"><a href="{{ route('frontend.course_search') }}" class="text-warning">{{ __('generic.try_another') }}</a></p>
+                                        <a href="#" class="btn btn-primary btn-md disabled float-left" role="button" aria-disabled="true">{{ __('generic.apply') }}</a>
+                                    </div>
+                                </div>
+                                    
+                                @endif  
+    
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                 
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -223,6 +235,24 @@
 
         .card-p1 {
             color: #671688;
+        }
+
+
+        .custom-view-box1 .input-box-custom {
+            width: 100%;
+            min-height: calc(2.25rem + 2px);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+        }
+
+        .label-text {
+            font-weight: bolder;
+            color: #212529ad!important;
+            line-height: 1.5;
+            margin-bottom: 0;
+            font-size: 23px;
         }
     </style>
 @endpush

@@ -280,6 +280,12 @@
 
         tinymce.init({
             selector: 'textarea#page_contents',
+            init_instance_callback : function(editor) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                var freeTinyCompany = document.querySelector('.tox .tox-statusbar a');
+                freeTiny.style.display = 'none';
+                freeTinyCompany.style.display = 'none';
+            },
             plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
             menubar: '',
             toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat  | emoticons | preview | insertfile image  link | code  ',

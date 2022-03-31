@@ -75,7 +75,7 @@
                         title: "{{ __('admin.question_answer.institute_title') }}",
                         data: "institute_title",
                         name: "institutes.title",
-                        visible: false,
+                        visible: true,
                     },
                     {
                         title: "{{ __('admin.common.status') }}",

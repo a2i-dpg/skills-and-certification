@@ -23,7 +23,7 @@
             </div>
             <div class="row card-body">
                 <div class="col-md-6 custom-view-box">
-                    <p class="label-text">{{ __('admin.static_page.content_title') }}}</p>
+                    <p class="label-text">{{ __('admin.static_page.content_title') }}</p>
                     <div class="input-box">
                         {{ $staticPage->title }}
                     </div>

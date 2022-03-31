@@ -103,6 +103,7 @@ class QuestionAnswerController extends Controller
      */
     public function update(Request $request, QuestionAnswer $questionAnswer): RedirectResponse
     {
+        
         $validatedData = $this->questionAnswersService->validator($request, $questionAnswer->id)->validate();
 
         try {

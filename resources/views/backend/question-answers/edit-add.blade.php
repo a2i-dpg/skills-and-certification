@@ -40,8 +40,7 @@
                             @else
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="institute_id">{{ __('admin.question_answer.institute_title') }}<span
-                                                class="required"> * </span></label>
+                                        <label for="institute_id">{{ __('admin.question_answer.institute_title') }}</label>
                                         <select class="form-control select2-ajax-wizard"
                                                 name="institute_id"
                                                 id="institute_id"
@@ -49,9 +48,11 @@
                                                 data-label-fields="{title}"
                                                 data-dependent-fields="#video_category_id"
                                                 @if($edit)
-                                                data-preselected-option="{{json_encode(['text' =>  $questionAnswer->institute->title, 'id' =>  $questionAnswer->institute->id])}}"
+                                                    @if (!empty($questionAnswer->institute->title))
+                                                        data-preselected-option="{{json_encode(['text' =>  @$questionAnswer->institute->title, 'id' =>  @$questionAnswer->institute->id])}}"
+                                                    @endif
                                                 @endif
-                                                data-placeholder="{{ __('admin.question_answer.institute_title') }}"
+                                                data-placeholder="{{ __('admin.common.select') }}"
                                         >
                                         </select>
                                     </div>

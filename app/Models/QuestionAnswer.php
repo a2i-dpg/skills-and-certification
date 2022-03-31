@@ -32,7 +32,7 @@ class QuestionAnswer extends BaseModel
 
     public function scopeWithoutInstitute($query)
     {
-        return $query->where('institute_id', 0);
+        return $query->where('institute_id', null);
     }
 
 }

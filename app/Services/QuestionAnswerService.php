@@ -53,7 +53,7 @@ class QuestionAnswerService
                 'string',
             ],
             'institute_id' => [
-                'required',
+                //'required',
                 'int',
                 'exists:institutes,id',
             ],
@@ -77,7 +77,7 @@ class QuestionAnswerService
             'institutes.title as institute_title',
         ]);
 
-        $questionAnswers->join('institutes', 'question_answers.institute_id', 'institutes.id');
+        $questionAnswers->leftjoin('institutes', 'question_answers.institute_id', 'institutes.id');
         $questionAnswers->orderBy('id','ASC');
 
         return DataTables::eloquent($questionAnswers)
@@ -99,6 +99,7 @@ class QuestionAnswerService
             ->editColumn('row_status', function (QuestionAnswer $questionAnswer) {
                 return $questionAnswer->getCurrentRowStatus(true);
             })
+
             ->rawColumns(['action', 'row_status'])
             ->toJson();
     }
