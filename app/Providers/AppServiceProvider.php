@@ -8,6 +8,11 @@ use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\StaticPage;
+use View;
+use Cache;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -53,6 +58,16 @@ class AppServiceProvider extends ServiceProvider
 
             return $headers;
         });
+        
+
+        View::composer('*', function ($view) {
+            $staticPageFooter = Cache::rememberForever('staticPageFooter', function () {
+                return StaticPage::where(['row_status'=>1])->get();
+            });
+            $view->with('staticPageFooter', $staticPageFooter);
+        });
+
+
     }
 
     /**

@@ -72,15 +72,31 @@
                             <a href="{{ route('frontend.course_search', ['instituteSlug' => $currentInstitute->slug ?? '']) }}">
                                 {{__('generic.online_course')}}</a></li>
                         
+                                {{-- <li><i class="fa fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.about_us')}}</a></li>
+                                <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'termsandconditions', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.terms_and_conditions')}}</a></li>
+                                <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'privacypolicy', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.privacy_policy')}}</a></li>
+                                <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'news', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.news')}} </a></li>
+                             --}}
                         
-                        <li><i class="fa  fa-angle-right"></i> <a
-                            href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.about_us')}}</a>
-                        </li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'termsandconditions', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.terms_and_conditions')}}</a></li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'privacypolicy', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.privacy_policy')}}</a></li>
-                        <li><i class="fa  fa-angle-right"></i> <a href="{{route('frontend.static-content.show', ['page_id' => 'news', 'instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.news')}} </a></li>
-                        
+                        @foreach ($staticPageFooter as $key => $item)
+                            @if ($currentInstitute)
+                                @if ($currentInstitute->id == $item->institute_id)
+                                <li><i class="fa fa-angle-right"></i> 
+                                    <a href="{{route('frontend.static-content.show', ['page_id' => $item->page_id, 'instituteSlug' => $currentInstitute->slug])}}">
+                                    {{$item->title}}</a></li>
+                                @endif
+                            @else
+                                @if (!$item->institute_id)
+                                <li>
+                                    <i class="fa fa-angle-right"></i> 
+                                    <a href="{{route('frontend.static-content.show', ['page_id' => $item->page_id, 'instituteSlug' => ''])}}">
+                                        {{$item->title}}</a>
+                                </li>
+                                @endif
+                            @endif
+                        @endforeach
 
+                        
 
                         @if($currentInstitute)
                        

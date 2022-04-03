@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
+use Cache;
+
 class StaticPageController extends Controller
 {
     const VIEW_PATH = 'backend.static-page.';
@@ -49,9 +51,9 @@ class StaticPageController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $staticPageValidatedData = $this->staticPageService->validator($request)->validate();
-
         try {
             $this->staticPageService->createStaticPage($staticPageValidatedData);
+            Cache::forget('staticPageFooter');
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
             return back()->with([
@@ -95,6 +97,7 @@ class StaticPageController extends Controller
 
         try {
             $this->staticPageService->updateStaticPage($staticPage, $validatedData);
+            Cache::forget('staticPageFooter');
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
             return back()->with([
@@ -118,6 +121,7 @@ class StaticPageController extends Controller
     {
         try {
             $this->staticPageService->deleteStaticPage($staticPage);
+            Cache::forget('staticPageFooter');
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
             return back()->with([
