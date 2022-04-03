@@ -26,7 +26,7 @@ class StaticPageSeeder extends Seeder
                     'id' => 1,
                     'title' => 'About Us',
                     'page_id' => 'aboutus',
-                    'institute_id' => '1',
+                    //'institute_id' => '1',
                     'created_by' => '1',
                     'page_contents' => '<h2 class="section-heading" style="text-align: center;">About Us</h2>
                             <p>&nbsp;</p>
