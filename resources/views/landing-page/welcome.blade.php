@@ -28,7 +28,7 @@
                                 background-size: 100% 100%;
                                 background-repeat: no-repeat;
                                 min-height: 100%;
-                                opacity: .9;
+                                opacity: 1;
                                 "></div>
 
                             <div class="carousel-caption">
