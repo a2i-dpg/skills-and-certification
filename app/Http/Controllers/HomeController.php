@@ -32,7 +32,7 @@ class HomeController extends BaseController
         $currentInstitute = app('currentInstitute');
         //dd($currentInstitute);
         if($currentInstitute){
-           return redirect()->route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? '']);
+           return redirect()->route('frontend.course_search', ['instituteSlug' => $currentInstitute->slug ?? '']);
         }
 
 

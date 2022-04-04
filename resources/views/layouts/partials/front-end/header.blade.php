@@ -48,12 +48,12 @@
                     </li>
                 @endif --}}
 
-                @if($currentInstitute)
+                {{-- @if($currentInstitute)
                     <li class="nav-item {{ strstr(request()->path(), 'aboutus')  == 'aboutus' ? 'active-menu' : '' }}">
                         <a href="{{route('frontend.static-content.show', ['page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}"
                            class="btn ">{{__('generic.about_us')}}  </a>
                     </li>
-                @endif
+                @endif --}}
 
                 @if(!$currentInstitute)
                     <li class="nav-item {{ request()->is('ssp-list*') ? 'active-menu' : '' }}">
