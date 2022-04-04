@@ -26,7 +26,7 @@ class StaticPageSeeder extends Seeder
                     'id' => 1,
                     'title' => 'About Us',
                     'page_id' => 'aboutus',
-                    //'institute_id' => '1',
+                    'institute_id' => null,
                     'created_by' => '1',
                     'page_contents' => '<h2 class="section-heading" style="text-align: center;">About Us</h2>
                             <p>&nbsp;</p>
@@ -38,11 +38,12 @@ class StaticPageSeeder extends Seeder
                             <li>&nbsp;Students skills are verified and enhanced in a proper manner.</li>
                             </ul>'
                 ),
+            1 =>
                 array(
                     'id' => 2,
                     'title' => 'About Us',
                     'page_id' => 'aboutus',
-                    'institute_id' => '1',
+                    'institute_id' => 1,
                     'created_by' => '1',
                     'page_contents' => '<h2 class="section-heading" style="text-align: center;">About Us For BITAC</h2>
                             <p>&nbsp;</p>
@@ -54,11 +55,12 @@ class StaticPageSeeder extends Seeder
                             <li>&nbsp;Students skills are verified and enhanced in a proper manner.</li>
                             </ul>'
                 ),
+            3 =>
                 array(
                     'id' => 3,
                     'title' => 'About Us',
                     'page_id' => 'aboutus',
-                    'institute_id' => '2',
+                    'institute_id' => 2,
                     'created_by' => '1',
                     'page_contents' => '<h2 class="section-heading" style="text-align: center;">About Us For TFL</h2>
                             <p>&nbsp;</p>
