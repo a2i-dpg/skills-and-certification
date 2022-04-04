@@ -153,6 +153,7 @@ class TraineeRegistrationService
     {
         /** @var Trainee $trainee */
         $trainee = AuthHelper::getAuthUser();
+        //$trainee = Trainee::getTraineeByAuthUser();
 
         /** @var Builder|TraineeCourseEnroll $traineeCourseEnrolls */
         $traineeCourseEnrolls = TraineeCourseEnroll::select([

@@ -38,6 +38,7 @@ class RoutineController extends Controller
         abort_if(!$trainee, 401, 'You are not Auth user, Please login');
 
         $trainee = Trainee::findOrFail($trainee->id);
+        //$trainee = Trainee::find($trainee->id);
 
         $trainee->load([
             'traineeRegistration',
