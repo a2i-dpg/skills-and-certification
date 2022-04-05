@@ -803,7 +803,7 @@
                     }
 
                     .top-content .carousel-item {
-                        height: 100vh;
+                        height: 110vh;
                     }
 
                     .carousel-caption {

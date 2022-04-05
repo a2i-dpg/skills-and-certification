@@ -21,14 +21,11 @@
                     <div class="card-body">
                         <div class="user-image text-center">
                             <img
-                                src="{{ asset('storage/'. $trainee->student_pic) }}"
+                                src="{{ $trainee->profile_pic ? asset('storage/'. $trainee->profile_pic ) : "http://via.placeholder.com/640x360" }}"
                                 height="100" width="100" class="rounded-circle" alt="Trainee profile picture">
                         </div>
                         <div class="d-flex justify-content-center user-info normal-line-height mt-3">
-                            <div>
-                                {{ optional($trainee)->name }}
-                            </div>
-                            <p class="text-center ml-2">({{ optional($trainee)->name}})</p>
+                            <p class="text-center ml-2">{{ optional($trainee)->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +62,7 @@
                         </div>
                         <div class="email">
                             <img
-                                src="{{ asset('storage/'. $trainee->student_signature_pic) }}"
+                                src="{{ $trainee->student_signature_pic ? asset('storage/'. $trainee->student_signature_pic ) : "http://via.placeholder.com/640x360" }}"
                                 height="40" alt="Trainee profile picture">
                         </div>
                     </div>

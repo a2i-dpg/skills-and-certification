@@ -122,9 +122,9 @@ class TraineeManagementService
                     $str .= '<a href="#" id="' . $traineeCourseEnroll->trainee_course_enroll_id . '" data-action="' . route('admin.trainee-course-enroll-accept', $traineeCourseEnroll->id) . '"' . ' class="btn btn-outline-success btn-sm accept-application"> <i class="fas fa-check-circle"></i> ' . __('Accept Now') . ' </a>';
                 }
 
-                if ($traineeCourseEnroll->enroll_status != TraineeCourseEnroll::ENROLL_STATUS_REJECT) {
-                    $str .= '<a href="#" data-action="' . route('admin.trainee-course-enroll-reject', $traineeCourseEnroll->id) . '"' . ' class="btn btn-outline-danger btn-sm reject-application"> <i class="fas fa-times-circle"></i> ' . __('Reject') . ' </a>';
-                }
+                // if ($traineeCourseEnroll->enroll_status != TraineeCourseEnroll::ENROLL_STATUS_REJECT) {
+                //     $str .= '<a href="#" data-action="' . route('admin.trainee-course-enroll-reject', $traineeCourseEnroll->id) . '"' . ' class="btn btn-outline-danger btn-sm reject-application"> <i class="fas fa-times-circle"></i> ' . __('Reject') . ' </a>';
+                // }
 
                 return $str;
             }))

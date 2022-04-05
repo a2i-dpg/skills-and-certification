@@ -31,14 +31,16 @@ class RoutineController extends Controller
      * @return View
      */
 
-    public function index($course_enroll_id): View
+    public function index($course_enroll_id)
     {
         $trainee = Trainee::getTraineeByAuthUser();
 
         abort_if(!$trainee, 401, 'You are not Auth user, Please login');
 
-        $trainee = Trainee::findOrFail($trainee->id);
-        //$trainee = Trainee::find($trainee->id);
+        //$trainee = Trainee::findOrFail($trainee->id);
+        $trainee = Trainee::find($trainee->id);
+
+        //dd($trainee);
 
         $trainee->load([
             'traineeRegistration',
@@ -48,6 +50,14 @@ class RoutineController extends Controller
 
         $traineeSelfInfo = TraineeFamilyMemberInfo::where(['trainee_id' => $trainee->id, 'relation_with_trainee' => 'self'])->first();
 
+        $count = TraineeCourseEnroll::select()->where('id', $course_enroll_id)->count();
+        
+        if ($count == 0 ) {
+            return redirect()->route('frontend.trainee-enrolled-courses')->with([
+                'message' => __('Something went wrong'),
+                'alert-type' => 'warning'
+            ]);
+        }
         $courseEnrollInfo = TraineeCourseEnroll::select()->where('id', $course_enroll_id)->with('course', 'batch')->first();
 
         return \view(self::VIEW_PATH . 'trainee-routine')->with(

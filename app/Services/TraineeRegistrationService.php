@@ -152,8 +152,8 @@ class TraineeRegistrationService
     public function getListDataForDatatable(): JsonResponse
     {
         /** @var Trainee $trainee */
-        $trainee = AuthHelper::getAuthUser();
-        //$trainee = Trainee::getTraineeByAuthUser();
+        //$trainee = AuthHelper::getAuthUser();
+        $trainee = Trainee::getTraineeByAuthUser();
 
         /** @var Builder|TraineeCourseEnroll $traineeCourseEnrolls */
         $traineeCourseEnrolls = TraineeCourseEnroll::select([
