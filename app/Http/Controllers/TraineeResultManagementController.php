@@ -8,6 +8,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+use App\Models\Trainee;
+use DB;
+
 class TraineeResultManagementController extends Controller
 {
     const VIEW_PATH = 'backend.batch-result.';
@@ -25,7 +28,6 @@ class TraineeResultManagementController extends Controller
     public function showTraineeResultList(int $id): View
     {
         $batch = Batch::findOrFail($id);
-
         return \view(self::VIEW_PATH . 'trainees-final-result', compact('batch'));
     }
 
@@ -41,7 +43,7 @@ class TraineeResultManagementController extends Controller
     {
         $batchId = $request->input('batch_id');
 
-       return  $this->traineeResultManagementService->getTraineeResultDatatable($batchId);
+       return $this->traineeResultManagementService->getTraineeResultDatatable($batchId);
     }
 
     /**

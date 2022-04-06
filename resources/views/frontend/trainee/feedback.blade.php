@@ -2,8 +2,9 @@
     $edit = !empty($trainer->feedback);
     $currentInstitute = app('currentInstitute');
      /** @var \App\Models\User $authUser */
-    $authUser = \App\Helpers\Classes\AuthHelper::getAuthUser('trainee');
+    $authUser = \App\Helpers\Classes\AuthHelper::getAuthUser();
     $layout = 'master::layouts.front-end';
+
 @endphp
 @extends($layout)
 
@@ -23,7 +24,7 @@
                     <div class="card-body">
                         <div class="user-image text-center">
                             <img
-                                src="{{ asset('storage/'. $trainee->student_pic) }}"
+                                src="{{ $trainee->profile_pic ? asset('storage/'. $trainee->profile_pic ) : "http://via.placeholder.com/640x360"}}"
                                 height="100" width="100" class="rounded-circle" alt="Trainee profile picture">
                         </div>
                         <div class="d-flex justify-content-center user-info normal-line-height mt-3">
@@ -66,7 +67,7 @@
                         </div>
                         <div class="email">
                             <img
-                                src="{{ asset('storage/'. $trainee->student_signature_pic) }}"
+                                src="{{ $trainee->student_signature_pic ? asset('storage/'. $trainee->student_signature_pic ) : "http://via.placeholder.com/640x360" }}"
                                 height="40" alt="Trainee profile picture">
                         </div>
                     </div>

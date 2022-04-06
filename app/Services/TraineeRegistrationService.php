@@ -200,7 +200,7 @@ class TraineeRegistrationService
                 if ($traineeCourseEnroll->batch_id != null && $traineeCourseEnroll->enroll_status == TraineeCourseEnroll::ENROLL_STATUS_ACCEPT) {
 
                     if(!empty($traineeCourseEnroll->trainee_certificates_id) && $traineeCourseEnroll->trainee_certificates_id > 0) {
-                         $str .= '<a href="'.route('certificate.generation',$traineeCourseEnroll->id).'" data-id="'.$traineeCourseEnroll->id.'"  class="btn btn-info btn-sm trainee-certificate-generation" target="_self">' . __('Download Certificate') . ' </a>';
+                         $str .= '<a target="_blank" href="'.route('certificate.generation',$traineeCourseEnroll->id).'" data-id="'.$traineeCourseEnroll->id.'"  class="btn btn-info btn-sm trainee-certificate-generation" target="_self">' . __('Download Certificate') . ' </a>';
                     }
                     else if(!empty($traineeCourseEnroll->certificate_requests_id) && $traineeCourseEnroll->certificate_requests_id > 0){
                         $str .= '<a href="' . route('certificate-request',$traineeCourseEnroll->id) . '"  class="btn btn-info btn-sm" target="_self">' . __('View Request') . ' </a>';

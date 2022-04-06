@@ -104,7 +104,8 @@ class TraineeCertificateService
         $traineeCourseEnrolls->join('courses', 'batches.course_id', '=', 'courses.id');
         $traineeCourseEnrolls->leftJoin('batch_certificates', 'batch_certificates.batch_id', '=', 'trainee_course_enrolls.batch_id');
         $traineeCourseEnrolls->where('batches.batch_status', Batch::BATCH_STATUS_COMPLETE);
-        $traineeCourseEnrolls->groupBy('trainee_course_enrolls.batch_id');
+        //$traineeCourseEnrolls->groupBy('trainee_course_enrolls.batch_id');
+        $traineeCourseEnrolls->groupBy('trainee_course_enrolls.batch_id','batches.title','courses.title');
 
 
         return DataTables::eloquent($traineeCourseEnrolls)
@@ -128,7 +129,7 @@ class TraineeCertificateService
     public function getCertificateRequestDatatable(): JsonResponse
     {
         /** @var Builder $traineeBatches */
-
+        $authUser = AuthHelper::getAuthUser();
         $certificateRequests = CertificateRequest::select(
             [
                 'certificate_requests.id as id',
@@ -141,7 +142,9 @@ class TraineeCertificateService
         $certificateRequests->leftJoin('batches', 'trainee_course_enrolls.batch_id', '=', 'batches.id');
         $certificateRequests->leftJoin('courses', 'trainee_course_enrolls.course_id', '=', 'courses.id');
         $certificateRequests->where('certificate_requests.row_status', '=', CertificateRequest::REQUESTED);
-
+        if($authUser->isUserBelongsToInstitute()){
+            $certificateRequests->where('batches.institute_id', '=', $authUser->institute_id);
+        }
 
         return DataTables::eloquent($certificateRequests)
             ->addColumn('action', DatatableHelper::getActionButtonBlock(static function (CertificateRequest $certificateRequest) {
@@ -172,17 +175,14 @@ class TraineeCertificateService
             ]
         );
 
-        if ($authUser->isUserBelongsToInstitute()) {
-            $certificateRequests->acl();
-        } else {
-            $certificateRequests->join('batches', 'certificate_requests.trainee_batch_id', '=', 'batches.id');
-        }
-
-        $certificateRequests->join('institutes', 'batches.institute_id', '=', 'institutes.id');
         $certificateRequests->leftJoin('trainee_course_enrolls', 'trainee_course_enrolls.id', '=', 'certificate_requests.trainee_course_enrolls_id');
+        $certificateRequests->leftJoin('batches', 'trainee_course_enrolls.batch_id', '=', 'batches.id');
+        $certificateRequests->join('institutes', 'batches.institute_id', '=', 'institutes.id');
         $certificateRequests->leftJoin('courses', 'trainee_course_enrolls.course_id', '=', 'courses.id');
         $certificateRequests->where('certificate_requests.row_status', '=', CertificateRequest::ACCEPTED);
-
+        if($authUser->isUserBelongsToInstitute()){
+            $certificateRequests->where('batches.institute_id', '=', $authUser->institute_id);
+        }
 
         return DataTables::eloquent($certificateRequests)
             ->addColumn('row_status', DatatableHelper::getActionButtonBlock(static function () {
@@ -192,7 +192,7 @@ class TraineeCertificateService
             }))
             ->addColumn('action', DatatableHelper::getActionButtonBlock(static function (CertificateRequest $certificateRequest) {
                 $str = '';
-                $str .= '<a href="' . route('certificate.generation', $certificateRequest->trainee_course_enrolls_id) . '" class="btn btn-outline-warning btn-sm"> <i class="fas fa-eye"></i> View Certificate </a>';
+                $str .= '<a target="_blank" href="' . route('certificate.generation', $certificateRequest->trainee_course_enrolls_id) . '" class="btn btn-outline-warning btn-sm"> <i class="fas fa-eye"></i> View Certificate </a>';
                 return $str;
             }))
             ->rawColumns(['action', 'row_status'])

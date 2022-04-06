@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
+use App\Helpers\Classes\AuthHelper;
+
 class TraineeCertificateController extends Controller
 {
     /**
@@ -71,11 +73,11 @@ class TraineeCertificateController extends Controller
      */
     public function certificateEdit(int $batchId) :View
     {
-
         $batchCertificate = BatchCertificate::where('batch_id',$batchId)->first();
         $batch = Batch::where('id','=',$batchId)->with('course')->first();
-
-        return \view(self::VIEW_PATH . 'edit-add-certificate', compact('batch','batchCertificate','batchId'));
+        $batch_id = $batchId;
+        
+        return \view(self::VIEW_PATH . 'edit-add-certificate', compact('batch','batchCertificate','batchId','batch_id'));
 
     }
 

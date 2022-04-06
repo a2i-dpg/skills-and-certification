@@ -29,12 +29,13 @@ class TraineeResultManagementService
         $traineesResult->leftJoin('examinations', 'examination_results.examination_id', 'examinations.id');
         $traineesResult->where('trainee_course_enrolls.batch_id', $batchId);
         $traineesResult->where('batches.batch_status', Batch::BATCH_STATUS_COMPLETE);
-
+        $traineesResult->groupBy('examination_results.achieved_marks','examinations.total_mark');
+        
 
         return DataTables::eloquent($traineesResult)
             ->addColumn('result', function ($traineesResult) {
                 if ($traineesResult->total_mark > 0) {
-                    return number_format(($traineesResult->achieved_mark / $traineesResult->total_mark) * 100, 2, '.');
+                    return number_format(($traineesResult->achieved_mark / $traineesResult->total_mark) * 100, 2, '.','');
                 }
 
                 return 0;
@@ -74,9 +75,11 @@ class TraineeResultManagementService
             ->addColumn('action', function (Batch $batch) use ($authUser) {
                 $str = '';
 
-                if ($authUser->can('view_final_result', $batch) && $batch->total_trainee > 0) {
-                    $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
-                }
+                // if ($authUser->can('view_final_result', $batch) && $batch->total_trainee > 0) {
+                //     $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
+                // }
+
+                $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
 
                 return $str;
             })

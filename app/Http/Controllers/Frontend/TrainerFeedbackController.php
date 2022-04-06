@@ -38,13 +38,15 @@ class TrainerFeedbackController extends Controller
     {
         /** @var Trainee $trainee */
         $trainee = Trainee::getTraineeByAuthUser();
+        
         if (!$trainee) {
             return redirect()->route('frontend.trainee.login-form')->with([
                     'message' => 'You are not Auth user, Please login',
                     'alert-type' => 'error']
             );
         }
-        $trainee = Trainee::findOrFail($trainee->id);
+        $trainee = Trainee::find($trainee->id);
+        
         $trainers = TrainerBatch::select(
             'users.name as name',
             'trainer_batches.id',
@@ -71,7 +73,7 @@ class TrainerFeedbackController extends Controller
                     'alert-type' => 'error']
             );
         }
-        $trainee = Trainee::findOrFail($trainee->id);
+        $trainee = Trainee::find($trainee->id);
         $batchTrainers = TrainerBatch::findOrFail($id);
         $trainerFeedbackCheck = TrainerFeedback::where([
             'trainee_id' => $trainee->id,
