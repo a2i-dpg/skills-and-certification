@@ -74,6 +74,8 @@ class TrainerFeedbackController extends Controller
             );
         }
         $trainee = Trainee::find($trainee->id);
+
+        
         $batchTrainers = TrainerBatch::findOrFail($id);
         $trainerFeedbackCheck = TrainerFeedback::where([
             'trainee_id' => $trainee->id,
@@ -101,6 +103,7 @@ class TrainerFeedbackController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        
         $validatedData = $this->trainerFeedback->validator($request)->validate();
         try {
             $this->trainerFeedback->createFeedback($validatedData);

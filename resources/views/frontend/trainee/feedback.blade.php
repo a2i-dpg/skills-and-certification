@@ -89,11 +89,11 @@
 
                     <div class="card-body">
                         <form
-                            action="{{$edit ? '': route('frontend.trainee-feedback-store')}}"
+                            action="{{$edit ? '' : route('frontend.trainee-feedback-store')}}"
                             method="POST" class="row feedback-form">
                             @csrf
                                 <input type="hidden" name="id" value="{{ $trainer->id }}">
-                                <input type="hidden" name="trainee_id" value="{{ $authUser->id }}">
+                                <input type="hidden" name="trainee_id" value="{{ $trainee->id }}">
                                 <input type="hidden" name="batch_id" value="{{ $trainer->batch_id }}">
                                 <input type="hidden" name="user_id" value="{{ $trainer->user_id}}">
 
@@ -106,7 +106,7 @@
                                         <textarea class="form-control" placeholder="{{__('admin.trainee_batches.feedback')}}"
                                                   name="feedback" id=""  rows="3" {{$edit ? 'readonly' : ''}}>{{ $edit ? $trainer->feedback : old('feedback') }}</textarea>
                                 </div>
-                            @if(!$edit)
+                            @if(!$edit )
                                 <div class="col-sm-12 text-right">
                                     <button type="submit"
                                             class="btn btn-success">{{__('admin.common.add') }}</button>
