@@ -105,11 +105,11 @@
                                 </a>
 
 
-                                <a class="btn dropdown-item {{ request()->is('ssp-registration') ? 'active' : '' }}"
+                                {{-- <a class="btn dropdown-item {{ request()->is('ssp-registration') ? 'active' : '' }}"
                                    href="{{ route('frontend.ssp-registration') }}"
                                    id="bd-versions" aria-haspopup="true">
                                     <i class="fa fa-file"> </i>&nbsp; {{__('generic.ssp_registration')}}
-                                </a>
+                                </a> --}}
                             @endif
 
                             @if(!\Illuminate\Support\Facades\Auth::guard('web')->check())

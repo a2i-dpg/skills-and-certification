@@ -63,7 +63,7 @@
         <!-- End Top Content Slider -->
     @endif
     <!-- About Us Start-->
-    <section class="about-us-section  position-relative">
+    <section class="about-us-section position-relative">
         <div class="about-section-color">
             <div class="container pt-5 pb-5">
                 <div class="row">

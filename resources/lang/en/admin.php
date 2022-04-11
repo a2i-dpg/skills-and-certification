@@ -513,5 +513,35 @@ return [
       'update' => 'Update Header',
       'list' => 'Header List',
     ],
+
+    'site_setting' => [
+        'add' => 'Create Site Settings',
+        'edit' => 'Edit Site Settings',
+        'read' => 'Read Site Settings',
+        'update' => 'Update Site Settings',
+        'list' => 'Site Settings List',
+        'site_title' => 'Site Title',
+        'site_email' => 'Site Email',
+        'site_mobile' => 'Site Mobile',
+        'site_address' => 'Site Address',
+        'site_description' => 'Site Description',
+        'meta_tag' => 'Meta Tag',
+        'meta_name' => 'Meta Name',
+        'meta_description' => 'Meta Description',
+
+        'locale' => 'Locale',
+        'locale_code' => 'Currency Code',
+        'local_currency' => 'Currency Code',
+        'locale_symble' => 'Currency Symble',
+
+        'show_slider' => 'Show Slider',
+        'show_glance' => 'Show Grance',
+        'show_course' => 'Show Course',
+        'show_gallary' => 'Show Gallary',
+        'show_provider' => 'Show Service Provider',
+        'show_lang' => 'Show Language',
+        'site_logo' => 'Site Logo',
+        'site_favicon' => 'Site Favicon',
+      ],
 ];
 

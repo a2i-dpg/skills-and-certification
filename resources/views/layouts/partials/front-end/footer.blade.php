@@ -119,9 +119,19 @@
                                 href="{{route('frontend.general-ask-page', ['instituteSlug' => $currentInstitute->slug ?? ''])}}">{{__('generic.faq')}}</a>
                         </li>
                         @guest
-                            <li><i class="fa  fa-angle-right"></i> <a
+                            {{-- <li><i class="fa  fa-angle-right"></i> <a
                                     href="{{route('admin.login-form')}}">{{__('generic.login')}}</a></li>
-                            <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.sign_up')}}</a></li>
+                            <li><i class="fa  fa-angle-right"></i> <a href="#">{{__('generic.sign_up')}}</a></li> --}}
+
+                            @if(!auth()->guard('web')->check())
+                                {{-- <a class="btn dropdown-item {{ request()->is('ssp-registration') ? 'active' : '' }}"
+                                   href="{{ route('frontend.ssp-registration') }}"
+                                   id="bd-versions" aria-haspopup="true">
+                                    <i class="fa fa-file"> </i>&nbsp; {{__('generic.ssp_registration')}}
+                                </a> --}}
+
+                                <li><i class="fa  fa-angle-right"></i> <a href="{{ route('frontend.ssp-registration') }}">{{__('generic.ssp_registration')}}</a></li>
+                            @endif
                         @endguest
                         
                     </ul>

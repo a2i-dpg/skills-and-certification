@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ProgrammeSeeder::class,
             CourseSeeder::class,
             FAQSeeder::class,
+            SiteSettingSeeder::class,
 //            BatchSeeder::class,
 //            TraineeSeeder::class,
         ]);

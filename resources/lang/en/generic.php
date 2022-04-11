@@ -10,7 +10,7 @@ return [
     'videos' => 'Videos',
     'calendar' => 'Calendar',
     'faq' => 'FAQ',
-    'trainee_registration' => 'Trainee registration',
+    'trainee_registration' => 'Registration',
     'ssc_registration' => 'SSC registration',
     'fee_deposit' => 'Fee deposit',
     'trainee_login' => 'Trainee Login',

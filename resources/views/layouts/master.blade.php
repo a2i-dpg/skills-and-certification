@@ -147,7 +147,5 @@
 </script>
 @stack('js')
 </body>
-<script>
-</script>
 </html>
 
