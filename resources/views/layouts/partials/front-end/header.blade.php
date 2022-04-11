@@ -57,7 +57,7 @@
 
                 @if(!$currentInstitute)
                     <li class="nav-item {{ request()->is('ssp-list*') ? 'active-menu' : '' }}">
-                        <a href="{{ route('frontend.institute-list') }}" class="btn ">Skills Service Providers</a>
+                        <a href="{{ route('frontend.institute-list') }}" class="btn ">Service Providers</a>
                     </li>
                 @endif
 

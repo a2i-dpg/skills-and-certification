@@ -80,8 +80,8 @@
 
         .slogan-tag {
             color: #671688;
-            font-size: 16px !important;
-            line-height: 30px;
+            font-size: 13px !important;
+            line-height: 25px;
         }
 
         .header-slogan {
