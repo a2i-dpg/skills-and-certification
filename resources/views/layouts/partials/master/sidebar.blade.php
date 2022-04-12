@@ -6,10 +6,10 @@
 <aside class="main-sidebar sidebar-blue-dark nav-compact nav-flat nav-child-indent text-sm">
     <a href="{{url('/')}}" class="brand-link bg-white logo-switch pb-4">
         <span class="logo-xl">
-           {{ env('APP_NAME') }}
+            {{($siteSettingInfo->sile_title) ? $siteSettingInfo->sile_title : env('APP_NAME')}}
         </span>
         <span class="logo-xs">
-            {{ env('APP_NAME') }}
+            {{($siteSettingInfo->sile_title) ? $siteSettingInfo->sile_title : env('APP_NAME')}}
         </span>
     </a>
 

@@ -12,6 +12,7 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
+        @if ($siteSettingInfo->show_lang)
         <li class="nav-item m-auto">
             <div class="btn-group language bg-light" style="border-radius: 10px">
                 <button onclick="document.getElementById('change_language').submit()"
@@ -28,6 +29,7 @@
                 @csrf
             </form>
         </li>
+        @endif
         @guest
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.login-form')}}">
