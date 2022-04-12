@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserTypeSeeder::class,
             InstituteSeeder::class,
             StaticPageSeeder::class,
-//            BranchSeeder::class,
+            BranchSeeder::class,
             TrainingCenterSeeder::class,
             ProgrammeSeeder::class,
             CourseSeeder::class,
