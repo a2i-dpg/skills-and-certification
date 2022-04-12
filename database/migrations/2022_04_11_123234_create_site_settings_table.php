@@ -33,14 +33,14 @@ class CreateSiteSettingsTable extends Migration
             $table->mediumText('meta_name')->nullable();
             $table->mediumText('meta_description')->nullable();
 
-            $table->tinyInteger('show_slider')->default(1);
-            $table->tinyInteger('show_glance')->default(1);
+            $table->tinyInteger('show_slider')->default(0);
+            $table->tinyInteger('show_glance')->default(0);
             $table->tinyInteger('show_course')->default(1);
-            $table->tinyInteger('show_gallary')->default(1);
+            $table->tinyInteger('show_gallary')->default(0);
             $table->tinyInteger('show_provider')->default(1);
-            $table->tinyInteger('show_lang')->default(1);
-            $table->tinyInteger('show_logo')->default(1);
-            $table->tinyInteger('show_favicon')->default(1);
+            $table->tinyInteger('show_lang')->default(0);
+            $table->tinyInteger('show_logo')->default(0);
+            $table->tinyInteger('show_favicon')->default(0);
 
             $table->tinyInteger('row_status')->default(1);
             $table->timestamps();

@@ -295,7 +295,7 @@
         "icon_class": "fa-university",
         "color": "#000000",
         "parent_id": 45,
-        "order": 4,
+        "order": 5,
         "route": "admin.galleries.index",
         "parameters": null
     },
@@ -310,7 +310,7 @@
         "icon_class": "fa-university",
         "color": "#000000",
         "parent_id": 45,
-        "order": 7,
+        "order": 8,
         "route": "admin.static-page.index",
         "parameters": null
     },
@@ -325,7 +325,7 @@
         "icon_class": "fa-cogs",
         "color": "#000000",
         "parent_id": 45,
-        "order": 2,
+        "order": 3,
         "route": "admin.sliders.index",
         "parameters": null
     },
@@ -340,7 +340,7 @@
         "icon_class": "fa-cogs",
         "color": "#000000",
         "parent_id": 45,
-        "order": 6,
+        "order": 7,
         "route": "admin.videos.index",
         "parameters": null
     },
@@ -355,7 +355,7 @@
         "icon_class": "fa-cogs",
         "color": "#000000",
         "parent_id": 45,
-        "order": 5,
+        "order": 6,
         "route": "admin.video-categories.index",
         "parameters": null
     },
@@ -385,7 +385,7 @@
         "icon_class": "fa-adjust",
         "color": "#000000",
         "parent_id": 45,
-        "order": 3,
+        "order": 4,
         "route": "admin.gallery-categories.index",
         "parameters": null
     },
@@ -445,7 +445,7 @@
         "icon_class": "fa fa-video",
         "color": "#000000",
         "parent_id": 45,
-        "order": 1,
+        "order": 2,
         "route": "admin.intro-videos.index",
         "parameters": null
     },
@@ -475,7 +475,7 @@
         "icon_class": "fas fa-question-circle",
         "color": "#000000",
         "parent_id": 45,
-        "order": 8,
+        "order": 9,
         "route": "admin.question-answers.index",
         "parameters": null
     },
@@ -597,6 +597,21 @@
         "parent_id": 37,
         "order": 9,
         "route": "admin.trainee.certificates.request.accepted",
+        "parameters": null
+    },
+    {
+        "id": 117,
+        "menu_id": 3,
+        "title": "Site Settings",
+        "title_lang_key": "menu.site_setting",
+        "permission_key": "view_any_site_setting",
+        "url": "",
+        "target": "_self",
+        "icon_class": "fa-cogs",
+        "color": "#000000",
+        "parent_id": 45,
+        "order": 1,
+        "route": "admin.site-setting.index",
         "parameters": null
     }
 ]
