@@ -4,7 +4,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.contact')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.contact')}}
 @endsection
 
 @section('content')

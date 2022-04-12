@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{ $staticContent->title }}
+{{$siteSettingInfo->site_title}} :: {{ $staticContent->title }}
 @endsection
 
 @section('content')

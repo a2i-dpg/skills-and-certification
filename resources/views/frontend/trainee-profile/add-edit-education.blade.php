@@ -1,7 +1,7 @@
 @extends('master::layouts.front-end')
 
 @section('title')
-    {{ 'Trainee education' }}
+{{$siteSettingInfo->site_title}} :: {{ 'Trainee education' }}
 @endsection
 
 @section('content')

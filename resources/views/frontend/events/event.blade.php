@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{ !empty($event)?$event->caption:'' }}
+{{$siteSettingInfo->site_title}} :: {{ !empty($event)?$event->caption:'' }}
 @endsection
 
 @section('content')

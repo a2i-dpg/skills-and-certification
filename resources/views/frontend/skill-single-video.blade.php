@@ -6,7 +6,7 @@
 @extends($layout)
 
 @section('title')
-{{__('generic.video')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.video')}}
 @endsection
 
 @section('content')

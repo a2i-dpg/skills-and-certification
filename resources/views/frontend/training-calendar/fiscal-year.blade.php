@@ -6,7 +6,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.training_implementation_schedule')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.training_implementation_schedule')}}
 @endsection
 
 @section('content')

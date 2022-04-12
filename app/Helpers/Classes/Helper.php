@@ -30,8 +30,16 @@ class Helper
 
     public static function getLocaleCurrency(int $number): string
     {
-        $localeCurrency = config('settings.local_currency') ?? 'en-US';
-        $locale = config('settings.locale') ?? 'USD';
+        $localeCurrency = config('settings.local_currency') ?? 'USD';
+        $locale = config('settings.locale') ?? 'en-US';
+        $formatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
+        return $formatter->formatCurrency($number, $localeCurrency);
+    }
+
+    public static function getLocaleCustomCurrency($number, $locale, $local_currency)
+    {
+        $localeCurrency = $local_currency ?? config('settings.local_currency'); //?? 'USD';
+        $locale = $locale ?? config('settings.locale'); //?? 'en-US';
         $formatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
         return $formatter->formatCurrency($number, $localeCurrency);
     }

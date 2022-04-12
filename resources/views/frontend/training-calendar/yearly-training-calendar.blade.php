@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.calendar')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.calendar')}}
 @endsection
 
 @section('content')

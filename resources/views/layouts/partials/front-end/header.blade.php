@@ -8,8 +8,8 @@
     <div class="container">
         <header class="navbar navbar-expand flex-column flex-md-row bd-navbar">
             <div class="navbar-nav-scroll">
-                <div class="nise3-logo" style="height: 70px;">
-                    <div class="float-left px-1" style="max-width: 311px; padding: 20px;">
+                <div class="nise3-logo" style="height: 0px;">
+                    <div class="float-left px-1" style="max-width: 500px; padding: 0px;">
                         @if($currentInstitute)
                             <p class="p-0 m-0">
                                 <img src="{{ asset('storage/'. $currentInstitute->logo) }}"
@@ -17,7 +17,13 @@
                                     class="slogan slogan-tag">{{ $currentInstitute->title }}</span>
                             </p>
                         @else
-                            <p class="slogan slogan-tag">{{ __('generic.system_name')}}</p>
+                            @if ($siteSettingInfo->show_logo)
+                                <p class="p-0 m-0">
+                                    <img src="{{ asset('storage/'. $siteSettingInfo->site_logo) }}"
+                                        alt="{{ $siteSettingInfo->site_title }}" height="48"> 
+                                        <span class="slogan slogan-tag">{{ $siteSettingInfo->site_title }}</span>
+                                </p>
+                            @endif
                         @endif
                     </div>
                 </div>

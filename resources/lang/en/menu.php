@@ -91,6 +91,7 @@ return [
     'examination_result' => 'Examination Result',
     'routine_management' => 'Routine Management',
     'examination_routine' => 'Examination Routine',
-    'class_routine' => 'Class Routine'
+    'class_routine' => 'Class Routine',
+    'site_setting' => 'Site Settings'
 ];
 

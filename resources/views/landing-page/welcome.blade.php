@@ -7,10 +7,13 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.home_page')}}
+    {{$siteSettingInfo->site_title}} :: {{__('generic.home_page')}}
 @endsection
 
 @section('content')
+
+    @if ($siteSettingInfo->show_slider)
+        
     @php
         $sl=0;
         $sliderImageNo=0;
@@ -62,6 +65,8 @@
         </section>
         <!-- End Top Content Slider -->
     @endif
+
+    @endif
     <!-- About Us Start-->
     <section class="about-us-section position-relative">
         <div class="about-section-color">
@@ -103,6 +108,7 @@
     </section>
     <!-- End About Us-->
 
+    @if ($siteSettingInfo->show_glance)
     <!-- At A Glance Start -->
     <section class="bg-white pb-5">
         <div class="container">
@@ -154,7 +160,9 @@
         </div>
     </section>
     <!-- End At A Glance -->
+    @endif
 
+    @if ($siteSettingInfo->show_course)
     <!-- Courses Start -->
     <section class="container-fluid slider-area course-section">
         <div class="container my-4">
@@ -172,7 +180,7 @@
                     </p>
                 </div>
 
-                <div class="col-md-12 mb-5 mt-5 mt-5">
+                {{-- <div class="col-md-12 mb-5 mt-5 mt-5">
                     <div class="row">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
@@ -182,7 +190,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <div class="tab-content">
                     
                     @if($runningCourses->count() > 4)
@@ -208,8 +216,9 @@
                                                                              alt="{{ $course->title }}">
                                                                     </div>
                                                                     <div class="text-left pl-4 pr-4 pt-1 pb-1">
-                                                                        <p class="font-weight-light"
-                                                                           style="color: #9c36c6">{{ \App\Helpers\Classes\Helper::getLocaleCurrency($course->course_fee) ?? 'Free' }}</p>
+                                                                        {{-- <p class="font-weight-light" style="color: #9c36c6">{{ \App\Helpers\Classes\Helper::getLocaleCurrency($course->course_fee) ?? 'Free' }}</p> --}}
+                                                                        <p class="font-weight-light" style="color: #9c36c6">{{ \App\Helpers\Classes\Helper::getLocaleCustomCurrency($course->course_fee, $siteSettingInfo->locale, $siteSettingInfo->local_currency) ?? 'Free' }} </p>
+                                                                        
                                                                         <p class="font-weight-bold course-heading-wrap">{{ $course? $course->title :'' }}</p>
 
                                                                         <p class="font-weight-light mb-1"><i
@@ -292,8 +301,11 @@
                                                                  alt="{{ $course->title }}">
                                                         </div>
                                                         <div class="text-left pl-4 pr-4 pt-1 pb-1">
-                                                            <p class="font-weight-light"
-                                                               style="color: #9c36c6">{{ \App\Helpers\Classes\Helper::getLocaleCurrency($course->course_fee) ?? 'Free' }}</p>
+                                                            {{-- <p class="font-weight-light" style="color: #9c36c6">{{ \App\Helpers\Classes\Helper::getLocaleCurrency($course->course_fee) ?? 'Free' }}</p> --}}
+                                                            <p class="font-weight-light" style="color: #9c36c6">
+                                                                {{ \App\Helpers\Classes\Helper::getLocaleCustomCurrency($course->course_fee, $siteSettingInfo->locale, $siteSettingInfo->local_currency) ?? 'Free' }}
+                                                                {{-- {{$siteSettingInfo->locale}} -- {{$siteSettingInfo->local_currency}} --}}
+                                                            </p>
                                                             <p class="font-weight-bold course-heading-wrap">{{ $course? $course->title :'' }}</p>
 
                                                             <p class="font-weight-light mb-1"><i
@@ -354,7 +366,7 @@
         </div>
     </section>
     <!-- End Courses -->
-
+    @endif
     <!-- Event Start -->
 
     @if(app('currentInstitute'))
@@ -375,11 +387,10 @@
                             <div class="col-md-12" a id="event_area">
                                 <h3 class="accordion-heading"
                                     id="eventDateTime">{{ \App\Helpers\Classes\EnglishToBanglaDate::dateFormatEnglishToBangla(date("l, j F Y")) }}</h3>
-                                <!-- Accordion -->
+                                
                                 <div id="eventArea" class="accordion">
 
                                 </div>
-                                <!-- End -->
                             </div>
                         </div>
                     </div>
@@ -393,6 +404,7 @@
 
         <!-- End Event -->
     @else
+        @if ($siteSettingInfo->show_provider)
         <!-- Skill Service Provider -->
         <section class="bg-white pb-5">
             <div class="container">
@@ -458,8 +470,9 @@
                 @endif
             </div>
             <!-- End Skill Service Provider -->
+            @endif
         @endif
-
+        @if ($siteSettingInfo->show_galarry)
         <!-- Gallery Start -->
             <section class="gallery">
                 <div class="container">
@@ -568,7 +581,7 @@
                 </div>
             </section>
             <!-- End Gallery -->
-
+            @endif
             @endsection
 
             @push('css')
@@ -1298,16 +1311,16 @@
                                 right: 'next'
                             },
                             locale: initialLocaleCode,
-                            events: function (fetchInfo, successCallback, failureCallback) {
-                                $.ajax({
-                                    url: '{{route('frontend.institute-events', ['instituteSlug' => $currentInstitute->slug ?? ''])}}',
-                                    type: "POST",
-                                }).done(function (response) {
-                                    successCallback(response);
-                                }).fail(function (xhr) {
-                                    failureCallback([]);
-                                });
-                            },
+                            // events: function (fetchInfo, successCallback, failureCallback) {
+                            //     $.ajax({
+                            //         url: '{{route('frontend.institute-events', ['instituteSlug' => $currentInstitute->slug ?? ''])}}',
+                            //         type: "POST",
+                            //     }).done(function (response) {
+                            //         successCallback(response);
+                            //     }).fail(function (xhr) {
+                            //         failureCallback([]);
+                            //     });
+                            // },
                             dateClick: function (info) {
                                 console.log(info);
                                 let eventDateTime = new Date(info.dateStr);

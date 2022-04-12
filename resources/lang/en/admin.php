@@ -542,6 +542,8 @@ return [
         'show_lang' => 'Show Language',
         'site_logo' => 'Site Logo',
         'site_favicon' => 'Site Favicon',
+        'show_favicon' => 'Show Favicon',
+        'show_logo' => 'Show Logo',
       ],
 ];
 

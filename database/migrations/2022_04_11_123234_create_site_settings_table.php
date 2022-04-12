@@ -39,6 +39,8 @@ class CreateSiteSettingsTable extends Migration
             $table->tinyInteger('show_gallary')->default(1);
             $table->tinyInteger('show_provider')->default(1);
             $table->tinyInteger('show_lang')->default(1);
+            $table->tinyInteger('show_logo')->default(1);
+            $table->tinyInteger('show_favicon')->default(1);
 
             $table->tinyInteger('row_status')->default(1);
             $table->timestamps();

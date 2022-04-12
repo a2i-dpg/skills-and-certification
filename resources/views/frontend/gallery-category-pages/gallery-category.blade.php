@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.albums')}} - ({{ $galleryCategory->title }})
+{{$siteSettingInfo->site_title}} :: {{__('generic.albums')}} - ({{ $galleryCategory->title }})
 @endsection
 
 @section('content')

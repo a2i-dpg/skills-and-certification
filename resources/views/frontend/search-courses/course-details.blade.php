@@ -8,7 +8,7 @@
 @extends($layout)
 
 @section('title')
-    {{ __('generic.course') }}
+{{$siteSettingInfo->site_title}} :: {{ __('generic.course') }}
 @endsection
 
 @section('content')
@@ -34,7 +34,8 @@
                                 <div class="custom-view-box">
                                     <p class="label-text">{{__('admin.course.course_fee')}}</p>
                                     <div class="input-box-custom" id="course_fee">
-                                        {{\App\Helpers\Classes\Helper::getLocaleCurrency(optional($course)->course_fee)}}
+                                        {{-- {{\App\Helpers\Classes\Helper::getLocaleCurrency(optional($course)->course_fee)}} --}}
+                                        {{ \App\Helpers\Classes\Helper::getLocaleCustomCurrency($course->course_fee, $siteSettingInfo->locale, $siteSettingInfo->local_currency) ?? 'Free' }}
                                     </div>
                                 </div>
     

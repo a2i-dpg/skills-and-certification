@@ -8,7 +8,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.courses')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.courses')}}
 @endsection
 
 @section('content')
@@ -275,7 +275,8 @@
                     html += '</div>';
                     html += '<div class="text-left pl-4 pr-4 pt-1 pb-1">';
                     html += '<p class="font-weight-light"';
-                    html += 'style="color: #9c36c6">' + getLocaleCurrency('{{ config('settings.locale') }}', '{{ config('settings.local_currency') }}', course.course_fee) ?? "Free" + '</p>';
+                    //html += 'style="color: #9c36c6">' + getLocaleCurrency('{{ config('settings.locale') }}', '{{ config('settings.local_currency') }}', course.course_fee) ?? "Free" + '</p>';
+                    html += 'style="color: #9c36c6">' + getLocaleCurrency('{{ $siteSettingInfo->locale }}', '{{ $siteSettingInfo->local_currency }}', course.course_fee) ?? "Free" + '</p>';
                     html += '<p class="font-weight-bold course-heading-wrap">' + course.title + '</p>';
 
                     html += ' <p class="font-weight-light mb-1"><i';

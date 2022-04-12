@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    ssp-registration
+{{$siteSettingInfo->site_title}} ::  ssp-registration
 @endsection
 
 @section('content')

@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-{{__('generic.my_courses')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.my_courses')}}
 @endsection
 
 @section('content')

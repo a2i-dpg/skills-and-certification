@@ -6,7 +6,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.feedback')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.feedback')}}
 @endsection
 
 @section('content')

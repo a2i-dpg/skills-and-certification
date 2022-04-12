@@ -7,7 +7,7 @@
 @extends($layout)
 
 @section('title')
-    add guardian info
+{{$siteSettingInfo->site_title}} :: add guardian info
 @endsection
 
 @push('css')

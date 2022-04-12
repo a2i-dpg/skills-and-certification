@@ -7,7 +7,7 @@
 @extends($layout)
 
 @section('title')
-    {{ __('course_enroll') }}
+{{$siteSettingInfo->site_title}} :: {{ __('course_enroll') }}
 @endsection
 
 @section('content')

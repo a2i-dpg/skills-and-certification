@@ -44,7 +44,7 @@
                               <input type="text" class="form-control" id="site_title"
                                     name="site_title"
                                     value="{{ $edit ? $siteSetting->site_title : old('site_title') }}"
-                                    placeholder="{{ __('admin.siteSetting.site_title') }}">
+                                    placeholder="{{ __('admin.site_setting.site_title') }}">
                             </div>
                           </div>
 
@@ -56,7 +56,7 @@
                               <input type="text" class="form-control" id="site_email"
                                     name="site_email"
                                     value="{{ $edit ? $siteSetting->site_email : old('site_email') }}"
-                                    placeholder="{{ __('admin.siteSetting.site_email') }}">
+                                    placeholder="{{ __('admin.site_setting.site_email') }}">
                             </div>
                           </div>
 
@@ -68,7 +68,7 @@
                               <input type="text" class="form-control" id="site_mobile"
                                     name="site_mobile"
                                     value="{{ $edit ? $siteSetting->site_mobile : old('site_mobile') }}"
-                                    placeholder="{{ __('admin.siteSetting.site_mobile') }}">
+                                    placeholder="{{ __('admin.site_setting.site_mobile') }}">
                             </div>
                           </div>
 
@@ -81,7 +81,7 @@
                               <input type="text" class="form-control" id="site_address"
                                     name="site_address"
                                     value="{{ $edit ? $siteSetting->site_address : old('site_address') }}"
-                                    placeholder="{{ __('admin.siteSetting.site_address') }}">
+                                    placeholder="{{ __('admin.site_setting.site_address') }}">
                             </div>
                           </div>
 
@@ -130,36 +130,36 @@
 
 
 
-                          {{-- <div class="col-sm-6">
+                          <div class="col-sm-6">
                             <div class="form-group">
-                              <label for="locale">{{ __('admin.site_setting.locale') }}
+                              <label for="locale">{{ __('admin.site_setting.locale') }} (en-US, bn-BD)
                               </label>
                               <input type="text" class="form-control" id="locale"
                                     name="locale"
                                     value="{{ $edit ? $siteSetting->locale : old('locale') }}"
-                                    placeholder="{{ __('admin.siteSetting.locale') }}">
+                                    placeholder="{{ __('admin.site_setting.locale') }}">
                             </div>
                           </div>
 
                           <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="local_currency">{{ __('admin.site_setting.local_currency') }} (USD, BDT)
+                              </label>
+                              <input type="text" class="form-control" id="local_currency"
+                                    name="local_currency"
+                                    value="{{ $edit ? $siteSetting->local_currency : old('local_currency') }}"
+                                    placeholder="{{ __('admin.site_setting.local_currency') }}">
+                            </div>
+                          </div>
+
+                          {{-- <div class="col-sm-6">
                             <div class="form-group">
                               <label for="locale_code">{{ __('admin.site_setting.locale_code') }}
                               </label>
                               <input type="text" class="form-control" id="locale_code"
                                     name="locale_code"
                                     value="{{ $edit ? $siteSetting->locale_code : old('locale_code') }}"
-                                    placeholder="{{ __('admin.siteSetting.locale_code') }}">
-                            </div>
-                          </div> --}}
-
-                          <div class="col-sm-6">
-                            <div class="form-group">
-                              <label for="local_currency">{{ __('admin.site_setting.local_currency') }}
-                              </label>
-                              <input type="text" class="form-control" id="local_currency"
-                                    name="local_currency"
-                                    value="{{ $edit ? $siteSetting->local_currency : old('local_currency') }}"
-                                    placeholder="{{ __('admin.siteSetting.local_currency') }}">
+                                    placeholder="{{ __('admin.site_setting.locale_code') }}">
                             </div>
                           </div>
 
@@ -170,63 +170,93 @@
                               <input type="text" class="form-control" id="locale_symble"
                                     name="locale_symble"
                                     value="{{ $edit ? $siteSetting->locale_symble : old('locale_symble') }}"
-                                    placeholder="{{ __('admin.siteSetting.locale_symble') }}">
+                                    placeholder="{{ __('admin.site_setting.locale_symble') }}">
                             </div>
-                          </div>
+                          </div> --}}
 
                           <div class="col-md-12">
                             <hr>
+                            <br>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_slider' type="checkbox" value="{{ ($edit && ($siteSetting->show_glance == 1)) ? '1' : '0' }}"
+                                <label><input name='show_slider' type="checkbox"
                                    {{ ($edit && ($siteSetting->show_slider == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_slider') }}</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_glance' type="checkbox" value="{{ ($edit && ($siteSetting->show_glance == 1)) ? '1' : '0' }}"
+                                <label><input name='show_glance' type="checkbox"
                                   {{ ($edit && ($siteSetting->show_glance == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_glance') }}</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_course' type="checkbox" {{ ($edit && ($siteSetting->show_course == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_course') }}</label>
+                                <label><input name='show_course' type="checkbox"
+                                  {{ ($edit && ($siteSetting->show_course == 1)) ? 'checked' : '' }}> {{ __('admin.site_setting.show_course') }}</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_gallary' type="checkbox" {{ ($edit && ($siteSetting->show_gallary == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_gallary') }}</label>
+                                <label><input name='show_gallary' type="checkbox"
+                                  {{ ($edit && ($siteSetting->show_gallary == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_gallary') }}</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_provider' type="checkbox" {{ ($edit && ($siteSetting->show_provider == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_provider') }}</label>
+                                <label><input name='show_provider' type="checkbox" 
+                                  {{ ($edit && ($siteSetting->show_provider == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_provider') }}</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                               <div class="checkbox">
-                                <label><input name='show_lang' type="checkbox" {{ ($edit && ($siteSetting->show_lang == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_lang') }}</label>
+                                <label><input name='show_lang' type="checkbox"
+                                  {{ ($edit && ($siteSetting->show_lang == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_lang') }}</label>
                               </div>
                             </div>
                           </div>
+
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <div class="checkbox">
+                                <label><input name='show_logo' type="checkbox"
+                                  {{ ($edit && ($siteSetting->show_logo == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_logo') }}</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <div class="checkbox">
+                                <label><input name='show_favicon' type="checkbox"
+                                  {{ ($edit && ($siteSetting->show_favicon == 1)) ? 'checked' : '' }}>{{ __('admin.site_setting.show_favicon') }}</label>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-12">
+                            <hr>
+                          </div>
+                          
+
 
 
                           <div class="col-md-6">
@@ -277,7 +307,7 @@
                                   </div>
                               </div>
                               <p class="font-italic text-secondary d-block">
-                                  (Image max 100kb, size 32X32 & file type must be jpg,png or jpeg )</p>
+                                  (Image max 100kb, size 48X48 & file type must be jpg,png or jpeg )</p>
                           </div>
                       </div>
 

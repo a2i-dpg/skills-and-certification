@@ -11,14 +11,17 @@
                 <div class="footer-widget">
                     <p>
                         <?php
-                        $descriptions = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
+                            $descriptions = ($siteSettingInfo->site_description) ? $siteSettingInfo->site_description : '' ;
+                            $site_email = ($siteSettingInfo->site_email) ? $siteSettingInfo->site_email : '' ;
+                            $site_mobile = ($siteSettingInfo->site_mobile) ? $siteSettingInfo->site_mobile : '' ;
+                            $site_address = ($siteSettingInfo->site_address) ? $siteSettingInfo->site_address : '' ;
                         ?>
-                        {{  $currentInstitute && !empty($currentInstitute->description) ? $currentInstitute->description : '' }}
+                        {{  $currentInstitute && !empty($currentInstitute->description) ? $currentInstitute->description : $descriptions }}
                     </p>
                     <span>
                             <a href="{{route('frontend.static-content.show',[ 'page_id' => 'aboutus', 'instituteSlug' => $currentInstitute->slug ?? ''])}}"
                                class="read-more"> <i
-                                    class="fas fa-angle-double-right"></i> {{strtoupper(__('generic.details'))}}</a>
+                                    class="fas fa-angle-double-right"></i> {{strtoupper(__('generic.details'))}} </a>
                         </span>
                 </div>
             </div>
@@ -30,30 +33,22 @@
                     <h3 class="mb-3">{{__('generic.contact')}}</h3>
                     <p>
                         <i class="fa fa-home" aria-hidden="true"></i>
-                        {{  $currentInstitute && !empty($currentInstitute->address) ? $currentInstitute->address : 'Dhaka-1212' }}
+                        {{  $currentInstitute && !empty($currentInstitute->address) ? $currentInstitute->address : $site_address }}
                     </p>
 
                     <p>
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <a class="footer-email"
-                           href="mailto:{{  $currentInstitute && !empty($currentInstitute->email) ? $currentInstitute->email :'email@example.com' }}">
-                            {{  $currentInstitute && !empty($currentInstitute->email) ? $currentInstitute->email :'email@example.com' }}
+                           href="mailto:{{  $currentInstitute && !empty($currentInstitute->email) ? $currentInstitute->email : $site_email}}">
+                            {{  $currentInstitute && !empty($currentInstitute->email) ? $currentInstitute->email : $site_email }}
                         </a>
                     </p>
                     <p>
                         <i class="fas fa-mobile"></i>
                         &nbsp
                         <a
-                            href="tel:{{  $currentInstitute && !empty($currentInstitute->mobile) ? $currentInstitute->mobile :'017xxxxxxxx' }}">
-                            {{  $currentInstitute && !empty($currentInstitute->mobile) ? $currentInstitute->mobile :'017xxxxxxxx' }}
-                        </a>
-                    </p>
-                    <p>
-                        <i class="fas fa-mobile"></i>
-                        &nbsp;
-                        <a
-                            href="tel:{{  $currentInstitute && !empty($currentInstitute->contact_person_mobile) ? $currentInstitute->contact_person_mobile :'019xxxxxxxx' }}">
-                            {{  $currentInstitute && !empty($currentInstitute->contact_person_mobile) ? $currentInstitute->contact_person_mobile :'019xxxxxxxx' }}
+                            href="tel:{{  $currentInstitute && !empty($currentInstitute->mobile) ? $currentInstitute->mobile : $site_mobile }}">
+                            {{  $currentInstitute && !empty($currentInstitute->mobile) ? $currentInstitute->mobile : $site_mobile }}
                         </a>
                     </p>
 
@@ -64,7 +59,7 @@
             <!--footer widget Three-->
             <div class="col-md-4 col-sm-6 footer-item">
                 <div class=" footer-widget-quick-links">
-                    <h3 class="mb-3">{{__('generic.important_link')}}</h3>
+                    <h3 class="mb-3">{{__('generic.important_link')}} </h3>
                     <ul>
                         
                         {{-- <li><i class="fa fa-angle-right"></i><a href="{{url('/')}}#running_courses">{{__('generic.online_course')}}</a></li> --}}

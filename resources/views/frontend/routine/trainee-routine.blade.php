@@ -6,7 +6,7 @@
 @extends($layout)
 
 @section('title')
-{{__('generic.routines')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.routines')}}
 @endsection
 
 @section('content')

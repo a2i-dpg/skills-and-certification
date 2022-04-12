@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    Trainee-registration
+{{$siteSettingInfo->site_title}} :: Trainee-registration
 @endsection
 
 @section('content')

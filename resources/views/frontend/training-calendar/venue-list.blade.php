@@ -5,7 +5,7 @@
 @endphp
 @extends($layout)
 @section('title')
-    {{__('generic.center_list')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.center_list')}}
 @endsection
 
 @section('content')

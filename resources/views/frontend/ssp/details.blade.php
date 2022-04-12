@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{ __('generic.ssp.label') }}
+{{$siteSettingInfo->site_title}} :: {{ __('generic.ssp.label') }}
 @endsection
 
 @section('content')

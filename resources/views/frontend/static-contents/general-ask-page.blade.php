@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.faq')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.faq')}}
 @endsection
 
 @section('content')

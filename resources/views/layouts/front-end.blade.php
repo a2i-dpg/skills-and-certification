@@ -6,8 +6,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{csrf_token()}}"/>
 
-    <title>@yield('title', 'Skills and Certification Management')</title>
+    <meta itemprop="name" content="{{ $siteSettingInfo->meta_name }}">
+    <meta itemprop="description" content="{{ $siteSettingInfo->meta_description }}">
+    <meta itemprop="tag" content="{{ $siteSettingInfo->meta_tag }}">
 
+    <title>@yield('title', ($siteSettingInfo->site_title) ? $siteSettingInfo->site_title : '' )</title>
+    
+    @if ($siteSettingInfo->show_favicon)
+        <link href="{{ asset('storage/'. $siteSettingInfo->site_favicon) }}" type="image/x-icon" rel="shortcut icon" />
+    @endif
     <!-- Bootstrap v4 with admin-lte v3 -->
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">

@@ -8,6 +8,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Helpers\Classes\FileHandler;
 use Auth;
+use Cache;
 
 class SiteSettingController extends Controller
 {
@@ -43,18 +44,20 @@ class SiteSettingController extends Controller
 
     public function update(Request $request, SiteSetting $siteSetting)
     {
-        //dd($request->all());
         $this->authorize('update', Auth::user());
+        //dd($request->all());
 
         
         try {
-            $this->validate($request,['site_logo'=>'max:100|mimes:png,jpg,jpeg']);
+            $this->validate($request,['site_logo'=>'max:100|mimes:png,jpg,jpeg','site_favicon'=>'max:100|mimes:png,jpg,jpeg,ico',]);
             $request['show_slider'] = (@$request->show_slider) ? '1' : '0' ;
             $request['show_glance'] = (@$request->show_glance) ? '1' : '0' ;
             $request['show_course'] = (@$request->show_course) ? '1' : '0' ;
             $request['show_gallary'] = (@$request->show_gallary) ? '1' : '0' ;
             $request['show_provider'] = (@$request->show_provider) ? '1' : '0' ;
             $request['show_lang'] = (@$request->show_lang) ? '1' : '0' ;
+            $request['show_logo'] = (@$request->show_logo) ? '1' : '0' ;
+            $request['show_favicon'] = (@$request->show_favicon) ? '1' : '0' ;
     
             $authUser = Auth::id();
             
@@ -88,6 +91,8 @@ class SiteSettingController extends Controller
             }
             $siteSetting->update($request->all());
             SiteSetting::find($request->id)->update($data);
+
+            Cache::forget('siteSettingInfo');
 
             return redirect()->route('admin.site-setting.index')->with([
                 'message' => __('generic.object_updated_successfully', ['object' => 'Site Setting']),

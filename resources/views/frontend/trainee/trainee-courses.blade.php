@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-{{__('generic.my_courses')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.my_courses')}}
 @endsection
 
 @section('content')
@@ -163,7 +163,8 @@
                         data: "course_fee",
                         name: "courses.course_fee",
                         render: function (data) {
-                           return  getLocaleCurrency('{{ config('settings.locale') }}', '{{ config('settings.local_currency') }}', data);
+                           //return  getLocaleCurrency('{{ config('settings.locale') }}', '{{ config('settings.local_currency') }}', data);
+                           return  getLocaleCurrency('{{ $siteSettingInfo->locale }}', '{{ $siteSettingInfo->local_currency }}', data);
                         }
                     },
                     {

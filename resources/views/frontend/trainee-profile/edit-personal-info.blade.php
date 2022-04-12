@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-    {{__('generic.youth_profile')}}
+{{$siteSettingInfo->site_title}} :: {{__('generic.youth_profile')}}
 @endsection
 
 @push('css')

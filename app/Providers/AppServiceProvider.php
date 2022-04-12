@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 use App\Models\StaticPage;
+use App\Models\SiteSetting;
 use View;
 use Cache;
 
@@ -65,6 +66,13 @@ class AppServiceProvider extends ServiceProvider
                 return StaticPage::where(['row_status'=>1])->get();
             });
             $view->with('staticPageFooter', $staticPageFooter);
+        });
+
+        View::composer('*', function ($view) {
+            $siteSettingInfo = Cache::rememberForever('siteSettingInfo', function () {
+                return SiteSetting::where(['row_status'=>1])->first();
+            });
+            $view->with('siteSettingInfo', $siteSettingInfo);
         });
 
 
