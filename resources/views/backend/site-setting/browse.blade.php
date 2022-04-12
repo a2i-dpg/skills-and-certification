@@ -132,7 +132,8 @@
 
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label for="locale">{{ __('admin.site_setting.locale') }} (en-US, bn-BD)
+                              <label for="locale">{{ __('admin.site_setting.locale') }} (en-US, bn-BD) 
+                                <span><a target="_blank" href="https://github.com/umpirsky/locale-list/blob/master/data/rw/locales.php"> Reference Link </a></span>
                               </label>
                               <input type="text" class="form-control" id="locale"
                                     name="locale"
@@ -144,6 +145,7 @@
                           <div class="col-sm-6">
                             <div class="form-group">
                               <label for="local_currency">{{ __('admin.site_setting.local_currency') }} (USD, BDT)
+                                <span><a target="_blank" href="https://www.science.co.il/international/Currency-codes.php"> Reference Link </a></span>
                               </label>
                               <input type="text" class="form-control" id="local_currency"
                                     name="local_currency"
