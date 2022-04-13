@@ -25,7 +25,7 @@ class BatchSeeder extends Seeder
                 array(
                     'id' => 1,
                     'institute_id' => 1,
-                    'branch_id' => null,
+                    'branch_id' => 1,
                     'course_id' => 1,
                     'training_center_id' => 1,
                     'title' => 'BITAC-batch-1',
@@ -34,22 +34,11 @@ class BatchSeeder extends Seeder
                     'application_end_date' => Date::now()->addDays(6),
                     'batch_start_date' => Date::now()->addDays(12),
                     'batch_end_date' => Date::now()->addDays(30),
-                ),
-
-            1 =>
-                array(
-                    'id' => 2,
-                    'institute_id' => 2,
-                    'branch_id' => null,
-                    'course_id' => 2,
-                    'training_center_id' => 1,
-                    'title' => 'TFL-Batch-2',
-                    'code' => '4500',
-                    'application_start_date' => Date::now(),
-                    'application_end_date' => Date::now()->addDays(6),
-                    'batch_start_date' => Date::now()->addDays(12),
-                    'batch_end_date' => Date::now()->addDays(30),
-                ),
+                    'created_by' => '1',
+                    'row_status' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW(),
+                )
         ));
 
         Schema::enableForeignKeyConstraints();

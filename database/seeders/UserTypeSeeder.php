@@ -90,13 +90,30 @@ class UserTypeSeeder extends Seeder
         DB::table('users')->truncate();
 
         DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'user_type_id' => 1,
-            'role_id' => 1,
-            'row_status' => 1,
-            'password' => Hash::make('password')
+            0 => [
+                'id' => 1,
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'user_type_id' => 1,
+                'role_id' => 1,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+            ],
+            1 => [
+                'id' => 2,
+                'name' => 'Mr.Trainee',
+                'email' => 'trainee@gmail.com',
+                'user_type_id' => 7,
+                'role_id' => null,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+            ]
         ]);
 
         Schema::enableForeignKeyConstraints();

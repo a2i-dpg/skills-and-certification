@@ -21,8 +21,10 @@
                                 <p class="p-0 m-0">
                                     <img src="{{ asset('storage/'. $siteSettingInfo->site_logo) }}"
                                         alt="{{ $siteSettingInfo->site_title }}" height="48"> 
-                                        <span class="slogan slogan-tag">{{ $siteSettingInfo->site_title }}</span>
+                                        <span class="slogan slogan-tag">{{ ($siteSettingInfo->site_title) ? $siteSettingInfo->site_title : env('APP_NAME') }}</span>
                                 </p>
+                            @else
+                            <p class="slogan slogan-tag">{{ ($siteSettingInfo->site_title) ?? env('APP_NAME') }} </p>
                             @endif
                         @endif
                     </div>

@@ -28,8 +28,10 @@ class CourseSeeder extends Seeder
                 array(
                     'id' => 1,
                     'institute_id' => 1,
+                    'programme_id' => 1,
                     'title' => 'Graphic Design',
                     'course_fee' => '500',
+                    'duration' => '10',
                     'objects' => "Introduction to different types of welding processes;
                                             l Identification of different metals;
                                             l Preparation of different types of welding joints;
@@ -55,10 +57,12 @@ class CourseSeeder extends Seeder
 //                array(
 //                    'id' => 2,
 //                    'institute_id' => 2,
+//                    'programme_id' => 1,
 //                    'branch_id' => 1,
 //                    'training_center_id' => 2,
 //                    'title' => 'Electronics',
 //                    'course_fee' => '1000',
+//                    'duration' => '10',
 //                    'objects' => "Introduction to different types of welding processes;
 //                                            l Identification of different metals;
 //                                            l Preparation of different types of welding joints;

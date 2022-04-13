@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             FAQSeeder::class,
             SiteSettingSeeder::class,
-//            BatchSeeder::class,
-//            TraineeSeeder::class,
+            BatchSeeder::class,
+            TraineeSeeder::class,
         ]);
     }
 }

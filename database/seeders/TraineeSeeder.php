@@ -25,30 +25,20 @@ class TraineeSeeder extends Seeder
             0 =>
                 array(
                     'id' => 1,
-                    'name' => 'ak',
+                    'user_id' => 2,
+                    'name' => 'Mr.Trainee',
                     'mobile' => '01746383836',
-                    'email' => 'ak@gmail.com',
-                    'address' => 'LA',
+                    'email' => 'trainee@gmail.com',
+                    'address' => 'Mirpur, Dhaka-1212',
                     'date_of_birth' => Date::now(),
                     'gender' => 1,
                     'disable_status' => 2,
                     'ethnic_group' => 2,
-                    'password' => Hash::make('123'),
-                ),
-
-            1 =>
-                array(
-                    'id' => 2,
-                    'name' => 'bk',
-                    'mobile' => '017463836378',
-                    'email' => 'bk@gmail.com',
-                    'address' => 'Tennesse',
-                    'date_of_birth' => Date::now(),
-                    'gender' => 1,
-                    'disable_status' => 2,
-                    'ethnic_group' => 2,
-                    'password' => Hash::make('123'),
-                ),
+                    'password' => Hash::make('password'),
+                    'row_status' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW()
+                )
         ));
 
         Schema::enableForeignKeyConstraints();
