@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Helpers\Classes\AuthHelper;
 use App\Http\Controllers\BaseController;
 use App\Models\Trainee;
+use App\Models\Course;
 use App\Models\TraineeCourseEnroll;
 use App\Services\TraineeCourseEnrollmentService;
 use Illuminate\Contracts\View\View;
@@ -13,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+
+use App\Events\EnrollEmailEvent;
 
 class TraineeCourseEnrollmentController extends BaseController
 {
@@ -31,9 +34,16 @@ class TraineeCourseEnrollmentController extends BaseController
      */
     public function courseEnroll(Request $request): JsonResponse
     {
+        //dd($request->all());
         $validatedData = $this->traineeCourseEnrollmentService->validator($request)->validate();
 
         $authTrainee = Trainee::getTraineeByAuthUser();
+        $course = Course::where(['id'=>$request->course_id])->first();
+        $email_data = [
+            'email' => $authTrainee->email,
+            'name' => $authTrainee->name,
+            'title' => $course->title,
+        ];
         $isAlreadyEnrolled = TraineeCourseEnroll::where('trainee_id', $authTrainee->id)
             ->where('course_id', $validatedData['course_id'])
             ->first();
@@ -44,11 +54,12 @@ class TraineeCourseEnrollmentController extends BaseController
                 'alertType' => 'info'
             ]);
         }
-
         DB::beginTransaction();
 
         try {
             $this->traineeCourseEnrollmentService->saveCourseEnrollData($validatedData);
+            // Need to send mail to trainee
+            event(new EnrollEmailEvent($email_data));
             DB::commit();
         } catch (\Throwable $exception) {
             DB::rollBack();

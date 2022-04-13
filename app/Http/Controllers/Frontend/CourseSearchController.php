@@ -47,8 +47,9 @@ class CourseSearchController extends Controller
     public function courseDetails(int $courseId): View
     {
         $course = Course::findOrFail($courseId);
+        $runningBatches = $course->runningBatches;
 
-        return view(self::VIEW_PATH . 'course-details', ['course' => $course]);
+        return view(self::VIEW_PATH . 'course-details', ['course' => $course, 'runningBatches' => $runningBatches]);
     }
 
     /**
