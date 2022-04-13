@@ -27,7 +27,7 @@ class ProgrammeSeeder extends Seeder
                     'title' => 'Spring',
                     'code' => 'SP-001',
                     'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    'created_by' => '1',
+                    'created_by' => 1,
                     'row_status' => 1,
                     'created_at' => NOW(),
                     'updated_at' => NOW(),
@@ -39,7 +39,7 @@ class ProgrammeSeeder extends Seeder
                     'title' => 'Summer',
                     'code' => 'SM-001',
                     'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    'created_by' => '1',
+                    'created_by' => 1,
                     'row_status' => 1,
                     'created_at' => NOW(),
                     'updated_at' => NOW(),
@@ -51,11 +51,47 @@ class ProgrammeSeeder extends Seeder
                     'title' => 'Fall',
                     'code' => 'FL-001',
                     'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    'created_by' => '1',
+                    'created_by' => 1,
                     'row_status' => 1,
                     'created_at' => NOW(),
                     'updated_at' => NOW(),
-                )
+                ),
+            3 =>
+                array(
+                    'id' => 4,
+                    'institute_id' => 2,
+                    'title' => 'Spring',
+                    'code' => 'SP-001',
+                    'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    'created_by' => 1,
+                    'row_status' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW(),
+                ),
+            4 =>
+                array(
+                    'id' => 5,
+                    'institute_id' => 2,
+                    'title' => 'Summer',
+                    'code' => 'SM-001',
+                    'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    'created_by' => 1,
+                    'row_status' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW(),
+                ),
+            5 =>
+                array(
+                    'id' => 6,
+                    'institute_id' => 2,
+                    'title' => 'Fall',
+                    'code' => 'FL-001',
+                    'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    'created_by' => 1,
+                    'row_status' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW(),
+                ),
         ));
         Schema::enableForeignKeyConstraints();
     }

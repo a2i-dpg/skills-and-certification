@@ -48,9 +48,12 @@ class CourseSeeder extends Seeder
                     'eligibility' => 'course-eligibility',
                     'prerequisite' => 'prerequisites',
                     'code' => '111',
-                    'created_by' => '1',
+                    'created_by' => 1,
                     'row_status' => 1,
-                    'cover_image' => Course::DEFAULT_COVER_IMAGE,
+                    'cover_image' => null,
+                    'created_by' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW(),
                 ),
 
 //            1 =>

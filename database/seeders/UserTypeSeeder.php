@@ -101,6 +101,7 @@ class UserTypeSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
                 'email_verified_at' => NOW(),
+                'created_by' => null,
             ],
             1 => [
                 'id' => 2,
@@ -113,7 +114,34 @@ class UserTypeSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
                 'email_verified_at' => NOW(),
-            ]
+                'created_by' => null,
+            ],
+            2 => [
+                'id' => 3,
+                'name' => 'BITAC Institute Admin',
+                'email' => 'bitac@gmail.com',
+                'user_type_id' => 3,
+                'role_id' => 3,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+                'created_by' => 1,
+            ],
+            3 => [
+                'id' => 4,
+                'name' => 'TFL Institute Admin',
+                'email' => 'tfl@gmail.com',
+                'user_type_id' => 3,
+                'role_id' => 3,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+                'created_by' => 1,
+            ],
         ]);
 
         Schema::enableForeignKeyConstraints();
