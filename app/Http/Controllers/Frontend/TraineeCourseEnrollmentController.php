@@ -42,8 +42,12 @@ class TraineeCourseEnrollmentController extends BaseController
         $email_data = [
             'email' => $authTrainee->email,
             'name' => $authTrainee->name,
-            'title' => $course->title,
+            'course' => $course->title,
+            'subject' => 'Enrollment registration confirmation email',
+            'view' => 'frontend.email.trainee-enroll-email',
+            'from' => env('MAIL_FROM_ADDRESS'),
         ];
+        
         $isAlreadyEnrolled = TraineeCourseEnroll::where('trainee_id', $authTrainee->id)
             ->where('course_id', $validatedData['course_id'])
             ->first();

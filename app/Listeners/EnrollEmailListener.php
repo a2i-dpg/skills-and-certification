@@ -14,14 +14,12 @@ class EnrollEmailListener implements ShouldQueue
     public function handle($event)
     {
         //sleep(10);
-        //$array['view'] = 'emails.invoice';
-        $array['subject'] = 'Enroll confirmation email';
-        $array['from'] = env('MAIL_FROM_ADDRESS');
-        $array['trainee'] = $event->trainee;
+        $array['view'] = $event->email_data['view'];
+        $array['subject'] = $event->email_data['subject'];
+        $array['from'] = 'vizzclub786@gmail.com' ?? $event->email_data['from'];
+        $array['email_data'] = $event->email_data;
         try {
-            Mail::to($event->trainee['email'])->queue(new TraineeEnrollEmail($array));
-            //Mail::to(User::where('user_type', 'admin')->first()->email)->queue(new TraineeEnrollEmail($array));
-
+            Mail::to($event->email_data['email'])->queue(new TraineeEnrollEmail($array));
         } catch (\Exception $e) {
 
         }

@@ -26,11 +26,11 @@ class TraineeEnrollEmail extends Mailable
     {
         //return $this->view('frontend.email.trainee-enroll-email');
 
-        return $this->view('frontend.email.trainee-enroll-email')
+        return $this->view($this->array['view'])
                      ->from($this->array['from'], env('MAIL_FROM_NAME'))
                      ->subject($this->array['subject'])
                      ->with([
-                         'trainee' => $this->array['trainee']
+                         'email_data' => $this->array['email_data']
                      ]);
     }
 }

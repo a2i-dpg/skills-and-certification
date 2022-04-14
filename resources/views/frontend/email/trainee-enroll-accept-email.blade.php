@@ -11,9 +11,7 @@
     </p>
 
     <p> 
-        You have applied to course {{@$email_data['course']}}, <br>
-        Thank you so much for enrolling to this course. <br>
-        we will inform you very soon your admission status <br>
+        Congratulations you have accepted for {{@$email_data['course']}} course <br>
         
         Best regards,  <br>
         {{env('APP_NAME')}} <br>

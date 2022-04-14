@@ -14,9 +14,9 @@ class EnrollEmailEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $trainee;
-    public function __construct($trainee)
+    public $email_data;
+    public function __construct($email_data)
     {
-        $this->trainee = $trainee;
+        $this->email_data = $email_data;
     }
 }

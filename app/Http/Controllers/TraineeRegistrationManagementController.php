@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
+use App\Events\EnrollEmailEvent;
+
 class TraineeRegistrationManagementController extends Controller
 {
     const VIEW_PATH = 'backend.trainee-registrations.';
@@ -60,6 +62,12 @@ class TraineeRegistrationManagementController extends Controller
     public function assignToBatch(Request $request): JsonResponse
     {
         $courseEnrollmentId = $request->input('id');
+        $traineeCourseEnroll = TraineeCourseEnroll::findOrFail($courseEnrollmentId);
+        $email = $traineeCourseEnroll->trainee->email;
+        $name = $traineeCourseEnroll->trainee->name;
+        $course = $traineeCourseEnroll->course->title;
+        
+
 
         /** status = 1[accept], status = 2 [reject] */
         $inputEnrollStatus = $request->input('status');
@@ -80,10 +88,30 @@ class TraineeRegistrationManagementController extends Controller
                 $responseMessage = 'Trainee assigned to batch successfully!';
                 $data['trainee_course_enroll_id'] = $courseEnrollmentId;
                 TraineeBatch::create($data);
+                // need to send accepted email to trainee
+                $email_data = [
+                    'email' => $email,
+                    'name' => $name,
+                    'course' => $course,
+                    'subject' => 'Enrollment admission status confirmation email',
+                    'view' => 'frontend.email.trainee-enroll-accept-email',
+                    'from' => env('MAIL_FROM_ADDRESS'),
+                ];
+                event(new EnrollEmailEvent($email_data));
             } else {
                 TraineeCourseEnroll::where('id', $courseEnrollmentId)
                     ->update(['enroll_status' => TraineeCourseEnroll::ENROLL_STATUS_REJECT, 'batch_id' => null]);
                 $responseMessage = 'Trainee rejected successfully';
+                $email_data = [
+                    'email' => $email,
+                    'name' => $name,
+                    'course' => $course,
+                    'subject' => 'Enrollment admission status confirmation email',
+                    'view' => 'frontend.email.trainee-enroll-reject-email',
+                    'from' => env('MAIL_FROM_ADDRESS'),
+                ];
+                event(new EnrollEmailEvent($email_data));
+                // need to send rejection email to trainee
             }
             DB::commit();
 
