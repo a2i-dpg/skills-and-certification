@@ -3,12 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 use App\Events\EnrollEmailEvent;
 use App\Listeners\EnrollEmailListener;
 
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Notifications\SendEmailVerificationNotification as QueuedSendEmailVerificationNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,8 @@ class EventServiceProvider extends ServiceProvider
             EnrollEmailListener::class,
         ],
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            //SendEmailVerificationNotification::class,
+            QueuedSendEmailVerificationNotification::class,
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // ... other providers
