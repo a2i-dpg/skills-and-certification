@@ -36,7 +36,7 @@ class TraineePaymentSuccessMail extends Mailable
      */
     public function build(): TraineePaymentSuccessMail
     {
-        return $this->from(env('MAIL_FROM_ADDRESS', 'noreply@skills.gov.bd'))
+        return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject($this->subject)
             ->view('frontend.email.youth-payment-success');
     }
