@@ -11,6 +11,7 @@ use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
 use App\Models\User;
 use App\Models\UserType;
+use App\Models\CertificateRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Database\Eloquent\Builder;
@@ -170,6 +171,7 @@ class TraineeRegistrationService
             'batches.batch_status as batch_status',
             'courses.title as course_title',
             'certificate_requests.id as certificate_requests_id',
+            'certificate_requests.row_status as certificate_requests_status',
             'certificate_requests.trainee_batch_id',
             DB::raw('CASE WHEN EXISTS (SELECT Id FROM trainee_certificates WHERE trainee_certificates.certificate_request_id = certificate_requests.id) THEN TRUE  ELSE FALSE  END AS trainee_certificates_id '),
         ]);
@@ -178,11 +180,11 @@ class TraineeRegistrationService
         $traineeCourseEnrolls->leftJoin('batches', 'trainee_course_enrolls.batch_id', '=', 'batches.id');
         $traineeCourseEnrolls->leftJoin('certificate_requests', 'trainee_course_enrolls.id', '=', 'certificate_requests.trainee_course_enrolls_id');
         $traineeCourseEnrolls->leftJoin('trainees', 'trainees.id', '=', 'trainee_course_enrolls.trainee_id');
-        $traineeCourseEnrolls->leftJoin('routines', function($join)
-            {
-                $join->on('routines.batch_id', '=', 'trainee_course_enrolls.trainee_id');
-                $join->on('routines.training_center_id', '=', 'batches.training_center_id');
-            });
+        // $traineeCourseEnrolls->leftJoin('routines', function($join)
+        //     {
+        //         $join->on('routines.batch_id', '=', 'trainee_course_enrolls.trainee_id');
+        //         $join->on('routines.training_center_id', '=', 'batches.training_center_id');
+        //     });
         $traineeCourseEnrolls->where('trainee_course_enrolls.trainee_id', $trainee->id);
 
         return DataTables::eloquent($traineeCourseEnrolls)
@@ -202,11 +204,17 @@ class TraineeRegistrationService
                     if(!empty($traineeCourseEnroll->trainee_certificates_id) && $traineeCourseEnroll->trainee_certificates_id > 0) {
                          $str .= '<a target="_blank" href="'.route('certificate.generation',$traineeCourseEnroll->id).'" data-id="'.$traineeCourseEnroll->id.'"  class="btn btn-info btn-sm trainee-certificate-generation" target="_self">' . __('Download Certificate') . ' </a>';
                     }
+                    
                     else if(!empty($traineeCourseEnroll->certificate_requests_id) && $traineeCourseEnroll->certificate_requests_id > 0){
-                        $str .= '<a href="' . route('certificate-request',$traineeCourseEnroll->id) . '"  class="btn btn-info btn-sm" target="_self">' . __('View Request') . ' </a>';
+                        if($traineeCourseEnroll->certificate_requests_status === CertificateRequest::REJECTED){
+                            $str .= '<a href="#" class="btn btn-danger btn-sm" target="_self">' . __('Request Certificate Rejected') .' </a>';
+                        }else{
+                            $str .= '<a href="' . route('certificate-request',$traineeCourseEnroll->id) . '"  class="btn btn-info btn-sm" target="_self">' . __('View Request') . ' </a>';
+                        }
                     }else if($traineeCourseEnroll->batch_status == Batch::BATCH_STATUS_COMPLETE){
                         $str .= '<a href="' . route('frontend.trainee-batch-trainer', $traineeCourseEnroll->batch_id) . '" class="btn btn-dark btn-sm mr-1">' . __(' Trainers') . ' </a>';
                         $str .= '<a href="' . route('certificate-request',$traineeCourseEnroll->id) . '" class="btn btn-primary btn-sm" target="_self">' . __('Request Certificate') .' </a>';
+                        
                     }
                 }
                 return $str;

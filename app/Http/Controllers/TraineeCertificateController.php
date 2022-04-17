@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Trainee;
+use App\Models\TraineeCourseEnroll;
 use App\Models\Batch;
 use App\Models\BatchCertificate;
 use App\Models\CertificateRequest;
@@ -17,6 +20,9 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 use App\Helpers\Classes\AuthHelper;
+
+use App\Events\EnrollEmailEvent;
+
 
 class TraineeCertificateController extends Controller
 {
@@ -175,16 +181,34 @@ class TraineeCertificateController extends Controller
      */
     public function certificateRequestReview(Request $request):RedirectResponse
     {
-        DB::beginTransaction();
+        
         try {
+            DB::beginTransaction();
             $status = !empty($request->approve_status)?CertificateRequest::ACCEPTED: CertificateRequest::REJECTED;
             $updateData= [
                 "comment" => $request->comment,
                 "row_status"=>$status
             ];
+            //nedd to send email
+            // $certificateRequest = CertificateRequest::find($request->certificate_request_id);
+            // $trainee = Trainee::find($certificateRequest->trainee_id);
+            // $traineeCourseEnroll = TraineeCourseEnroll::where(['trainee_id'=>$trainee->id])->first();
+            // $course = Course::where(['id'=>$traineeCourseEnroll->course_id])->first();
+            // $email_data = [
+            //     'email' => $trainee->email,
+            //     'name' => $trainee->name,
+            //     'course' => $course->title,
+            //     'subject' => 'Requested certificate confirmation email',
+            //     'view' => 'frontend.email.trainee-request-certificate-reject-email',
+            //     'from' => env('MAIL_FROM_ADDRESS'),
+            // ];
+            // event(new EnrollEmailEvent($email_data));
+            // dd($email_data);
 
+            
 
             if(!empty($request->approve_status)){
+                //Approved
                 $certificateRequest = CertificateRequest::find($request->certificate_request_id);
 
                 $batch_certificates = BatchCertificate::select('batch_certificates.id', 'batch_certificates.batch_id')
@@ -224,7 +248,42 @@ class TraineeCertificateController extends Controller
                 }
                 CertificateRequest::find($request->certificate_request_id)->update($updateData);
 
+                //nedd to send email
+                $certificateRequest = CertificateRequest::find($request->certificate_request_id);
+                $trainee = Trainee::find($certificateRequest->trainee_id);
+                $traineeCourseEnroll = TraineeCourseEnroll::where(['trainee_id'=>$trainee->id])->first();
+                $course = Course::where(['id'=>$traineeCourseEnroll->course_id])->first();
+                $email_data = [
+                    'email' => $trainee->email,
+                    'name' => $trainee->name,
+                    'course' => $course->title,
+                    'subject' => 'Requested certificate confirmation email',
+                    'view' => 'frontend.email.trainee-request-certificate-accept-email',
+                    'from' => env('MAIL_FROM_ADDRESS'),
+                ];
+                event(new EnrollEmailEvent($email_data));
+
+            }else{
+                //Rejected
+                CertificateRequest::find($request->certificate_request_id)->update($updateData);
+
+                //nedd to send email
+                $certificateRequest = CertificateRequest::find($request->certificate_request_id);
+                $trainee = Trainee::find($certificateRequest->trainee_id);
+                $traineeCourseEnroll = TraineeCourseEnroll::where(['trainee_id'=>$trainee->id])->first();
+                $course = Course::where(['id'=>$traineeCourseEnroll->course_id])->first();
+                $email_data = [
+                    'email' => $trainee->email,
+                    'name' => $trainee->name,
+                    'course' => $course->title,
+                    'subject' => 'Requested certificate confirmation email',
+                    'view' => 'frontend.email.trainee-request-certificate-reject-email',
+                    'from' => env('MAIL_FROM_ADDRESS'),
+                ];
+                event(new EnrollEmailEvent($email_data));
             }
+
+            DB::commit();
 
         } catch (\Throwable $exception) {
             DB::rollBack();
@@ -234,7 +293,7 @@ class TraineeCertificateController extends Controller
                 'alert-type' => 'error'
             ])->withInput();
         }
-        DB::commit();
+        
         return redirect()->route('admin.trainee.certificates.request')->with([
             'message' => __('generic.object_created_successfully', ['object' => 'Certificate']),
             'alert-type' => 'success'

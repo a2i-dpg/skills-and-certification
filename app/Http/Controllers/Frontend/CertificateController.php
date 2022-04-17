@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Helpers\Classes\AuthHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Batch;
+use App\Models\course;
 use App\Models\CertificateRequest;
 use App\Models\Trainee;
 use App\Models\TraineeCourseEnroll;
@@ -15,6 +16,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+
+use App\Events\EnrollEmailEvent;
 
 class CertificateController extends Controller
 {
@@ -78,10 +81,28 @@ class CertificateController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        
         $validateData = $this->certificateRequestService->validator($request)->validate();
+
+        
 
         try {
             $this->certificateRequestService->requestTraineeCertificate($validateData);
+            //nedd to send email
+            $trainee = Trainee::getTraineeByAuthUser();
+            $traineeCourseEnroll = TraineeCourseEnroll::where(['trainee_id'=>$trainee->id])->first();
+            $course = Course::where(['id'=>$traineeCourseEnroll->course_id])->first();
+            $email_data = [
+                'email' => $trainee->email,
+                'name' => $trainee->name,
+                'course' => $course->title,
+                'subject' => 'Requested certificate confirmation email',
+                'view' => 'frontend.email.trainee-request-certificate-email',
+                'from' => env('MAIL_FROM_ADDRESS'),
+            ];
+            event(new EnrollEmailEvent($email_data));
+            //dd($email_data);
+
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
             Log::debug($exception->getTraceAsString());
