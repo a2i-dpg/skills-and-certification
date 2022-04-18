@@ -50,7 +50,7 @@ class RoutineController extends Controller
         $batches = Batch::acl()->active()->pluck('title', 'id');
         $trainingCenters = TrainingCenter::acl()->active()->pluck('title', 'id');
         $trainers = User::acl()->where(['user_type_id' => UserType::USER_TYPE_TRAINER_USER_CODE])->get();
-
+        
         return view(self::VIEW_PATH . 'edit-add', compact('batches', 'trainingCenters', 'trainers'));
     }
 

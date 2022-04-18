@@ -78,11 +78,11 @@ class TraineeResultManagementService
             ->addColumn('action', function (Batch $batch) use ($authUser) {
                 $str = '';
 
-                // if ($authUser->can('view_final_result', $batch) && $batch->total_trainee > 0) {
-                //     $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
-                // }
+                if ($authUser->can('viewFinalResult', $batch) && $batch->total_trainee > 0) {
+                    $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
+                }
 
-                $str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
+                //$str .= '<a href="' . route('admin.show.trainee.final-result-list', $batch->id) . '" class="btn btn-outline-info btn-sm"><i class="fas fa-list-alt"></i> ' . __('generic.trainees_result') . '</a>';
 
                 return $str;
             })

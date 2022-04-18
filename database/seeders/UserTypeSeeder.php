@@ -146,6 +146,20 @@ class UserTypeSeeder extends Seeder
                 'email_verified_at' => NOW(),
                 'created_by' => 1,
             ],
+            4 => [
+                'id' => 5,
+                'name' => 'Mr. Trainer',
+                'email' => 'trainer@gmail.com',
+                'user_type_id' => 4,
+                'institute_id' => 1,
+                'role_id' => 4,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+                'created_by' => 1,
+            ],
         ]);
 
         Schema::enableForeignKeyConstraints();

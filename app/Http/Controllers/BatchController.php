@@ -264,7 +264,7 @@ class BatchController extends Controller
             ->where(['batch_id' => $id])
             ->get();
 
-        $trainers = User::where('user_type_id', User::USER_TYPE_TRAINER_USER_CODE)->get();
+        $trainers = User::acl()->where('user_type_id', User::USER_TYPE_TRAINER_USER_CODE)->get();
         $batch_id = $id;
 
         return view(self::VIEW_PATH . 'trainer-mapping', compact('trainers', 'trainerBatches', 'batch_id'));

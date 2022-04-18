@@ -30,11 +30,7 @@ class BatchPolicy extends BasePolicy
         return $user->hasPermission('view_single_batch');
     }
 
-    public function trainerMapping(User $user, Batch $batch): bool
-    {
-        return $user->hasPermission('trainer_mapping_batch');
-    }
-
+    
     /**
      * Determine whether the user can create models.
      *
@@ -99,7 +95,12 @@ class BatchPolicy extends BasePolicy
         return $user->hasPermission('view_batch_trainee');
     }
 
-    public function view_final_result(User $user, Batch $batch): bool
+    public function viewBachTrainerMapping(User $user, Batch $batch): bool
+    {
+        return $user->hasPermission('view_batch_trainer_mapping');
+    }
+
+    public function viewFinalResult(User $user, Batch $batch): bool
     {
         return $user->hasPermission('view_final_result');
     }

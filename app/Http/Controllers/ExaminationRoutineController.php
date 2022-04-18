@@ -47,7 +47,7 @@ class ExaminationRoutineController extends Controller
         $batches = Batch::acl()->active()->pluck('title','id');
         $trainingCenters = TrainingCenter::acl()->active()->pluck('title','id');
         $trainers = User::acl()->where(['user_type_id' => 1 ])->get();
-        $examinations = Examination::acl()->get();
+        $examinations = Examination::acl()->where('status','!=',Examination::EXAMINATION_STATUS_COMPLETE)->get();
 
         return view(self::VIEW_PATH . 'edit-add', compact('examinationRoutine','batches','trainingCenters','trainers','examinations'));
     }

@@ -95,7 +95,7 @@
                                             data-model="{{base64_encode(App\Models\Batch::class)}}"
                                             data-label-fields="{title}"
                                             data-depend-on="training_center_id"
-                                            data-filters="{{json_encode(['institute_id' => $authUser->institute_id, 'batch_status'=>\App\Models\Batch::BATCH_STATUS_ON_GOING ])}}"
+                                            data-filters="{{json_encode(['institute_id' => $authUser->institute_id, 'batch_status' => [App\Models\Batch::BATCH_STATUS_COMPLETE, 'type' => 'not-equal'] ])}}"
                                             @if($edit)
                                             data-preselected-option="{{json_encode(['text' =>  $examinationRoutine->batch->title, 'id' =>  $examinationRoutine->batch_id])}}"
                                             @endif

@@ -69,6 +69,14 @@ class TablePermissionKeySeeder extends Seeder
                 'key' => 'view_batch_trainee',
             ],
             [
+                'table_name' => 'batches',
+                'key' => 'view_batch_trainer_mapping',
+            ],
+            [
+                'table_name' => 'batches',
+                'key' => 'view_final_result',
+            ],
+            [
                 'table_name' => 'routines',
                 'key' => 'view_daily_routine',
             ],
