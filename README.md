@@ -30,20 +30,46 @@ composer install
 ##### run this two command also
 
 ```shell
+php artisan optimize:clear
 php artisan key:generate
 php artisan storage:link 
 ```
 
-##### run migration and seeder
+##### run this command for migration and seeder
 
 ```shell
 php artisan migrate:fresh --seed
+```
+
+##### run this command to seed menu permission
+
+```shell
 php artisan db:seed --class=TablePermissionKeySeeder
 ```
 
+##### run this command to seed menu permission for Institute Admin
+
+```shell
+php artisan db:seed --class=RoleWisePermissionSeeder
+```
+
+##### run this command to clear all type of cache
+
+```shell
+php artisan optimize:clear
+```
+
+##### run this command to start application
+
+```shell
+php artisan serve
+```
+
+
+
 ## Usage
 
-Go to the link `/admin/login` for login and enter the admin credentials below.
+Go to the link `/user/login` like `http://127.0.0.1:8000/user/login` for login and enter the admin credentials below.
 
 ```shell
 email: admin@gmail.com
@@ -55,9 +81,16 @@ password: password
 [Admin Documentation](docs/index.md) link.
 
 ## Menu Builder
-You can import/export menu using menu builder. goto `/menu-builder/menus`, then for the first time press `import menu`
+After login you can import/export menu using menu builder. goto `/menu-builder/menus` like `http://127.0.0.1:8000/menu-builder/menus`, then for the first time press `import menu`
 button. it will help you to import menu from menu-backup folder. If you create any menu, you could push it to git using
 export.
+
+##### if get any problem run this command to clear all type of cache
+
+```shell
+php artisan optimize:clear
+```
+
 
 ## Developer Guide
 
