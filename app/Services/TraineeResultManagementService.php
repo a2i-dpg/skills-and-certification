@@ -31,6 +31,7 @@ class TraineeResultManagementService
         $traineesResult->leftJoin('examinations', 'examination_results.examination_id', 'examinations.id');
         $traineesResult->where('trainee_course_enrolls.batch_id', $batchId);
         $traineesResult->where('batches.batch_status', Batch::BATCH_STATUS_COMPLETE);
+        $traineesResult->where('examination_results.batch_id', $batchId);
         $traineesResult->groupBy('examination_results.achieved_marks','examinations.total_mark');
         
 

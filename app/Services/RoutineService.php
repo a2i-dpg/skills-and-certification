@@ -197,7 +197,8 @@ class RoutineService
         $examRoutines->join('examination_types', 'examination_types.id', 'examinations.examination_type_id');
         $examRoutines->leftJoin('users', 'users.id', 'examinations.user_id');
 
-        $examRoutines->leftJoin('examination_results', 'examination_results.course_id', 'courses.id');
+        //$examRoutines->leftJoin('examination_results', 'examination_results.course_id', 'courses.id');
+        $examRoutines->leftJoin('examination_results', 'examination_results.batch_id', 'batches.id');
         //$examRoutines->leftJoin('examination_results', 'examination_results.examination_id', 'examination_routine_details.examination_id');
 
         $examRoutines->where('trainee_course_enrolls.id', '=', $courseEnrollId);

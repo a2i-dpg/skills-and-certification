@@ -121,6 +121,9 @@ class ExaminationResultService
             'result.*.course_id' => [
                 'required','int'
             ],
+            'result.*.batch_id' => [
+                'required','int'
+            ],
             'result.*.trainee_id' => [
                 'required','int'
             ],
@@ -146,6 +149,9 @@ class ExaminationResultService
                 'required','int'
             ],
             'result.*.course_id' => [
+                'required','int'
+            ],
+            'result.*.batch_id' => [
                 'required','int'
             ],
             'result.*.trainee_id' => [

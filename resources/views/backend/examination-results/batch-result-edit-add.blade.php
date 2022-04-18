@@ -56,6 +56,7 @@
                                 <tbody>
                                 @foreach($trainees as $key => $trainee)
                                 <input type="text" name="result[{{$key}}][course_id]" value="{{$trainee->course_id}}" hidden>
+                                <input type="text" name="result[{{$key}}][batch_id]" value="{{$trainee->batch_id}}" hidden>
                                     <tr>
                                         <th>
                                             {{$key+1}}
