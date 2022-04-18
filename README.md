@@ -19,15 +19,15 @@ git clone this-url
 cd project-root
 ```
 
-##### install [composer](https://getcomposer.org/) dependencies of this project by running
+##### Install [composer](https://getcomposer.org/) dependencies of this project by running
 
 ```sh
 composer install
 ```
 
-##### copy `.env-example` to `.env` and configure your database and other connection.
+##### Copy `.env-example` to `.env` and configure your database and other connection.
 
-##### run this two command also
+##### Run this two command also
 
 ```shell
 php artisan optimize:clear
@@ -35,31 +35,31 @@ php artisan key:generate
 php artisan storage:link 
 ```
 
-##### run this command for migration and seeder
+##### Run this command for migration and seeder
 
 ```shell
 php artisan migrate:fresh --seed
 ```
 
-##### run this command to seed menu permission
+##### Run this command to seed menu permission
 
 ```shell
 php artisan db:seed --class=TablePermissionKeySeeder
 ```
 
-##### run this command to seed menu permission for Institute Admin
+##### Run this command to seed menu permission for institute admin
 
 ```shell
 php artisan db:seed --class=RoleWisePermissionSeeder
 ```
 
-##### run this command to clear all type of cache
+##### Run this command to clear all type of cache
 
 ```shell
 php artisan optimize:clear
 ```
 
-##### run this command to start application
+##### Run this command to start application
 
 ```shell
 php artisan serve
@@ -69,12 +69,34 @@ php artisan serve
 
 ## Usage
 
-Go to the link `/user/login` like `http://127.0.0.1:8000/user/login` for login and enter the admin credentials below.
+Go to the link `/user/login` like `http://127.0.0.1:8000/user/login` for login and enter the system admin credentials below.
+
+
+##### Demo institute admin credentials
 
 ```shell
-email: admin@gmail.com
+email: bitac@gmail.com
+password: password
+
+email: tfl@gmail.com
 password: password
 ```
+
+##### Demo trainee credentials
+
+```shell
+email: trainee@gmail.com
+password: password
+```
+
+##### Demo trainer credentials
+
+```shell
+email: trainer@gmail.com
+password: password
+```
+
+
 
 ## Admin Documentation
 
@@ -85,11 +107,19 @@ After login you can import/export menu using menu builder. goto `/menu-builder/m
 button. it will help you to import menu from menu-backup folder. If you create any menu, you could push it to git using
 export.
 
-##### if get any problem run this command to clear all type of cache
+##### If get any problem run this command to clear all type of cache
 
 ```shell
 php artisan optimize:clear
 ```
+
+##### Demo system admin credentials
+
+```shell
+email: admin@gmail.com
+password: password
+```
+
 
 
 ## Developer Guide
