@@ -70,7 +70,7 @@
         "icon_class": "fa-university",
         "color": "#000000",
         "parent_id": null,
-        "order": 4,
+        "order": 5,
         "route": null,
         "parameters": null
     },
@@ -160,7 +160,7 @@
         "icon_class": "fa-atlas",
         "color": "#000000",
         "parent_id": null,
-        "order": 6,
+        "order": 7,
         "route": null,
         "parameters": null
     },
@@ -190,7 +190,7 @@
         "icon_class": "fa-pager",
         "color": "#000000",
         "parent_id": null,
-        "order": 7,
+        "order": 8,
         "route": null,
         "parameters": null
     },
@@ -235,7 +235,7 @@
         "icon_class": "fa-project-diagram",
         "color": "#000000",
         "parent_id": null,
-        "order": 5,
+        "order": 6,
         "route": null,
         "parameters": null
     },
@@ -280,7 +280,7 @@
         "icon_class": "fa-university",
         "color": "#000000",
         "parent_id": null,
-        "order": 8,
+        "order": 4,
         "route": null,
         "parameters": null
     },
