@@ -71,6 +71,12 @@ php artisan serve
 
 Go to the link `/user/login` like `http://127.0.0.1:8000/user/login` for login and enter the system admin credentials below.
 
+##### Demo system admin credentials
+
+```shell
+email: admin@gmail.com
+password: password
+```
 
 ##### Demo institute admin credentials
 
@@ -103,7 +109,7 @@ password: password
 [Admin Documentation](docs/index.md) link.
 
 ## Menu Builder
-After login you can import/export menu using menu builder. goto `/menu-builder/menus` like `http://127.0.0.1:8000/menu-builder/menus`, then for the first time press `import menu`
+After login as a system admin now you can import/export menu using menu builder. goto `/menu-builder/menus` like `http://127.0.0.1:8000/menu-builder/menus`, then for the first time press `import menu`
 button. it will help you to import menu from menu-backup folder. If you create any menu, you could push it to git using
 export.
 
@@ -112,14 +118,6 @@ export.
 ```shell
 php artisan optimize:clear
 ```
-
-##### Demo system admin credentials
-
-```shell
-email: admin@gmail.com
-password: password
-```
-
 
 
 ## Developer Guide
