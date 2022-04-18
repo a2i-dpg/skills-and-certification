@@ -25,7 +25,9 @@ class TraineeResultManagementService
 
         $traineesResult->join('trainee_course_enrolls', 'trainees.id', 'trainee_course_enrolls.trainee_id');
         $traineesResult->join('batches', 'trainee_course_enrolls.batch_id', 'batches.id');
-        $traineesResult->leftJoin('examination_results', 'trainees.id', 'examination_results.trainee_id');
+        //$traineesResult->leftJoin('examination_results', 'trainees.id', 'examination_results.trainee_id');
+        $traineesResult->join('examination_results', 'examination_results.course_id', 'trainee_course_enrolls.course_id');
+        
         $traineesResult->leftJoin('examinations', 'examination_results.examination_id', 'examinations.id');
         $traineesResult->where('trainee_course_enrolls.batch_id', $batchId);
         $traineesResult->where('batches.batch_status', Batch::BATCH_STATUS_COMPLETE);

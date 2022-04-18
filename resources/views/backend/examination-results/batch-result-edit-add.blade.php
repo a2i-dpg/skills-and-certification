@@ -37,6 +37,8 @@
                             @if($edit)
                                 @method('put')
                             @endif
+                            
+
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -53,6 +55,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($trainees as $key => $trainee)
+                                <input type="text" name="result[{{$key}}][course_id]" value="{{$trainee->course_id}}" hidden>
                                     <tr>
                                         <th>
                                             {{$key+1}}

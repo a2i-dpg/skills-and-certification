@@ -218,10 +218,11 @@ class ExaminationResultController extends Controller
         $trainees = TraineeCourseEnroll::select(
             [
                 'trainees.id as id',
+                'trainee_course_enrolls.course_id as course_id',
                 'trainees.name as name',
                 'examinations.id as examination_id',
                 'examinations.total_mark as total_marks',
-                'examinations.code as code'
+                'examinations.code as code',
             ]
         )
             ->join('batches', 'trainee_course_enrolls.batch_id', '=', 'batches.id')
@@ -272,6 +273,7 @@ class ExaminationResultController extends Controller
         $examinationResult = ExaminationResult::where(['examination_id' => $examinationID])->first();
         $trainees = ExaminationResult::select([
             'trainees.id as id',
+            'examination_results.course_id as course_id',
             'trainees.name as name',
             'examination_results.id as examination_result_id',
             'examination_results.examination_id as examination_id',
@@ -298,7 +300,9 @@ class ExaminationResultController extends Controller
 
     public function batchResultstore(Request $request): RedirectResponse
     {
+        //dd($request->all());
         $validatedData = $this->examinationResultService->resultValidator($request)->validate();
+        //dd($validatedData);
         try {
             $this->examinationResultService->createBatchResult($validatedData);
         } catch (\Throwable $exception) {

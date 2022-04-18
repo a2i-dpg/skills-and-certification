@@ -175,6 +175,11 @@
                     {
                         title: "Class Date",
                         data: "class_date",
+                        name: "routines.date",
+                    },
+                    {
+                        title: "Class Name",
+                        data: "class_name",
                         name: "routine_slots.class",
                     },
                     {
@@ -266,6 +271,11 @@
                         title: "Pass Mark",
                         data: "pass_mark",
                         name: 'examinations.pass_mark'
+                    },
+                    {
+                        title: "Achieved Mark",
+                        data: "achieved_marks",
+                        name: 'examination_results.achieved_marks'
                     },
                     {
                         title: "Status",

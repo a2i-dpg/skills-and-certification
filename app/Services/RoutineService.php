@@ -155,7 +155,12 @@ class RoutineService
         $classRoutine->where([['routines.batch_id','=',$course_enroll->batch_id],['routines.training_center_id','=',$course_enroll->training_center_id]]);
         $classRoutine->orderBy('routines.date', 'ASC');
 
-        return DataTables::eloquent($classRoutine)->toJson();
+        //return DataTables::eloquent($classRoutine)
+        return DataTables::eloquent($classRoutine)
+            ->editColumn('class_date', function (Routine $routine) use ($authUser) {
+                return date('l, j M, y', strtotime($routine->class_date));
+            })
+        ->toJson();
     }
 
     public function getTraineeExamRoutine($courseEnrollId): JsonResponse
@@ -163,7 +168,7 @@ class RoutineService
         $examRoutines = ExaminationRoutineDetail::select([
             'examination_routine_details.examination_id',
             'examination_routines.id',
-            'examination_routines.date',
+            'examination_routines.date as date',
             'examination_types.title as exam_type',
             'examination_routine_details.start_time',
             'examination_routine_details.end_time',
@@ -178,6 +183,8 @@ class RoutineService
             'examinations.exam_details',
             'examinations.code',
             'examinations.status as exam_status',
+            'examination_results.achieved_marks',
+
         ]);
 
         $examRoutines->join('examination_routines', 'examination_routines.id', 'examination_routine_details.examination_routine_id');
@@ -189,10 +196,22 @@ class RoutineService
         $examRoutines->join('examinations', 'examinations.id', 'examination_routine_details.examination_id');
         $examRoutines->join('examination_types', 'examination_types.id', 'examinations.examination_type_id');
         $examRoutines->leftJoin('users', 'users.id', 'examinations.user_id');
+
+        $examRoutines->leftJoin('examination_results', 'examination_results.course_id', 'courses.id');
+        //$examRoutines->leftJoin('examination_results', 'examination_results.examination_id', 'examination_routine_details.examination_id');
+
         $examRoutines->where('trainee_course_enrolls.id', '=', $courseEnrollId);
 
+
+
         return DataTables::eloquent($examRoutines)
-            ->editColumn('exam_status', function (ExaminationRoutineDetail $examinationRoutineDetail) {
+            ->editColumn('date', function (ExaminationRoutineDetail $examinationRoutineDetail){
+                return date('l, j F, y', strtotime($examinationRoutineDetail->date));
+            })
+            ->editColumn('achieved_marks', function (ExaminationRoutineDetail $examinationRoutineDetail){
+                return ($examinationRoutineDetail->achieved_marks) ? $examinationRoutineDetail->achieved_marks : 'Not result published yet';
+            })
+            ->addColumn('exam_status', function (ExaminationRoutineDetail $examinationRoutineDetail) {
                 $str = '';
 
                 switch ($examinationRoutineDetail->exam_status) {
@@ -212,7 +231,8 @@ class RoutineService
                 return $str;
 
             })
-            ->rawColumns(['exam_status'])->toJson();
+            ->rawColumns(['exam_status','date'])
+            ->toJson();
     }
 
 }
