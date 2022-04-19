@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'batches' => App\Http\Controllers\BatchController::class,
         'galleries' => App\Http\Controllers\GalleryController::class,
         'gallery-categories' => App\Http\Controllers\GalleryCategoryController::class,
+        'certificate-templates' => App\Http\Controllers\CertificateTemplateController::class,
         'sliders' => App\Http\Controllers\SliderController::class,
         'static-page' => App\Http\Controllers\StaticPageController::class,
         'videos' => App\Http\Controllers\VideoController::class,
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::post('batches/datatable', [App\Http\Controllers\BatchController::class, 'getDatatable'])->name('batches.datatable');
     Route::post('gallery/datatable', [App\Http\Controllers\GalleryController::class, 'getDatatable'])->name('gallery.datatable');
     Route::post('gallery-categories/datatable', [App\Http\Controllers\GalleryCategoryController::class, 'getDatatable'])->name('gallery-categories.datatable');
+    Route::post('certificate-templates/datatable', [App\Http\Controllers\CertificateTemplateController::class, 'getDatatable'])->name('certificate-templates.datatable');
     Route::post('sliders/datatable', [App\Http\Controllers\SliderController::class, 'getDatatable'])->name('sliders.datatable');
     Route::post('static-page/datatable', [App\Http\Controllers\StaticPageController::class, 'getDatatable'])->name('static-page.datatable');
     Route::post('videos/datatable', [App\Http\Controllers\VideoController::class, 'getDatatable'])->name('videos.datatable');

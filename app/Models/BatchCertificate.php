@@ -24,13 +24,19 @@ class BatchCertificate extends BaseModel
     protected $guarded = ['id'];
 
     public const CERTIFICATE_TEMPLATE =[
-      1=>'certificateTemplate/certificate-main-sample.png',
-      //2=>'certificateTemplate/certificate-sample.jpg'
+      1 =>'certificateTemplate/certificate-1.jpg',
+      2 =>'certificateTemplate/certificate-2.jpg',
+      3 =>'certificateTemplate/certificate-3.jpg',
     ];
 
 
     public function batch(): BelongsTo
     {
         return $this->belongsTo(Batch::class);
+    }
+
+    public function certificateTemplate(): BelongsTo
+    {
+        return $this->belongsTo(CertificateTemplate::class);
     }
 }

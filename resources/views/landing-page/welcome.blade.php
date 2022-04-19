@@ -472,7 +472,7 @@
             <!-- End Skill Service Provider -->
             @endif
         @endif
-        @if ($siteSettingInfo->show_galarry)
+        @if ($siteSettingInfo->show_gallary)
         <!-- Gallery Start -->
             <section class="gallery">
                 <div class="container">

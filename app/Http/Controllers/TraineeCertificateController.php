@@ -82,7 +82,6 @@ class TraineeCertificateController extends Controller
         $batchCertificate = BatchCertificate::where('batch_id',$batchId)->first();
         $batch = Batch::where('id','=',$batchId)->with('course')->first();
         $batch_id = $batchId;
-        
         return \view(self::VIEW_PATH . 'edit-add-certificate', compact('batch','batchCertificate','batchId','batch_id'));
 
     }
@@ -94,6 +93,8 @@ class TraineeCertificateController extends Controller
      */
     public function store(Request $request):RedirectResponse
     {
+        //dd($request->all());
+        //dd($request);
         $traineeCertificateValidatedData = $this->traineeCertificateService->validator($request)->validate();
 
          try {

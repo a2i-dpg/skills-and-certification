@@ -92,6 +92,7 @@ return [
     'routine_management' => 'Routine Management',
     'examination_routine' => 'Examination Routine',
     'class_routine' => 'Class Routine',
-    'site_setting' => 'Site Settings'
+    'site_setting' => 'Site Settings',
+    'certificate_template' => 'Certificate Template'
 ];
 

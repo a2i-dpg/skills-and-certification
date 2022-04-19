@@ -15,9 +15,10 @@ class CreateBatchCertificatesTable extends Migration
     {
         Schema::create('batch_certificates', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('certificate_template_id')->nullable();
             $table->unsignedInteger('batch_id')->index('batches_fk_batch_id');
-            $table->string('tamplate', 191);
-            $table->string('signature', 191);
+            $table->string('tamplate', 191)->nullable();
+            $table->string('signature', 191)->nullable();
             $table->string('authorized_by', 191)->nullable();
             $table->unsignedInteger('created_by')->nullable();
             $table->dateTime('issued_date');
