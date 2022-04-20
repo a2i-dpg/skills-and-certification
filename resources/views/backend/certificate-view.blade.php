@@ -53,25 +53,31 @@
         top: 800px;
         left: 1000px;
     }
+    .custom_css {
+        {{$custom_css}}
+    }
 </style>
 {{--<p class="logo">
     <img style="border-radius: 50%; width: 150px;height: 150px;" src="{{$institute_logo}}" alt="institute">
 </p>--}}
-<p class="name-center">
-<h1>{{$name}}</h1>
-</p>
-<p class="details-center">
-    Mr./Mrs. {{$name}} son/daughter of Mr. {{$father}} and Mrs. {{$mother}}
-    has successfully completed the course from our Institute {{$institute}}.
-</p>
-<p class="date-section">
-    {{date('dS F Y')}}
-</p>
-<p class="signature-section">
-    @if($image)
-        <img style="width: 400px;height: 80px;" src="{{$image}}" alt="signature"/>
-    @endif
-</p>
+<div class="custom_css">
+
+    <p class="name-center">
+    <h1>{{$name}}</h1>
+    </p>
+    <p class="details-center">
+        Mr./Mrs. {{$name}} son/daughter of Mr. {{$father}}
+        has successfully completed the course from our Institute {{$institute}}.
+    </p>
+    <p class="date-section">
+        {{date('dS F Y')}}
+    </p>
+    <p class="signature-section">
+        @if($image)
+            <img style="width: 400px;height: 80px;" src="{{$image}}" alt="signature"/>
+        @endif
+    </p>
+</div>
 
 </body>
 </html>

@@ -68,28 +68,65 @@
                                     >
                                 </div>
                             </div>
+
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="title">{{ __('admin.certificate.certificate_template')}}</label>
-                                    <div class="row">
-                                        @foreach(\App\Models\BatchCertificate::CERTIFICATE_TEMPLATE as $id=>$image)
-                                        <div class="col-sm-3">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="{{$id}}" name="tamplate" class="custom-control-input" value="{{$id}}" {{$edit ? $batchCertificate->tamplate==$id ? 'checked':'':''}} >
-                                                <label class="custom-control-label" for="{{$id}}">
-                                                    <img class="figure-img"
-                                                         src={{asset('assets/'.$image)}}
-                                                             width="200" height="120"
-                                                         alt="certificate"/>
-                                                </label>
-
-                                            </div>
-                                        </div>
-                                        @endforeach
-
-                                    </div>
+                                  <label for="custom_css">{{ __('admin.certificate.custom_css') }}  <span style="color:tomato">like </span> <span>color:white;</span> <span style="color:tomato">if empty default color black </span> </label>
+                                  <textarea class="form-control" id="custom_css"
+                                            name="custom_css"
+                                            rows="1"
+                                            placeholder="{{ __('admin.certificate.custom_css') }}">{{ $edit ? $batchCertificate->custom_css : '' }}</textarea>
                                 </div>
                             </div>
+
+                            @if (count($certificateTemplates) > 0)
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="title">{{ __('admin.certificate.certificate_template')}} <span> <a href="{{route('admin.certificate-templates.index')}}">Add more template</a>  </span>
+                                        </label>
+                                        <div class="row">
+                                            @foreach($certificateTemplates as $id=>$certificateTemplate)
+                                            <div class="col-sm-3">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="{{$certificateTemplate->id}}" name="certificate_template_id" class="custom-control-input" value="{{$certificateTemplate->id}}" {{$edit ? $batchCertificate->certificate_template_id==$certificateTemplate->id ? 'checked':'':''}} >
+                                                    <label class="custom-control-label" for="{{$certificateTemplate->id}}">
+                                                        <img class="figure-img"
+                                                            src={{asset('storage/'.$certificateTemplate->image)}}
+                                                                width="200" height="120"
+                                                            alt="certificate"/>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="title">{{ __('admin.certificate.certificate_template')}} <span> <a href="{{route('admin.certificate-templates.index')}}">Add more template</a>  </span></label>
+                                        <div class="row">
+                                            @foreach(\App\Models\BatchCertificate::CERTIFICATE_TEMPLATE as $id=>$image)
+                                            <div class="col-sm-3">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="{{$id}}" name="tamplate" class="custom-control-input" value="{{$id}}" {{$edit ? $batchCertificate->tamplate==$id ? 'checked':'':''}} >
+                                                    <label class="custom-control-label" for="{{$id}}">
+                                                        <img class="figure-img"
+                                                            src={{asset('assets/'.$image)}}
+                                                                width="200" height="120"
+                                                            alt="certificate"/>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            
 
                             <div class="col-sm-6">
                                 <div class="form-group">

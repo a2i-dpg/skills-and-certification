@@ -25,8 +25,8 @@ class BatchCertificate extends BaseModel
 
     public const CERTIFICATE_TEMPLATE =[
       1 =>'certificateTemplate/certificate-1.jpg',
-      2 =>'certificateTemplate/certificate-2.jpg',
-      3 =>'certificateTemplate/certificate-3.jpg',
+     // 2 =>'certificateTemplate/certificate-2.jpg',
+     // 3 =>'certificateTemplate/certificate-3.jpg',
     ];
 
 

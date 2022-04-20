@@ -19,6 +19,7 @@ class CreateBatchCertificatesTable extends Migration
             $table->unsignedInteger('batch_id')->index('batches_fk_batch_id');
             $table->string('tamplate', 191)->nullable();
             $table->string('signature', 191)->nullable();
+            $table->text('custom_css')->nullable();
             $table->string('authorized_by', 191)->nullable();
             $table->unsignedInteger('created_by')->nullable();
             $table->dateTime('issued_date');

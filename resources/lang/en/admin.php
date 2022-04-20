@@ -478,6 +478,7 @@ return [
         'batch_certificate_add' => 'Batch Certificate Add',
         'batch_certificate_update' => 'Batch Certificate Update',
         'certification_request_accepted' => 'Request Status',
+        'custom_css' => 'Custom Style',
     ],
     'trainer_information' => [
     ],

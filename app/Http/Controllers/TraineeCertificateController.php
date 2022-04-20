@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CertificateTemplate;
 use App\Models\Course;
 use App\Models\Trainee;
 use App\Models\TraineeCourseEnroll;
@@ -79,10 +80,17 @@ class TraineeCertificateController extends Controller
      */
     public function certificateEdit(int $batchId) :View
     {
+        $authUser = AuthHelper::getAuthUser();
+        $certificateTemplate = CertificateTemplate::select('*');
+        if($authUser->isUserBelongsToInstitute()){
+            $certificateTemplate->where('institute_id', '=', $authUser->institute_id);
+        }
+        $certificateTemplates = $certificateTemplate->get();
+
         $batchCertificate = BatchCertificate::where('batch_id',$batchId)->first();
         $batch = Batch::where('id','=',$batchId)->with('course')->first();
         $batch_id = $batchId;
-        return \view(self::VIEW_PATH . 'edit-add-certificate', compact('batch','batchCertificate','batchId','batch_id'));
+        return \view(self::VIEW_PATH . 'edit-add-certificate', compact('batch','batchCertificate','batchId','batch_id','certificateTemplates'));
 
     }
 
@@ -96,7 +104,7 @@ class TraineeCertificateController extends Controller
         //dd($request->all());
         //dd($request);
         $traineeCertificateValidatedData = $this->traineeCertificateService->validator($request)->validate();
-
+        //dd($traineeCertificateValidatedData);
          try {
              $this->traineeCertificateService->createBatchCertificate($traineeCertificateValidatedData);
          } catch (\Throwable $exception) {

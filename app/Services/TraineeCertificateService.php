@@ -36,14 +36,19 @@ class TraineeCertificateService
             'issued_date' => [
                 'required'
             ],
+            'custom_css' => [
+            ],
             'batchCertificate_id' => [
             ],
             'batch_id' => [
                 'required',
                 'int'
             ],
+            'certificate_template_id' => [
+                'int'
+            ],
             'tamplate' => [
-                'required'
+                'int'
             ],
             'signature' => [
                 'image',
