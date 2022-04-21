@@ -12,6 +12,7 @@ use App\Models\Video;
 use App\Models\VideoCategory;
 use App\Models\Trainee;
 use App\Models\TraineeAcademicQualification;
+use App\Models\TraineeAcademicQualificationn;
 use App\Models\TraineeBatch;
 use App\Models\TraineeCourseEnroll;
 use App\Models\TraineeFamilyMemberInfo;
@@ -60,6 +61,10 @@ class TraineeController extends Controller
             ->orderBy('examination', 'desc')
             ->get();
 
+        $academicQualificationns = TraineeAcademicQualificationn::where(['trainee_id' => $trainee->id])
+            ->orderBy('id', 'asc')
+            ->get();
+
 
         $guardians = $trainee->familyMemberInfo;
 
@@ -68,6 +73,7 @@ class TraineeController extends Controller
                 'trainee' => $trainee,
                 'guardians' => $guardians,
                 'academicQualifications' => $academicQualifications,
+                'academicQualificationns' => $academicQualificationns,
             ]);
     }
 

@@ -25,6 +25,18 @@ class CertificateGenerateController extends Controller
         $authUser = AuthHelper::getAuthUser();
         $isAuthTrainee = AuthHelper::isAuthTrainee();
 
+        if (!$isAuthTrainee && !$authUser) {
+            return redirect()->route('frontend.main')->with([
+                'message' => __('generic.something_wrong_try_again'),
+                'alert-type' => 'error'
+            ]);
+        }
+
+        
+
+
+
+
         if ($isAuthTrainee == true) {
             $trainee = Trainee::getTraineeByAuthUser(); 
             $trainee_id = $traineeCertificate->trainee_id;
@@ -35,7 +47,8 @@ class CertificateGenerateController extends Controller
                 ]);
             }
         } else if($authUser) {
-            if (!($authUser->user_type_id == 1) || !($authUser->user_type_id == 2) ) {
+            
+            if (($authUser->user_type_id != 1) && ($authUser->user_type_id != 2) ) {
                 $batch = Batch::find($batchCertificate->batch_id);
                 if ($batch->institute_id != $authUser->institute_id) {
                     return redirect()->route('admin.trainee.certificates.request.accepted')->with([

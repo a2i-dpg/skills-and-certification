@@ -195,6 +195,7 @@ Route::group(['as' => 'frontend.'], function () {
         Route::post('store-education-info', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'storeEducationInfo'])->name('trainee-education-info.store');
         Route::post('store-guardian-info', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'storeGuardianInfo'])->name('guardian-info.store');
         Route::put('update-guardian-info/{id}', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'updateGuardianInfo'])->name('guardian-info.update');
+        Route::get('education-info-single-delete/{id?}/{trainee_id?}', [App\Http\Controllers\Frontend\TraineeProfileController::class, 'educationInfoSingleDelete'])->name('trainee-education-info.single-delete');
 
         Route::get('trainee-enrolled-courses', [App\Http\Controllers\Frontend\TraineeController::class, 'traineeEnrolledCourses'])->name('trainee-enrolled-courses');
         Route::post('trainee-enrolled-courses/datatable', [App\Http\Controllers\Frontend\TraineeController::class, 'traineeCourseGetDatatable'])->name('trainee-courses-datatable');

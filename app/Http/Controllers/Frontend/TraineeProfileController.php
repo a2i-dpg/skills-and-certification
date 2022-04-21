@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
+use App\Models\TraineeAcademicQualificationn;
 
 class TraineeProfileController extends BaseController
 {
@@ -71,36 +72,74 @@ class TraineeProfileController extends BaseController
      * @param int $id
      * @return View
      */
-    public function addEditEducation(int $id): View
-    {
-        $trainee = Trainee::findOrFail($id);
-        $academicQualifications = $trainee->academicQualifications->keyBy('examination');
+    // public function addEditEducation(int $id): View
+    // {
+    //     $trainee = Trainee::findOrFail($id);
+    //     $academicQualifications = $trainee->academicQualificationns->keyBy('examination');
+    //     return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $trainee, 'academicQualifications' => $academicQualifications]));
+    // }
 
-        return \view(self::VIEW_PATH . 'add-edit-education', with(['trainee' => $trainee, 'academicQualifications' => $academicQualifications]));
+    public function addEditEducation(int $id)
+    {
+        $trainee = Trainee::getTraineeByAuthUser();
+
+        if($trainee->user_id != $id){
+            return back()->with([
+                'message' => __('generic.something_wrong_try_again'),
+                'alert-type' => 'error'
+            ]);
+        }
+
+        $trainee = Trainee::findOrFail($id);
+        $academicQualifications = $trainee->academicQualificationns;
+        //dd(count($academicQualifications));
+        return \view(self::VIEW_PATH . 'add-edit-education-one', with(['trainee' => $trainee, 'academicQualifications' => $academicQualifications]));
     }
 
     /**
      * @param Request $request
      * @return JsonResponse
      */
-    public function storeEducationInfo(Request $request): JsonResponse
+    public function storeEducationInfo(Request $request): RedirectResponse
     {
+        //dd($request->all());
         $validated = $this->traineeProfileService->educationInfoValidator($request);
-
+        // $result = $this->traineeProfileService->storeAcademicInfos($validated);
+        // dd($result);
         try {
-            $this->traineeProfileService->storeAcademicInfo($validated);
+            $this->traineeProfileService->storeAcademicInfos($validated);
         } catch (\Throwable $exception) {
             Log::debug($exception->getMessage());
-
-            return response()->json([
+            return back()->with([
                 'message' => __('generic.something_wrong_try_again'),
-                'alertType' => 'error'
+                'alert-type' => 'error'
             ]);
         }
 
-        return response()->json([
-            'message' => __('education information stored successfully!'),
-            'alertType' => 'success',
+        return back()->with([
+            'message' => __('This process has been done successfully'),
+            'alert-type' => 'success'
+        ]);
+    }
+
+    public function educationInfoSingleDelete($id,$trainee_id)
+    {
+        $data['id'] = $id;
+        $data['trainee_id'] = $trainee_id;
+        
+        try {
+            $this->traineeProfileService->educationInfoSingleDelete($data);
+        } catch (\Throwable $exception) {
+            Log::debug($exception->getMessage());
+            return back()->with([
+                'message' => __('generic.something_wrong_try_again'),
+                'alert-type' => 'error'
+            ]);
+        }
+
+        return back()->with([
+            'message' => __('This process has been done successfully'),
+            'alert-type' => 'success'
         ]);
     }
 

@@ -38,7 +38,7 @@ class HomeController extends BaseController
 
         $courses = Course::query();
         $courses->active();
-        $runningCourses = Course::active()->select([
+        $runningCourses = Course::select([
             'courses.id as id',
             'courses.institute_id as institute_id',
             'courses.title',
@@ -48,6 +48,11 @@ class HomeController extends BaseController
             'courses.row_status',
             'courses.created_at',
         ]);
+
+        $runningCourses->leftjoin('batches', 'batches.course_id','=','courses.id');
+        $runningCourses->where('batches.batch_status','=','1');
+        $runningCourses->where('courses.row_status','=','1');
+        
         $galleries = Gallery::orderBy('id', 'DESC');
         $galleryCategories = GalleryCategory::active()
             ->orderBy('id', 'DESC');
@@ -67,6 +72,7 @@ class HomeController extends BaseController
 
         if ($currentInstitute) {
             $courses->where('institute_id', $currentInstitute->id);
+            
             $runningCourses->where(['courses.institute_id' => $currentInstitute->id]);
             $galleries->where(['institute_id' => $currentInstitute->id]);
             $galleryCategories->where(['institute_id' => $currentInstitute->id]);

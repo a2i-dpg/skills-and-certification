@@ -400,6 +400,11 @@ class Trainee extends AuthBaseModel
         return $this->hasMany(TraineeAcademicQualification::class);
     }
 
+    public function academicQualificationns(): HasMany
+    {
+        return $this->hasMany(TraineeAcademicQualificationn::class);
+    }
+
     /**
      * @return HasOne
      */

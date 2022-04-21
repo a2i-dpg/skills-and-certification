@@ -7,6 +7,7 @@ use App\Helpers\Classes\AuthHelper;
 use App\Helpers\Classes\FileHandler;
 use App\Models\Trainee;
 use App\Models\TraineeAcademicQualification;
+use App\Models\TraineeAcademicQualificationn;
 use App\Models\TraineeFamilyMemberInfo;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
@@ -132,6 +133,40 @@ class TraineeProfileService
                 $trainee->academicQualifications()->create($academicQualification);
             }
         }
+
+        return true;
+    }
+
+
+    public function storeAcademicInfos(array $data):bool
+    {
+        //return $data;
+        $trainee = Trainee::getTraineeByAuthUser();
+        // $existAcademicQualification = TraineeAcademicQualificationn::where('trainee_id', $trainee->id)->first();
+        // if ($existAcademicQualification) {
+        //     TraineeAcademicQualificationn::where('trainee_id', $trainee->id)->delete();
+        // }
+
+        foreach ($data['academicQualification'] as  $academicQualification) {
+            if(@$academicQualification['id']){
+                $existAcademicQualification = TraineeAcademicQualificationn::find($academicQualification['id']);
+                $existAcademicQualification->update($academicQualification);
+            }else{
+                $trainee->academicQualificationns()->create($academicQualification);
+            }
+        }
+
+        return true;
+    }
+
+    public function educationInfoSingleDelete(array $data): bool
+    {
+        $trainee = Trainee::getTraineeByAuthUser();
+        if($trainee->id != $data['trainee_id']){
+            return false;
+        }
+
+        TraineeAcademicQualificationn::where($data)->delete();
 
         return true;
     }

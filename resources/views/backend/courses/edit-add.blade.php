@@ -274,7 +274,7 @@
                                 </div>
                             @endif
 
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="display: none">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="Other information for course enrollment form.">Other information for

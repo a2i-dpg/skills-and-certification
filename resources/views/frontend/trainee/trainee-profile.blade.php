@@ -72,6 +72,86 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @forelse($academicQualificationns as $academicQualification)
+                            <div class="row">
+                                <div class="col-md-2 my-3">
+                                    <i class="fas fa-book-reader" style="font-size: xxx-large"></i>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row my-3">
+                                        @if ($academicQualification->examination_name)
+                                            <div class="col-md-12">
+                                                <h5 class="font-weight-bolder">  {{ $academicQualification->examination_name}}</h5>
+                                            </div>
+                                        @endif
+
+                                        @if ($academicQualification->result)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.result')}}: </span> {{ $academicQualification->result }}
+                                            </div>
+                                        @endif
+
+                                        @if ($academicQualification->institute)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.institute')}}: </span> {{ $academicQualification->institute }}
+                                            </div>
+                                        @endif
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="row my-3">
+                                        <div class="col-md-12">
+                                            <h5 class="font-weight-bolder" style="visibility: hidden;">  {{ $academicQualification->examination_name}}</h5>
+                                        </div>
+
+                                        @if ($academicQualification->subject)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.subject')}}: </span> {{ $academicQualification->subject }}
+                                            </div>
+                                        @endif
+
+                                        @if ($academicQualification->group)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">Subject: </span> {{ $academicQualification->group }}
+                                            </div>
+                                        @endif
+
+                                        @if ($academicQualification->passing_year)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.passing_year')}}: </span> {{ $academicQualification->passing_year }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="row my-3">
+                                        <div class="col-md-12">
+                                            <h5 class="font-weight-bolder" style="visibility: hidden;">  {{ $academicQualification->examination_name}}</h5>
+                                        </div>
+
+                                        @if ($academicQualification->roll_no)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.roll_no')}}: </span> {{ $academicQualification->roll_no }}
+                                            </div>
+                                        @endif
+
+                                        @if ($academicQualification->reg_no)
+                                            <div class="col-md-12">
+                                                <span class="font-weight-bold">{{ __('generic.reg_no')}}: </span> {{ $academicQualification->reg_no }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p>Not found</p>
+                        @endforelse
+                    </div>
+{{--                     
+                    <div class="card-body">
                         @forelse($academicQualifications as $academicQualification)
                             <div class="row">
                                 <div class="col-md-2">
@@ -154,8 +234,9 @@
                         @empty
                             <p>Not found</p>
                         @endforelse
-                    </div>
-                </div>
+                    </div>--}}
+                </div> 
+                
             </div>
 
             <div class="col-md-10 guardian-info-section">
