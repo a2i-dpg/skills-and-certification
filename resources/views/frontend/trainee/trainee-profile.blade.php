@@ -112,11 +112,11 @@
                                             </div>
                                         @endif
 
-                                        @if ($academicQualification->group)
+                                        {{-- @if ($academicQualification->group)
                                             <div class="col-md-12">
                                                 <span class="font-weight-bold">Subject: </span> {{ $academicQualification->group }}
                                             </div>
-                                        @endif
+                                        @endif --}}
 
                                         @if ($academicQualification->passing_year)
                                             <div class="col-md-12">

@@ -613,5 +613,50 @@
         "order": 1,
         "route": "admin.site-setting.index",
         "parameters": null
+    },
+    {
+        "id": 118,
+        "menu_id": 3,
+        "title": "Certificate Template",
+        "title_lang_key": "menu.certificate_template",
+        "permission_key": "view_any_certificate_template",
+        "url": "",
+        "target": "_self",
+        "icon_class": "fa-certificate",
+        "color": "#000000",
+        "parent_id": 37,
+        "order": 10,
+        "route": "admin.certificate-templates.index",
+        "parameters": null
+    },
+    {
+        "id": 120,
+        "menu_id": 3,
+        "title": "Trainee Feedback",
+        "title_lang_key": "menu.trainee_feedback",
+        "permission_key": "view_any_trainee_feedback",
+        "url": "",
+        "target": "_self",
+        "icon_class": "fa-envelope",
+        "color": "#000000",
+        "parent_id": 98,
+        "order": 2,
+        "route": "admin.show.trainee-feedbacks",
+        "parameters": null
+    },
+    {
+        "id": 121,
+        "menu_id": 3,
+        "title": "Traineer Feedback",
+        "title_lang_key": "menu.trainer_feedback",
+        "permission_key": "view_any_trainer_feedback",
+        "url": "",
+        "target": "_self",
+        "icon_class": "fa-envelope",
+        "color": "#000000",
+        "parent_id": 98,
+        "order": 3,
+        "route": "admin.show.trainer-feedbacks",
+        "parameters": null
     }
 ]

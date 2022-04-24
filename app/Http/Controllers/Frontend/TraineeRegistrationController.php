@@ -46,8 +46,7 @@ class TraineeRegistrationController extends Controller
         $guardians = $trainee->familyMemberInfo;
         $traineeAcademicQualifications = $this->traineeRegistrationService->getTraineeAcademicQualification($trainee);
         $traineeSelfInfo = $this->traineeRegistrationService->getTraineeInfo($trainee);
-
-        return \view('backend.trainees.cv-view', compact('trainee','guardians','traineeAcademicQualifications','traineeSelfInfo'));
+        return \view('backend.trainees.cv-view-one', compact('trainee','guardians','traineeAcademicQualifications','traineeSelfInfo'));
     }
 
     /**

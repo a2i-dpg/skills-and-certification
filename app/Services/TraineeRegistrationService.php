@@ -89,7 +89,8 @@ class TraineeRegistrationService
      */
     public function getTraineeAcademicQualification(Trainee $trainee): Collection
     {
-        return $trainee->academicQualifications;
+        //return $trainee->academicQualifications;
+        return $trainee->academicQualificationns;
     }
 
     /**

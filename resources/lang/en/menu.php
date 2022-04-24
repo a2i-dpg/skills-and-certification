@@ -3,6 +3,8 @@
 return [
     'dashboard' => 'Dashboard',
     'visitor_feedback' => 'Visitor Feedback',
+    'trainee_feedback' => 'Trainee Feedback',
+    'trainer_feedback' => 'Trainer Feedback',
 
     //user management
     'user_management' => 'User Management',
