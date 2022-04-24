@@ -478,6 +478,7 @@ return [
         'batch_certificate_add' => 'Batch Certificate Add',
         'batch_certificate_update' => 'Batch Certificate Update',
         'certification_request_accepted' => 'Request Status',
+        'custom_css' => 'Custom Style',
     ],
     'trainer_information' => [
     ],
@@ -545,5 +546,21 @@ return [
         'show_favicon' => 'Show Favicon',
         'show_logo' => 'Show Logo',
       ],
+      'certificate-template' =>[
+        'index' => 'Certificate Template',
+        'list' => 'Certificate Template List',
+        'add' => 'Create Certificate Template',
+        'edit' => 'Edit Certificate Template',
+        'update' => 'Update Certificate Template',
+        'institute_title' => 'Institute Title',
+        'title' => 'Title',
+        'caption' => 'Caption',
+        'type' => 'Content Type',
+        'featured' => 'Featured',
+        'programme_title' => 'Programme Title',
+        'batch_title' => 'Batch Title',
+        'cover_image' => 'Upload Cover Image',
+        'template' => 'Upload Template Image',
+    ],
 ];
 

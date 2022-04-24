@@ -3,6 +3,8 @@
 return [
     'dashboard' => 'Dashboard',
     'visitor_feedback' => 'Visitor Feedback',
+    'trainee_feedback' => 'Trainee Feedback',
+    'trainer_feedback' => 'Trainer Feedback',
 
     //user management
     'user_management' => 'User Management',
@@ -92,6 +94,7 @@ return [
     'routine_management' => 'Routine Management',
     'examination_routine' => 'Examination Routine',
     'class_routine' => 'Class Routine',
-    'site_setting' => 'Site Settings'
+    'site_setting' => 'Site Settings',
+    'certificate_template' => 'Certificate Template'
 ];
 
