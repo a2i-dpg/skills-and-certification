@@ -20,7 +20,7 @@
             <div class="col-md-12">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <div class="card-title text-bold">Edit Personal Information</div>
+                        <div class="card-title text-bold">{{__('frontend.trainee.edit_personal_information')}}</div>
                         <div class="card-tools">
                             <a href="{{route('frontend.trainee')}}"
                                class="btn btn-sm btn-outline-primary btn-rounded">

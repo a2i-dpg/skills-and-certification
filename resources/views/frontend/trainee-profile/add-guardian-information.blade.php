@@ -7,7 +7,7 @@
 @extends($layout)
 
 @section('title')
-{{$siteSettingInfo->site_title}} :: add guardian info
+{{$siteSettingInfo->site_title}} :: {{__('frontend.trainee.guardian_information')}}
 @endsection
 
 @push('css')
@@ -23,7 +23,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <div
-                            class="card-title text-bold">{{ $edit ? 'Edit guardian information' : 'Add guardian information' }}</div>
+                            class="card-title text-bold">{{ $edit ? __('frontend.trainee.edit_guardian_information') : __('frontend.trainee.add_guardian_information') }}</div>
                         <div class="card-tools">
                             <a href="{{route('frontend.trainee')}}"
                                class="btn btn-sm btn-outline-primary btn-rounded">

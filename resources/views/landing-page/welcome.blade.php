@@ -52,13 +52,13 @@
                 <span class="slider-previous-icon" aria-hidden="true">
                         <i class="fas fa-chevron-left"></i>
                 </span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only">{{__('frontend.welcome.previous')}}</span>
                 </a>
                 <a class="carousel-control-next" href="#topCarousel" role="button" data-slide="next">
                 <span class="slider-next-icon" aria-hidden="true">
                         <i class="fas fa-chevron-right"></i>
                 </span>
-                    <span class="sr-only">Next</span>
+                    <span class="sr-only">{{__('frontend.welcome.next')}}</span>
                 </a>
             </div>
             <!-- End carousel -->
@@ -224,14 +224,14 @@
                                                                         <p class="font-weight-light mb-1"><i
                                                                                 class="fas fa-clock gray-color mr-2"></i>
                                                                             <span
-                                                                                class="course-p">Duration: {{ $course->duration ? $course->duration .' Hour' : __('generic.duration_not_specified') }}</span>
+                                                                                class="course-p">{{__('frontend.welcome.duration')}}: {{ $course->duration ? $course->duration .' Hour' : __('generic.duration_not_specified') }}</span>
 
                                                                         </p>
 
                                                                         <p class="font-weight-light mb-1"><i
                                                                                 class="fa fa-user gray-color mr-2"></i>
                                                                             <span
-                                                                                class="course-p">Student({{ $course->enrolledTrainees ? $course->enrolledTrainees->count() : 0 }})</span>
+                                                                                class="course-p">{{__('frontend.welcome.student')}}({{ $course->enrolledTrainees ? $course->enrolledTrainees->count() : 0 }})</span>
 
                                                                         </p>
                                                                     </div>
@@ -310,13 +310,13 @@
 
                                                             <p class="font-weight-light mb-1"><i
                                                                     class="fas fa-clock gray-color mr-2"></i> <span
-                                                                    class="course-p">Duration: {{ $course->duration ? $course->duration. ' Hour' : __('generic.duration_not_specified') }}</span>
+                                                                    class="course-p">{{__('frontend.welcome.duration')}}: {{ $course->duration ? $course->duration. ' Hour' : __('generic.duration_not_specified') }}</span>
 
                                                             </p>
 
                                                             <p class="font-weight-light mb-1"><i
                                                                     class="fa fa-user gray-color mr-2"></i> <span
-                                                                    class="course-p">Student({{ $course->enrolledTrainees ? $course->enrolledTrainees->count() : 0 }})</span>
+                                                                    class="course-p">{{__('frontend.welcome.student')}}({{ $course->enrolledTrainees ? $course->enrolledTrainees->count() : 0 }})</span>
 
                                                             </p>
 

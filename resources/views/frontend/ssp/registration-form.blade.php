@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-{{$siteSettingInfo->site_title}} ::  ssp-registration
+{{$siteSettingInfo->site_title}} ::  {{__('frontend.ssp.registration')}}
 @endsection
 
 @section('content')
@@ -19,10 +19,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row justify-content-center">
-                                        <h3 class="font-weight-bold">Registration</h3>
+                                        <h3 class="font-weight-bold">{{__('frontend.ssp.registration')}}</h3>
                                     </div>
                                     <div class="row">
-                                        <h5 class="ml-2 font-weight-bold">SSP Information</h5>
+                                        <h5 class="ml-2 font-weight-bold">{{__('frontend.ssp.ssp-information')}}</h5>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">

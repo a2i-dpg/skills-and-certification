@@ -5,7 +5,7 @@
 @extends($layout)
 
 @section('title')
-{{$siteSettingInfo->site_title}} :: Trainee-registration
+{{$siteSettingInfo->site_title}} :: {{__('frontend.trainee.trainee-registration')}}
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <h3 class="ml-2 font-weight-bold">Registration</h3>
+                                        <h3 class="ml-2 font-weight-bold">{{__('frontend.trainee.registration')}}</h3>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">

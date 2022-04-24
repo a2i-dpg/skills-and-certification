@@ -25,12 +25,12 @@
                     </div>
                     @if(!count($runningBatches ?? []))
                         <div class="card-body text-center">
-                            <h1 class="display-5">Oops</h1>
+                            <h1 class="display-5">{{__('frontend.course.opps')}}</h1>
                             <p class="lead">
-                                No Open Batch currently available for this course.
+                                {{__('frontend.course.no_batch')}}
                             </p>
                             <a class="btn btn-primary btn-sm" href="{{route('frontend.course_search')}}"
-                               role="button">Find other course</a>
+                               role="button">{{__('frontend.course.find_other_batch')}}</a>
                         </div>
                     @else
                         <form action="{{ route('frontend.course-enroll') }}" method="POST" class="courseEnrollmentForm">
@@ -41,7 +41,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <p class="label-text">{{__('admin.course.batch_list')}}<span
-                                                        class="text-italic">(Select orderly fashion to set preference)</span>
+                                                        class="text-italic">({{__('frontend.course.set_preference')}})</span>
                                                 </p>
 
                                                 <input type="hidden" name="course_id" value="{{ $course->id }}">
@@ -58,18 +58,18 @@
                                                                        value="{{ $batch->title }}"/>
                                                                 <div class="card-body">
                                                                     <div>
-                                                                        Batch: <strong>{{ $batch->title }}</strong>
+                                                                        {{__('admin.course.batch')}}: <strong>{{ $batch->title }}</strong>
                                                                     </div>
                                                                     <div>
-                                                                        Training Center:
+                                                                        {{__('admin.course.training_center')}}:
                                                                         <strong>{{ optional($batch->trainingCenter)->title }}</strong>
                                                                     </div>
                                                                     <div>
-                                                                        Application End Date:
+                                                                        {{__('admin.course.application_end_date')}}:
                                                                         <strong>{{ optional($batch->application_end_date)->format('d-m-Y') }}</strong>
                                                                     </div>
                                                                     <div>
-                                                                        Batch Start Date:
+                                                                        {{__('admin.course.batch_start_date')}}:
                                                                         <strong>{{ optional($batch->batch_start_date)->format('d-m-Y') }}</strong>
                                                                     </div>
                                                                 </div>
@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <p class="font-italic">(Fill required field's to complete application)</p>
+                                        <p class="font-italic">({{__('admin.course.complete_application')}})</p>
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6" id="ethnic-group-section">
@@ -119,7 +119,7 @@
 
                                             <div class="col-md-6 address-section">
                                                 <div class="form-group">
-                                                    <label for="address">Address</label>
+                                                    <label for="address">{{__('admin.course.address')}}</label>
                                                     <input type="text" name="address" id="address" class="form-control">
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
 
                                         <div class="row academic-info-section">
                                             <div class="col-md-12">
-                                                <h5 class="font-weight-bold">Academic Information</h5>
+                                                <h5 class="font-weight-bold"> {{__('admin.course.academic_information')}}</h5>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="card-body row">

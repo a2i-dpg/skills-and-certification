@@ -90,7 +90,7 @@
                                                            name="academicQualification[education1][subject]"
                                                            id="subject" class="form-control"
                                                            value="" placeholder="{{ __('generic.subject')}}">
-                                                           <span class="text-info">Like (CSE) or (Science)</span>
+                                                           <span class="text-info">{{__('frontend.trainee.like_subject')}}</span>
                                                 </div>
                                                 <div class="col-md-4"></div>
                                             </div>
@@ -103,7 +103,7 @@
                                                            name="academicQualification[education1][result]"
                                                            id="result" class="form-control"
                                                            value="" placeholder="{{ __('generic.result')}}">
-                                                           <span class="text-info">like GPA 3/out of 4.00</span>
+                                                           <span class="text-info">{{__('frontend.trainee.like_result')}}</span>
                                                 </div>
                                                 <div class="col-md-4"></div>
                                             </div>
@@ -191,7 +191,7 @@
                                                            name="academicQualification[education{{$key+1}}][subject]"
                                                            id="subject" class="form-control"
                                                            value="{{$academicQualification->subject}}" placeholder="{{ __('generic.subject')}}">
-                                                           <span class="text-info">Like (CSE) or (Science)</span>
+                                                           <span class="text-info">{{__('frontend.trainee.like_subject')}}</span>
                                                 </div>
                                                 <div class="col-md-4"></div>
                                             </div>
@@ -204,7 +204,7 @@
                                                            name="academicQualification[education{{$key+1}}][result]"
                                                            id="result" class="form-control"
                                                            value="{{$academicQualification->result}}" placeholder="{{ __('generic.result')}}">
-                                                           <span class="text-info">like GPA 3/out of 4.00</span>
+                                                           <span class="text-info">{{__('frontend.trainee.like_result')}}</span>
                                                 </div>
                                                 <div class="col-md-4"></div>
                                             </div>
@@ -246,7 +246,7 @@
 
                                 <div class="col-md-10"></div>
                                 <div class="col-md-2">
-                                    <button class="btn btn-info add_form_field" style="width: 100%">Add More <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button class="btn btn-info add_form_field" style="width: 100%">{{__('frontend.trainee.add_more')}} <i class="fa fa-plus" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                                                 '<label for="subject" class="col-md-4 col-form-label">{{ __('generic.subject')}}</label>'+
                                                 '<div class="col-md-8">'+
                                                     '<input type="text" name="academicQualification[education'+ x +'][subject]" id="subject" class="form-control" value="" placeholder="{{ __('generic.subject')}}">'+
-                                                    '<span class="text-info">like (CSE) or (Science))</span>'+
+                                                    '<span class="text-info">{{__('frontend.trainee.like_subject')}}</span>'+
                                                 '</div>'+
                                                 '<div class="col-md-4"></div>'+
                                             '</div>'+
@@ -341,7 +341,7 @@
                                                 '<label for="result" class="col-md-4 col-form-label">{{ __('generic.result')}}</label>'+
                                                 '<div class="col-md-8">'+
                                                     '<input type="text" name="academicQualification[education'+ x +'][result]" id="result" class="form-control" value="" placeholder="{{ __('generic.result')}}">'+
-                                                    '<span class="text-info">like GPA 3/out of 4.00</span>'+
+                                                    '<span class="text-info">{{__('frontend.trainee.like_result')}}</span>'+
                                                 '</div>'+
                                                 '<div class="col-md-4"></div>'+
                                             '</div>'+

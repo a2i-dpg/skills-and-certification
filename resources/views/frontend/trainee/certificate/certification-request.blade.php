@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <div class="card-title">Trainee Information</div>
+                        <div class="card-title">{{__('frontend.trainee.trainee-information')}}</div>
                         <div class="card-tools">
                             <a href="{{route('frontend.trainee-enrolled-courses')}}"
                                class="btn btn-sm btn-outline-primary btn-rounded">
@@ -36,7 +36,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md-12">
-                                    <label for="name">Batch name:</label>
+                                    <label for="name">{{__('frontend.trainee.batch_name')}}:</label>
                                     <h3 > {{ $batch->title }} </h3>
                                 </div>
 

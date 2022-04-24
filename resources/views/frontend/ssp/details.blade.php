@@ -28,37 +28,37 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row mr-2 pb-3">
-                                    <h4 class="font-weight-bold card-title">{{ __('generic.ssp') }} Information</h4>
-                                    <p class="card-info col-md-10 pl-0 pt-2"><span class="font-weight-bold">Office head: </span>{{ $institute->office_head_name }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Office head post: </span>{{ $institute->office_head_post }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Mobile: </span>{{ $institute->mobile }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">E-mail: </span>{{ $institute->email }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Address: </span>{{ $institute->address}}</p>
+                                    <h4 class="font-weight-bold card-title">{{ __('generic.ssp') }} {{__('frontend.ssp.information')}}</h4>
+                                    <p class="card-info col-md-10 pl-0 pt-2"><span class="font-weight-bold">{{__('frontend.ssp.head_office')}}: </span>{{ $institute->office_head_name }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.office_head_post')}}: </span>{{ $institute->office_head_post }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.mobile')}}: </span>{{ $institute->mobile }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.email')}}: </span>{{ $institute->email }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.address')}}: </span>{{ $institute->address}}</p>
                                 </div>
                                 <div class="row">
-                                    <h4 class="font-weight-bold card-title">Contact Information</h4>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> Name: </span>{{ $institute->contact_person_name }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> E-mail: </span>{{ $institute->contact_person_email }}</p>
-                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> Mobile: </span>{{ $institute->contact_person_mobile }}</p>
+                                    <h4 class="font-weight-bold card-title">{{__('frontend.ssp.contact_information')}}</h4>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.mobile')}}: </span>{{ $institute->contact_person_name }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.email')}}: </span>{{ $institute->contact_person_email }}</p>
+                                    <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.address')}}: </span>{{ $institute->contact_person_mobile }}</p>
                                 </div>
                             </div>
                             @else
                                 <div class="col-md-6">
                                     <div class="row ml-5 pb-3">
-                                        <h4 class="font-weight-bold card-title">Institute Information</h4>
-                                        <p class="card-info col-md-10 pl-0 pt-2"><span class="font-weight-bold">Office head: </span>{{ $institute->office_head_name }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Office head post: </span>{{ $institute->office_head_post }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Mobile: </span>{{ $institute->mobile }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">E-mail: </span>{{ $institute->email }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">Address: </span>{{ $institute->address}}</p>
+                                        <h4 class="font-weight-bold card-title">{{__('frontend.ssp.institute_information')}}</h4>
+                                        <p class="card-info col-md-10 pl-0 pt-2"><span class="font-weight-bold">{{__('frontend.ssp.head_office')}}: </span>{{ $institute->office_head_name }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.office_head_post')}}: </span>{{ $institute->office_head_post }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.mobile')}}: </span>{{ $institute->mobile }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.email')}}: </span>{{ $institute->email }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold">{{__('frontend.ssp.address')}}: </span>{{ $institute->address}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row ml-5 ">
-                                        <h4 class="font-weight-bold card-title float-none">Contact Information</h4>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> Name: </span>{{ $institute->contact_person_name }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> E-mail: </span>{{ $institute->contact_person_email }}</p>
-                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> Mobile: </span>{{ $institute->contact_person_mobile }}</p>
+                                        <h4 class="font-weight-bold card-title float-none">{{__('frontend.ssp.contact_information')}}</h4>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.name')}}: </span>{{ $institute->contact_person_name }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.email')}}: </span>{{ $institute->contact_person_email }}</p>
+                                        <p class="card-info col-md-10 pl-0"><span class="font-weight-bold"> {{__('frontend.ssp.mobile')}}: </span>{{ $institute->contact_person_mobile }}</p>
                                     </div>
                                 </div>
                             @endif

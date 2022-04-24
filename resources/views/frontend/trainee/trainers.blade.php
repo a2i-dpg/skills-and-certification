@@ -93,7 +93,7 @@
 
                     <div class="card-body">
                         @if($trainers->isEmpty())
-                            <h3 class="text-center text-danger">There is no trainer yet</h3>
+                            <h3 class="text-center text-danger">{{__('frontend.trainer.trainer_yet')}}</h3>
                         @else
                             <table class="table table-bordered">
                                 <thead>
@@ -109,7 +109,7 @@
                                             <th scope="row">{{$key+1}}</th>
                                             <td>{{$trainer->name}}</td>
                                             <td>
-                                                <a href="{{ route('frontend.trainee-feedback', $trainer->id) }}" class="btn btn-sm btn-info">Feedback</a>
+                                                <a href="{{ route('frontend.trainee-feedback', $trainer->id) }}" class="btn btn-sm btn-info">{{__('frontend.trainer.feedback')}}</a>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -17,12 +17,12 @@
                 <div class="card mt-3">
                     <div class="card-header bg-success">
                         <div class="row justify-content-center">
-                            <p> Your enrollment request for <strong>{{optional($enrolledCourse->course)->title }}</strong> successfully sent. Please wait for approval.
+                            <p> {{__('frontend.trainee.enrollment_request')}} <strong>{{optional($enrolledCourse->course)->title }}</strong> {{__('frontend.trainee.successfully_sent')}}
                             </p>
                         </div>
                     </div>
                     <div class="card-body text-center">
-                        <a href="{{ route('frontend.trainee-enrolled-courses') }}">Go to my course</a>
+                        <a href="{{ route('frontend.trainee-enrolled-courses') }}">{{__('frontend.trainee.go_to_course')}}</a>
                     </div>
                 </div>
             </div>
