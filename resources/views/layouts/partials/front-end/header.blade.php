@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="container">
         <header class="navbar navbar-expand flex-column flex-md-row bd-navbar">
-            <div class="navbar-nav-scroll">
+            <div class="navbar-nav-scroll" style="width: 100%">
                 <div class="nise3-logo" style="height: 0px;">
                     <div class="float-left px-1" style="max-width: 500px; padding: 0px;">
                         @if($currentInstitute)
@@ -28,7 +28,32 @@
                             @endif
                         @endif
                     </div>
+                    <div class="float-right" style="margin-top: 10px;">
+                        <ul class="navbar-nav ml-auto">
+                            @if ($siteSettingInfo->show_lang)
+                            <li class="nav-item m-auto">
+                                <div class="btn-group language bg-light" style="border-radius: 10px">
+                                    <button onclick="document.getElementById('change_language').submit()"
+                                            class="btn btn-sm btn-{{app()->getLocale() === 'en' ? 'primary': 'default'}} padding8 font-size-12 border-rad-left14">
+                                        English
+                                    </button>
+                                    <button onclick="document.getElementById('change_language').submit()"
+                                            class="btn btn-sm btn-{{app()->getLocale() === 'bn' ? 'primary': 'default'}} padding5 font-size-12 border-rad-right14">
+                                        বাংলা
+                                    </button>
+                                </div>
+                                <form method="post" action="{{route('change-language', app()->getLocale() === 'bn' ? 'en': 'bn')}}"
+                                      id="change_language">
+                                    @csrf
+                                </form>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                    
                 </div>
+
+                
             </div>
         </header>
     </div>
