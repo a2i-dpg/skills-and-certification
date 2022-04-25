@@ -545,6 +545,13 @@ return [
         'site_favicon' => 'Site Favicon',
         'show_favicon' => 'Show Favicon',
         'show_logo' => 'Show Logo',
+        'mailer' => 'Mail Mailer',
+        'host' => 'Mail Host',
+        'port' => 'Mail Port',
+        'username' => 'Mail Username',
+        'password' => 'Mail password',
+        'encryption' => 'Mail Encryption',
+        'dynamic_mail_setup_text' => 'Dynamic configuration for mail setup from database.',
       ],
       'certificate-template' =>[
         'index' => 'Certificate Template',

@@ -313,14 +313,87 @@
                           </div>
                       </div>
 
+                      <div class="col-md-12">
+                        <hr>
+                        <p class="text-info font-weight-bold">{{__('admin.site_setting.dynamic_mail_setup_text')}}</p>
+                        <hr>
+                      </div>
+
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="mailer">{{ __('admin.site_setting.mailer') }}
+                          </label>
+                          <input type="text" class="form-control" id="mailer"
+                                name="mailer"
+                                value="{{ $edit ? $siteSetting->mailer : old('mailer') }}"
+                                placeholder="{{ __('admin.site_setting.mailer') }}">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="host">{{ __('admin.site_setting.host') }}
+                          </label>
+                          <input type="text" class="form-control" id="host"
+                                name="host"
+                                value="{{ $edit ? $siteSetting->host : old('host') }}"
+                                placeholder="{{ __('admin.site_setting.host') }}">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="port">{{ __('admin.site_setting.port') }}
+                          </label>
+                          <input type="text" class="form-control" id="port"
+                                name="port"
+                                value="{{ $edit ? $siteSetting->port : old('port') }}"
+                                placeholder="{{ __('admin.site_setting.port') }}">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="username">{{ __('admin.site_setting.username') }}
+                          </label>
+                          <input type="text" class="form-control" id="username"
+                                name="username"
+                                value="{{ $edit ? $siteSetting->username : old('username') }}"
+                                placeholder="{{ __('admin.site_setting.username') }}">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="password">{{ __('admin.site_setting.password') }}
+                          </label>
+                          <input type="text" class="form-control" id="password"
+                                name="password"
+                                value="{{ $edit ? $siteSetting->password : old('password') }}"
+                                placeholder="{{ __('admin.site_setting.password') }}">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="encryption">{{ __('admin.site_setting.encryption') }}
+                          </label>
+                          <input type="text" class="form-control" id="encryption"
+                                name="encryption"
+                                value="{{ $edit ? $siteSetting->encryption : old('encryption') }}"
+                                placeholder="{{ __('admin.site_setting.encryption') }}">
+                        </div>
+                      </div>
+
                           
 
 
 
-                          <div class="col-sm-12 text-right">
-                              <button type="submit"
-                                      class="btn btn-success">{{ $edit ? __('admin.site_setting.update') : __('admin.site_setting.add') }}</button>
-                          </div>
+                      <div class="col-sm-12 text-right">
+                          <button type="submit"
+                                  class="btn btn-success">{{ $edit ? __('admin.site_setting.update') : __('admin.site_setting.add') }}</button>
+                      </div>
                       </form>
                     </div>
                 </div>

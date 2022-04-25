@@ -180,6 +180,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
 
         \SocialiteProviders\Manager\ServiceProvider::class,
+
+        App\Providers\MailConfigServiceProvider::class,
     ],
 
     /*

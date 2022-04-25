@@ -42,6 +42,13 @@ class CreateSiteSettingsTable extends Migration
             $table->tinyInteger('show_logo')->default(0);
             $table->tinyInteger('show_favicon')->default(0);
 
+            $table->string('mailer', 64)->default('smtp')->nullable();
+            $table->string('host', 64)->default('mail.dpg.gov.bd')->nullable();
+            $table->smallInteger('port')->default(587)->nullable();
+            $table->string('username', 64)->default('noreply@dpg.gov.bd')->nullable();
+            $table->string('password', 64)->default('2RoPyzaY')->nullable();
+            $table->string('encryption', 64)->default('tls')->nullable();
+
             $table->tinyInteger('row_status')->default(1);
             $table->timestamps();
         });

@@ -28,9 +28,10 @@
                             @endif
                         @endif
                     </div>
-                    <div class="float-right" style="margin-top: 10px;">
+                    @if ($siteSettingInfo->show_lang)
+                    <div class="float-right" style=" {{($siteSettingInfo->show_logo)? 'margin-top: 10px' : 'margin-top:0px'}} ">
                         <ul class="navbar-nav ml-auto">
-                            @if ($siteSettingInfo->show_lang)
+                            
                             <li class="nav-item m-auto">
                                 <div class="btn-group language bg-light" style="border-radius: 10px">
                                     <button onclick="document.getElementById('change_language').submit()"
@@ -47,10 +48,9 @@
                                     @csrf
                                 </form>
                             </li>
-                            @endif
                         </ul>
                     </div>
-                    
+                    @endif
                 </div>
 
                 

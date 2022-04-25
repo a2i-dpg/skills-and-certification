@@ -19,6 +19,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
+use App\Models\SiteSetting;
+use Cache;
 
 class HomeController extends BaseController
 {
@@ -28,6 +30,11 @@ class HomeController extends BaseController
      */
     public function index()
     {
+        //dd(config('mail.mailers.smtp.host'));
+        //dd(env('MAIL_HOST'));
+
+
+
         /** @var Institute|null $currentInstitute */
         $currentInstitute = app('currentInstitute');
         //dd($currentInstitute);
