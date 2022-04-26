@@ -31,6 +31,7 @@ composer install
 
 ```shell
 php artisan optimize:clear
+php artisan cache:clear
 php artisan key:generate
 php artisan storage:link 
 ```
@@ -47,7 +48,7 @@ php artisan migrate:fresh --seed
 php artisan db:seed --class=TablePermissionKeySeeder
 ```
 
-##### Run this command to seed menu permission for institute admin
+##### Run this command to seed menu permission for system admin, institute admin, branch admin, training center admin and triner
 
 ```shell
 php artisan db:seed --class=RoleWisePermissionSeeder
@@ -58,6 +59,7 @@ php artisan db:seed --class=RoleWisePermissionSeeder
 ```shell
 php artisan optimize:clear
 ```
+
 
 ##### Run this command to start application
 
