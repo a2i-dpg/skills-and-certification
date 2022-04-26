@@ -104,6 +104,20 @@ email: trainer@gmail.com
 password: password
 ```
 
+##### Demo branch admin credentials
+
+```shell
+email: branch@gmail.com
+password: password
+```
+
+##### Demo training center admin credentials
+
+```shell
+email: training-center@gmail.com
+password: password
+```
+
 
 
 ## Admin Documentation

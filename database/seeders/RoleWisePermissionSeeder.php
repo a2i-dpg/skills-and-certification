@@ -29,7 +29,8 @@ class RoleWisePermissionSeeder extends Seeder
 
         DB::table('permission_role')->insert($permissions);
         //SELECT * FROM `permission_role` WHERE permission_id = 395 and role_id = 5;
-        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 2])->delete();
+        //DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 2])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [373,395])->where(['role_id' => 3])->delete();
         /* System Admin Menu Permition Seed */
 
 
@@ -42,7 +43,7 @@ class RoleWisePermissionSeeder extends Seeder
         $permissions = json_decode(json_encode($permissions), True);
 
         DB::table('permission_role')->insert($permissions);
-        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 3])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [373,395])->where(['role_id' => 3])->delete();
         /* Institute Admin Menu Permition Seed */
 
         /* Branch Admin Menu Permition Seed */
@@ -50,13 +51,13 @@ class RoleWisePermissionSeeder extends Seeder
                         ->select('id as permission_id', DB::raw('5 as role_id'))
                         ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types',
                         'intro_videos','sliders','gallery_categories','galleries','video_categories','videos','static_pages','question_answers',
-                        'institutes','branches'
+                        'institutes'
                         ])
                         ->get()
                         ->toArray();
         $permissions = json_decode(json_encode($permissions), True);
         DB::table('permission_role')->insert($permissions);
-        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 5])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [17,18,19,373,395])->where(['role_id' => 5])->delete();
         /* Branch Admin Menu Permition Seed */
 
         /* Trainig Center Admin Menu Permition Seed */
@@ -70,8 +71,7 @@ class RoleWisePermissionSeeder extends Seeder
                         ->toArray();
         $permissions = json_decode(json_encode($permissions), True);
         DB::table('permission_role')->insert($permissions);
-        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 4])->delete();
-        DB::table('permission_role')->whereIn('permission_id', [353])->where(['role_id' => 4])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [360,361,362,373,395])->where(['role_id' => 4])->delete();
         /* Trainig Center Admin Menu Permition Seed */
 
 
@@ -87,6 +87,7 @@ class RoleWisePermissionSeeder extends Seeder
                         ->toArray();
         $permissions = json_decode(json_encode($permissions), True);
         DB::table('permission_role')->insert($permissions);
+        DB::table('permission_role')->whereIn('permission_id', [75,82,88,])->where(['role_id' => 6])->delete();
         /* Trainer Menu Permition Seed */
 
         Schema::enableForeignKeyConstraints();
