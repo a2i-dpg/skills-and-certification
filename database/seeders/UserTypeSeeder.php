@@ -92,7 +92,7 @@ class UserTypeSeeder extends Seeder
         DB::table('users')->insert([
             0 => [
                 'id' => 1,
-                'name' => 'admin',
+                'name' => 'Super Admin',
                 'email' => 'admin@gmail.com',
                 'user_type_id' => 1,
                 'institute_id' => null,
@@ -187,6 +187,20 @@ class UserTypeSeeder extends Seeder
                 'updated_at' => NOW(),
                 'email_verified_at' => NOW(),
                 'created_by' => 1,
+            ],
+            7 => [
+                'id' => 8,
+                'name' => 'System Admin',
+                'email' => 'system-admin@gmail.com',
+                'user_type_id' => 2,
+                'institute_id' => null,
+                'role_id' => 2,
+                'password' => Hash::make('password'),
+                'row_status' => 1,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+                'email_verified_at' => NOW(),
+                'created_by' => null,
             ],
         ]);
 

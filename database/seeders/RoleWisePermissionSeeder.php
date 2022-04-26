@@ -22,15 +22,14 @@ class RoleWisePermissionSeeder extends Seeder
         /* System Admin Menu Permition Seed */
         $permissions = DB::table('permissions')
                         ->select('id as permission_id', DB::raw('2 as role_id'))
-                        //->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types'])
+                        ->whereNotIn('table_name', ['roles','permissions','menus','user_types'])
                         ->get()
                         ->toArray();
         $permissions = json_decode(json_encode($permissions), True);
 
         DB::table('permission_role')->insert($permissions);
         //SELECT * FROM `permission_role` WHERE permission_id = 395 and role_id = 5;
-        //DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 2])->delete();
-        DB::table('permission_role')->whereIn('permission_id', [373,395])->where(['role_id' => 3])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [373,395])->where(['role_id' => 2])->delete();
         /* System Admin Menu Permition Seed */
 
 

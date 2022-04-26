@@ -30,8 +30,6 @@ composer install
 ##### Run this two command also
 
 ```shell
-php artisan optimize:clear
-php artisan cache:clear
 php artisan key:generate
 php artisan storage:link 
 ```
@@ -57,6 +55,10 @@ php artisan db:seed --class=RoleWisePermissionSeeder
 ##### Run this command to clear all type of cache
 
 ```shell
+php artisan cache:clear
+```
+
+```shell
 php artisan optimize:clear
 ```
 
@@ -73,10 +75,17 @@ php artisan serve
 
 Go to the link `/user/login` like `http://127.0.0.1:8000/user/login` for login and enter the system admin credentials below.
 
-##### Demo system admin credentials
+##### Demo super admin credentials
 
 ```shell
 email: admin@gmail.com
+password: password
+```
+
+##### Demo system admin credentials
+
+```shell
+email: system-admin@gmail.com
 password: password
 ```
 
