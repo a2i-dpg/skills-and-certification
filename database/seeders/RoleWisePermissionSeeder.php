@@ -18,22 +18,76 @@ class RoleWisePermissionSeeder extends Seeder
     public function run()
     {
         DB::table('permission_role')->truncate();
-        /* Institute Menu Permition Seed */
+
+        /* System Admin Menu Permition Seed */
+        $permissions = DB::table('permissions')
+                        ->select('id as permission_id', DB::raw('2 as role_id'))
+                        //->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types'])
+                        ->get()
+                        ->toArray();
+        $permissions = json_decode(json_encode($permissions), True);
+
+        DB::table('permission_role')->insert($permissions);
+        //SELECT * FROM `permission_role` WHERE permission_id = 395 and role_id = 5;
+        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 2])->delete();
+        /* System Admin Menu Permition Seed */
+
+
+        /* Institute Admin Menu Permition Seed */
         $permissions = DB::table('permissions')
                         ->select('id as permission_id', DB::raw('3 as role_id'))
                         ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types'])
                         ->get()
                         ->toArray();
         $permissions = json_decode(json_encode($permissions), True);
-        // insert 1st way
-        DB::table('permission_role')->insert($permissions);
-        
-        // insert 2nd way
-        // foreach ($permissions as $permission) {
-        //     DB::table('permission_role')->insert(['permission_id' => $permission['permission_id'],'role_id'=>$permission['role_id']]);
-        // }
 
-        /* Institute Menu Permition Seed */
+        DB::table('permission_role')->insert($permissions);
+        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 3])->delete();
+        /* Institute Admin Menu Permition Seed */
+
+        /* Branch Admin Menu Permition Seed */
+        $permissions = DB::table('permissions')
+                        ->select('id as permission_id', DB::raw('5 as role_id'))
+                        ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types',
+                        'intro_videos','sliders','gallery_categories','galleries','video_categories','videos','static_pages','question_answers',
+                        'institutes','branches'
+                        ])
+                        ->get()
+                        ->toArray();
+        $permissions = json_decode(json_encode($permissions), True);
+        DB::table('permission_role')->insert($permissions);
+        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 5])->delete();
+        /* Branch Admin Menu Permition Seed */
+
+        /* Trainig Center Admin Menu Permition Seed */
+        $permissions = DB::table('permissions')
+                        ->select('id as permission_id', DB::raw('4 as role_id'))
+                        ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types',
+                        'intro_videos','sliders','gallery_categories','galleries','video_categories','videos','static_pages','question_answers',
+                        'institutes','branches'
+                        ])
+                        ->get()
+                        ->toArray();
+        $permissions = json_decode(json_encode($permissions), True);
+        DB::table('permission_role')->insert($permissions);
+        DB::table('permission_role')->where(['permission_id' => 395, 'role_id' => 4])->delete();
+        DB::table('permission_role')->whereIn('permission_id', [353])->where(['role_id' => 4])->delete();
+        /* Trainig Center Admin Menu Permition Seed */
+
+
+        /* Trainer Menu Permition Seed */
+        $permissions = DB::table('permissions')
+                        ->select('id as permission_id', DB::raw('6 as role_id'))
+                        ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types','users',
+                        'intro_videos','sliders','gallery_categories','galleries','video_categories','videos','static_pages','question_answers',
+                        'institutes','branches','training_centers','programmes','batches','batch_certificates','certificates',
+                        'certificate_requests','certificate_templates','trainee_certificates','routine_slots','routines'
+                        ])
+                        ->get()
+                        ->toArray();
+        $permissions = json_decode(json_encode($permissions), True);
+        DB::table('permission_role')->insert($permissions);
+        /* Trainer Menu Permition Seed */
 
         Schema::enableForeignKeyConstraints();
     }

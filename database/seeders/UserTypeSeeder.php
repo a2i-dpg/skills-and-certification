@@ -56,7 +56,7 @@ class UserTypeSeeder extends Seeder
                     'parent_id' => '3',
                     'code' => '4',
                     'row_status' => 1,
-                    'default_role_id' => '4'
+                    'default_role_id' => '6'
                 ),
             4 =>
                 array(
@@ -65,7 +65,7 @@ class UserTypeSeeder extends Seeder
                     'parent_id' => '3',
                     'code' => '5',
                     'row_status' => 1,
-                    'default_role_id' => '4'
+                    'default_role_id' => '5'
                 ),
             5 =>
                 array(

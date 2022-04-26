@@ -1,6 +1,7 @@
 @php
     /** @var \App\Models\User $authUser */
     $authUser = \App\Helpers\Classes\AuthHelper::getAuthUser();
+    //dd($authUser->user_type_id);
 @endphp
 
 
