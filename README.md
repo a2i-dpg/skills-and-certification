@@ -145,7 +145,7 @@ export.
 
 Once menu list import completed please go to site settings menu, it's available into content management menu. Here all site settings is controlled and please update all settings mainly update valid credentials for mail setup.
 
-### Then gradually update following below menus wise
+### The following below menus wise update gradually
 
 #### Intro Video 
 #### Slider 
