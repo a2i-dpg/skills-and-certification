@@ -80,8 +80,8 @@ class RoleWisePermissionSeeder extends Seeder
                         ->select('id as permission_id', DB::raw('6 as role_id'))
                         ->whereNotIn('table_name', ['site_settings','roles','permissions','menus','user_types','users',
                         'intro_videos','sliders','gallery_categories','galleries','video_categories','videos','static_pages','question_answers',
-                        'institutes','branches','training_centers','programmes','batches','batch_certificates','certificates',
-                        'certificate_requests','certificate_templates','trainee_certificates','routine_slots','routines'
+                        'institutes','branches','training_centers','programmes','courses','batches','batch_certificates','certificates',
+                        'certificate_requests','certificate_templates','trainee_certificates','routine_slots','routines','visitor_feedback'
                         ])
                         ->get()
                         ->toArray();
