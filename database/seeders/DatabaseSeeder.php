@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             SiteSettingSeeder::class,
             BatchSeeder::class,
             TraineeSeeder::class,
+            SliderSeeder::class,
+            GalleryAlbumSeeder::class,
         ]);
     }
 }

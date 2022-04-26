@@ -24,7 +24,28 @@
             <!-- Carousel -->
             <div id="topCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    @foreach($sliders as $slider)
+                    @foreach($sliders as $key => $slider)
+                        @if (!$slider->slider)
+                        <div class="carousel-item {{ ++$sl==1?'active':'' }}">
+                            <div style="background: url('{{asset('/assets/default/slider-'.($key+1).'.jpg')}}');
+                                background-position: center;
+                                background-size: 100% 100%;
+                                background-repeat: no-repeat;
+                                min-height: 100%;
+                                opacity: 1;
+                                "></div>
+
+                            <div class="carousel-caption">
+                                <h3 class="slider-title" title="{{ $slider->title }}">
+                                    {{ $slider->title }}</h3>
+                                <div class="slider-button">
+                                    @if($slider->is_button_available && $slider->link)
+                                        <button class="btn btn-sm btn-link">{{ $slider->button_text }}</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>    
+                        @else
                         <div class="carousel-item {{ ++$sl==1?'active':'' }}">
                             <div style="background: url('{{asset('/storage/'. $slider->slider)}}');
                                 background-position: center;
@@ -44,6 +65,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
 
@@ -485,12 +507,12 @@
                         @if($galleryCategories->count() > 3)
                             <div class="col-md-12">
                                 <div class="row">
-                                    @foreach($galleryCategories as $galleryCategory)
+                                    @foreach($galleryCategories as $key => $galleryCategory)
                                         <div class="col-md-3">
                                             <a href="{{ route('frontend.gallery-category', ['galleryCategory' => $galleryCategory->id]) }}">
                                                 <div class="card card-main mb-2 shadow-none bg-transparent">
                                                     <img class="slider-img slider-radius"
-                                                         src="{{asset('/storage/'. $galleryCategory->image)}}">
+                                                         src="{{($galleryCategory->image) ? asset('/storage/'. $galleryCategory->image) : asset('/assets/default/Gallery-1'. ($key+1).'.jpg') }}">
                                                     <h3 class="gallery-post-heading">{{ mb_strimwidth($galleryCategory->title, 0, 20) }} {{ strlen($galleryCategory->title) > 20 ?'...':'' }}</h3>
                                                 </div>
                                             </a>
@@ -501,12 +523,12 @@
                         @elseif($galleryCategories->count() > 2)
                             <div class="col-md-12">
                                 <div class="row">
-                                    @foreach($galleryCategories as $galleryCategory)
+                                    @foreach($galleryCategories as $key=>$galleryCategory)
                                         <div class="col-md-4">
                                             <a href="{{ route('frontend.gallery-category', ['galleryCategory' => $galleryCategory->id]) }}">
                                                 <div class="card card-main mb-2 shadow-none bg-transparent">
                                                     <img class="slider-img slider-radius"
-                                                         src="{{asset('/storage/'. $galleryCategory->image)}}">
+                                                         src="{{($galleryCategory->image) ? asset('/storage/'. $galleryCategory->image) : asset('/assets/default/Gallery-1'. ($key+1).'.jpg') }}">
                                                     <h3 class="gallery-post-heading">{{ mb_strimwidth($galleryCategory->title, 0, 20) }} {{ strlen($galleryCategory->title) >20 ?'...':'' }}</h3>
                                                 </div>
                                             </a>
@@ -517,13 +539,13 @@
                         @elseif($galleryCategories->count() > 1)
                             <div class="col-md-12">
                                 <div class="row w-100 justify-content-center text-center">
-                                    @foreach($galleryCategories as $galleryCategory)
+                                    @foreach($galleryCategories as $key=>$galleryCategory)
 
                                         <div class="col-md-4 ">
                                             <a href="{{ route('frontend.gallery-category', ['galleryCategory' => $galleryCategory->id]) }}">
                                                 <div class="card card-main mb-2 shadow-none bg-transparent">
                                                     <img class="slider-img slider-radius"
-                                                         src="{{asset('/storage/'. $galleryCategory->image)}}">
+                                                         src="{{($galleryCategory->image) ? asset('/storage/'. $galleryCategory->image) : asset('/assets/default/Gallery-1'. ($key+1).'.jpg') }}">
                                                     <h3 class="gallery-post-heading">{{ mb_strimwidth($galleryCategory->title, 0, 20) }} {{ strlen($galleryCategory->title) >20 ?'...':'' }}</h3>
                                                 </div>
                                             </a>
@@ -534,12 +556,12 @@
                         @elseif($galleryCategories->count() > 0)
                             <div class="col-md-12">
                                 <div class="row w-100 justify-content-center text-center">
-                                    @foreach($galleryCategories as $galleryCategory)
+                                    @foreach($galleryCategories as $key=>$galleryCategory)
                                         <div class="col-md-4">
                                             <a href="{{ route('frontend.gallery-category', ['galleryCategory' => $galleryCategory->id]) }}">
                                                 <div class="card card-main mb-2 shadow-none bg-transparent">
                                                     <img class="slider-img slider-radius"
-                                                         src="{{asset('/storage/'. $galleryCategory->image)}}">
+                                                         src="{{($galleryCategory->image) ? asset('/storage/'. $galleryCategory->image) : asset('/assets/default/Gallery-1'. ($key+1).'.jpg') }}">
                                                     <h3 class="gallery-post-heading">{{ mb_strimwidth($galleryCategory->title, 0, 20) }} {{ strlen($galleryCategory->title) >20 ?'...':'' }}</h3>
                                                 </div>
                                             </a>

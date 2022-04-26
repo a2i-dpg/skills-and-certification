@@ -138,11 +138,25 @@ After login as a system admin now you can import/export menu using menu builder.
 button. it will help you to import menu from menu-backup folder. If you create any menu, you could push it to git using
 export.
 
-##### If get any problem run this command to clear all type of cache
 
-```shell
-php artisan optimize:clear
-```
+## Content Management
+
+#### Site Settings
+
+Once menu list import completed please go to site settings menu, it's available into content management menu. Here all site settings is controlled and please update all settings mainly update valid credentials for mail setup.
+
+# Then gradually update 
+
+#### Intro Video 
+#### Slider 
+#### Gallery Album 
+#### Gallery 
+#### Video Category 
+#### Video 
+#### Static Page 
+#### FAQ
+
+
 
 
 ## Developer Guide
