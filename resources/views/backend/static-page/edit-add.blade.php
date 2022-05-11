@@ -288,7 +288,7 @@
             },
             plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
             menubar: '',
-            toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat  | emoticons | preview | insertfile image  link | code  ',
+            toolbar: 'undo redo | link image | code | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat  | emoticons | preview | insertfile image  link | code  ',
             toolbar_sticky: true,
             image_advtab: true,
             importcss_append: true,
@@ -307,6 +307,17 @@
             remove_script_host: false,
             convert_urls: true,
             plugins: 'code',
+            plugins: 'image code',
+            /* enable title field in the Image dialog*/
+            image_title: true,
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            /*
+                URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+                images_upload_url: 'postAcceptor.php',
+                here we add custom filepicker only to Image dialog
+            */
+            file_picker_types: 'image',
         });
 
         $('body').on('click', function() {
