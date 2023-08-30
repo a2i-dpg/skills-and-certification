@@ -8,7 +8,9 @@
 - [Contributions and Support](#contributions-and-support)
 - [License](#license)
 
-
+- [Easy Installation](#easy-installation)
+- [Server Setup](#server-setup)
+    - [Linux Server Setup For Production Deployment](#linux-server-setup-for-production-deployment)
 ## Installation
 
 ```sh
@@ -389,3 +391,118 @@ limitations under the License.
 ![alt text](docs/assets/system_admin.jpeg)
 ![alt text](docs/assets/Trainee.jpeg)
 ![alt text](docs/assets/Trainer.jpeg)
+
+
+
+## Easy Installation
+
+## Server Setup
+
+## Linux Server Setup For Production Deployment
+
+<hr /> <br />
+
+```shell
+sudo apt-get update
+```
+
+#### install apache server
+```shell
+sudo apt-get install apache2
+```
+
+#### checking your Apache configuration for syntax errors:
+```shell
+sudo apache2ctl configtest
+```
+
+<!-- ### Install Db
+```shell
+sudo apt install mariadb-server
+mysql_secure_installation
+GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+``` -->
+
+### Install MySQL
+```shell
+sudo apt update
+sudo apt install mysql-client mysql-server
+sudo mysql_secure_installation
+
+CREATE DATABASE laravel;
+mysql -u root -p
+CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL ON laravel.* to 'laravel'@'localhost';
+FLUSH PRIVILEGES;
+quit
+```
+
+### PHP 8.0 Install
+```shell
+sudo apt -y install php8.0
+
+sudo apt-get install -y php8.0-cli php8.0-json php8.0-common php8.0-mysql php8.0-zip php8.0-gd php8.0-mbstring php8.0-curl php8.0-xml php8.0-bcmath
+
+sudo apt-get install php8.0-mysqli
+
+php -v
+```
+
+### Restart Apache
+```shell
+sudo service apache2 restart
+```
+
+### Composer Install 
+
+Once php installed, need to install composer if not installed on machine. To install composer please follow following steps. [Reference link](https://getcomposer.org/download/)
+
+```shell
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+sudo mv composer.phar /usr/local/bin/composer
+
+composer -v
+```
+
+### Apache Config and  virtual hosts
+```shell
+    <Directory "/var/www/html">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+```
+
+### copy the virtual config
+```shell
+vi [Real Domain Address or Dummy Domain Address Like (www.dummy-host.com)].conf
+```
+
+```shell
+    <VirtualHost *:80>
+        ServerName [Real Domain Address or Dummy Domain Address Like (www.dummy-host.com)]
+        ServerAdmin webmaster@[Real Domain Address or Dummy Domain Address Like (www.dummy-host.com)]
+        DocumentRoot /var/www/html
+
+        <Directory /var/www/html>
+            AllowOverride All
+        </Directory>
+
+        ErrorLog /var/www/html/error.log
+        CustomLog /var/www/html/access.log combined
+    </VirtualHost>
+```
+
+```shell
+sudo a2dissite 000-default.conf
+sudo a2ensite [Real Domain Address or Dummy Domain Address Like (www.dummy-host.com)]
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+```
+
+
+
